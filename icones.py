@@ -2039,6 +2039,7 @@ def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
     if not don.prepare:
         icones.boutons_sauvegarde.configure(bg=don.proprietes.couleur_bg_defaut)
     tirage.valide = 0
+
     # remise à zéro
     for ii in range(0, len(icones.boutons_tirage)):
         icones.boutons_tirage[ii].configure(text='')
@@ -2050,6 +2051,7 @@ def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
     for ii in range(1, len(icones.boutons_nbVoyelles)):
         icones.boutons_nbVoyelles[ii].configure(bg=don.proprietes.couleur_fond_nbVoy)
     icones.bouton_top.configure(text='top')
+
     # affichage du nouveau tirage
     if don.aleatoire or don.prepare:
         don.SetNbVoy(don.nbVoy)
@@ -2070,8 +2072,11 @@ def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
             icones.boutons_tirage[ii].update()
             if don.son_actif:
                 pygame.mixer.init()
-                cha = tirage.tirage[ii].upper() + '.WAV'
-                son = pygame.mixer.Sound(cha)
+                #cha = tirage.tirage[ii].upper() + '.WAV'
+                cha = 'sons/' + tirage.tirage[ii].upper() + '.mp3'
+                pygame.mixer.music.load(cha)
+                pygame.mixer.music.play()
+                #son = pygame.mixer.Sound(cha)
                 son.play()
         chrono.actif = 1
         chrono.val_actuelle += 1
