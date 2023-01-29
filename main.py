@@ -35,12 +35,12 @@ def testf():
     if abs(chrono.val_actuelle - chrono.val_ecriture) < 0.5:
         if don.son_actif:
             pygame.mixer.init()
-            son = pygame.mixer.Sound('ecrivez.WAV')
-            son.play()
+            pygame.mixer.music.load('sons/ECRIVEZ.mp3')
+            pygame.mixer.music.play()
     if chrono.fini:
         if don.son_actif:
-            son = pygame.mixer.Sound('GONG.WAV')
-            son.play()
+            pygame.mixer.music.load('sons/GONG.mp3')
+            pygame.mixer.music.play()
             if don.type_actuel=='chiffres':
                 tirage.Solveur_chiffres(don)
             else:

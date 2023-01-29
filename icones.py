@@ -2072,19 +2072,16 @@ def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
             icones.boutons_tirage[ii].update()
             if don.son_actif:
                 pygame.mixer.init()
-                #cha = tirage.tirage[ii].upper() + '.WAV'
                 cha = 'sons/' + tirage.tirage[ii].upper() + '.mp3'
                 pygame.mixer.music.load(cha)
                 pygame.mixer.music.play()
-                #son = pygame.mixer.Sound(cha)
-                son.play()
         chrono.actif = 1
         chrono.val_actuelle += 1
         icones.chrono.configure(text=chrono.val_actuelle)
         if don.son_actif:
-            time.sleep(1)
-            son = pygame.mixer.Sound('DEBCHRON.WAV')
-            son.play()
+            time.sleep(1.5)
+            pygame.mixer.music.load('sons/DEBCHRON.mp3')
+            pygame.mixer.music.play()
         time.sleep(don.tempo)
         tirage.valide = 1
     elif don.manuel:
@@ -2149,9 +2146,9 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
             if don.son_actif:
                 pygame.mixer.init()
                 if tirage.tirage_chiffres[ii] in [1,2,3,4,5,6,7,8,9,10,25,50,75,100]:
-                    cha = str(tirage.tirage_chiffres[ii]) + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + str(tirage.tirage_chiffres[ii]) + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 else: # cas d'une plaque exotique
                     num_str = str(tirage.tirage_chiffres[ii])
                     if len(num_str)<4:
@@ -2161,92 +2158,91 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
                             centaines = []
                             reste = num_str
                         if centaines == '1':
-                            cha = '100.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/100.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                             time.sleep(0.5)
                         elif centaines in ['23456789']:
-                            cha = centaines + '.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/' + centaines + '.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                             time.sleep(0.5)
-                            cha = '100.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/100.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                             time.sleep(0.8)
                         if int(reste) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
                                           25,
                                           30, 31,
                                           40, 41, 50, 51,
                                           60, 61, 70, 71, 75, 80, 81, 91]:
-                            cha = str(int(reste)) + '.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/' + str(int(reste)) + '.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                         elif reste[0] == '2':
-                            cha = '20.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/20.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                             time.sleep(0.7)
-                            cha = reste[1] + '.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/' + reste[1] + '.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                         elif reste[0] == '3':
-                            cha = '30.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/30.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                             time.sleep(0.7)
-                            cha = reste[1] + '.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/' + reste[1] + '.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                         elif reste[0] == '4':
-                            cha = '40.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/40.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                             time.sleep(0.7)
-                            cha = reste[1] + '.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/' + reste[1] + '.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                         elif reste[0] == '5':
-                            cha = '50.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/50.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                             time.sleep(0.7)
-                            cha = reste[1] + '.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/' + reste[1] + '.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                         elif reste[0] == '6':
-                            cha = '60.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/60.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                             time.sleep(0.7)
-                            cha = reste[1] + '.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/' + reste[1] + '.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                         elif reste[0] == '7':
-                            cha = '60.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/60.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                             time.sleep(0.7)
-                            cha = str(10 + int(reste[1])) + '.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/' + str(10 + int(reste[1])) + '.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                         elif reste[0] == '8':
-                            cha = '80.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/80.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                             time.sleep(0.7)
-                            cha = reste[1] + '.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/' + reste[1] + '.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                         elif reste[0] == '9':
-                            cha = '80.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
+                            cha = 'sons/80.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                             time.sleep(0.7)
-                            cha = str(10 + int(reste[1])) + '.WAV'
-                            son = pygame.mixer.Sound(cha)
-                            son.play()
-                        son.play()
+                            cha = 'sons/' + str(10 + int(reste[1])) + '.mp3'
+                            pygame.mixer.music.load(cha)
+                            pygame.mixer.music.play()
                 time.sleep(1.1)
             time.sleep(don.tempo)
 
@@ -2264,103 +2260,102 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
             milliers = total_a_trouver_str[0]
             if don.son_actif:
                 if milliers in '23456789':
-                    cha = milliers + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + milliers + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.5)
-                cha = '1000.WAV'
-                son = pygame.mixer.Sound(cha)
-                son.play()
+                cha = 'sons/1000.mp3'
+                pygame.mixer.music.load(cha)
+                pygame.mixer.music.play()
                 time.sleep(0.5)
             centaines = total_a_trouver_str[1]
             if don.son_actif:
                 if centaines == '1':
-                    cha = '100.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/100.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.5)
                 elif centaines in '23456789':
-                    cha = centaines + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + centaines + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.5)
-                    cha = '100.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/100.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.8)
                 reste = total_a_trouver_str[2:]
                 if int(reste) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 25, 30,
                                   31,
                                   40, 41, 50, 51,
                                   60, 61, 70, 71, 75, 80, 81, 91]:
-                    cha = str(int(reste)) + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + str(int(reste)) + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '2':
-                    cha = '20.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/20.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '3':
-                    cha = '30.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/30.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '4':
-                    cha = '40.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/40.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '5':
-                    cha = '50.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/50.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '6':
-                    cha = '60.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/60.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '7':
-                    cha = '60.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/60.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = str(10 + int(reste[1])) + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + str(10 + int(reste[1])) + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '8':
-                    cha = '80.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/80.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '9':
-                    cha = '80.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/80.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = str(10 + int(reste[1])) + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
-
+                    cha = 'sons/' + str(10 + int(reste[1])) + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
 
         elif len(total_a_trouver_str) == 3:
             for ii in range(0, len(total_a_trouver_str)):
@@ -2369,92 +2364,91 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
             centaines = total_a_trouver_str[0]
             if don.son_actif:
                 if centaines == '1':
-                    cha = '100.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/100.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.5)
                 else:
-                    cha = centaines + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + centaines + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.5)
-                    cha = '100.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/100.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.8)
                 reste = total_a_trouver_str[1:]
                 if int(reste) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 25, 30,
                                   31,
                                   40, 41, 50, 51,
                                   60, 61, 70, 71, 75, 80, 81, 91]:
-                    cha = str(int(reste)) + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + str(int(reste)) + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '2':
-                    cha = '20.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/20.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '3':
-                    cha = '30.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/30.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '4':
-                    cha = '40.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/40.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '5':
-                    cha = '50.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/50.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '6':
-                    cha = '60.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/60.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '7':
-                    cha = '60.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/60.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = str(10 + int(reste[1])) + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + str(10 + int(reste[1])) + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '8':
-                    cha = '80.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/80.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = reste[1] + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/' + reste[1] + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                 elif reste[0] == '9':
-                    cha = '80.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
+                    cha = 'sons/80.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
                     time.sleep(0.7)
-                    cha = str(10 + int(reste[1])) + '.WAV'
-                    son = pygame.mixer.Sound(cha)
-                    son.play()
-
+                    cha = 'sons/' + str(10 + int(reste[1])) + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
 
         chrono.actif = 1
         chrono.val_actuelle += 1
@@ -2462,8 +2456,8 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
         icones.chrono.configure(text=chrono.val_actuelle)
         if don.son_actif:
             time.sleep(1)
-            son = pygame.mixer.Sound('DEBCHRON.WAV')
-            son.play()
+            pygame.mixer.music.load('sons/DEBCHRON.mp3')
+            pygame.mixer.music.play()
     elif don.manuel:
         tirage.Reinit()
 

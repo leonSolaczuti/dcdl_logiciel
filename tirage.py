@@ -337,23 +337,6 @@ class Tirage:
                     ch = ch + str(ii + 1) + 'ème meilleure solution : ' + str(self.liste_approches[ii][0]) + ', ' + \
                          str(self.liste_approches[ii][1]) + ' (' + str(nbPt[ii]) + ' point)\n'
 
-        #
-        #
-        # if len(self.liste_approches[2])==1:
-        #     ch = ch + '3ème meilleure solution : ' + str(self.liste_approches[2][0]) + '\n'
-        # else:
-        #     ch = ch + '3ème meilleure solution : ' + str(self.liste_approches[2][0]) + ', ' + \
-        #         str(self.liste_approches[2][1]) + '\n'
-        # if len(self.liste_approches[3])==1:
-        #     ch = ch + '4ème meilleure solution : ' + str(self.liste_approches[3][0]) + '\n'
-        # else:
-        #     ch = ch + '4ème meilleure solution : ' + str(self.liste_approches[3][0]) + ', ' + \
-        #         str(self.liste_approches[3][1]) + '\n'
-        # if len(self.liste_approches[4])==1:
-        #     ch = ch + '5ème meilleure solution : ' + str(self.liste_approches[4][0]) + '\n'
-        # else:
-        #     ch = ch + '5ème meilleure solution : ' + str(self.liste_approches[4][0]) + ', ' + \
-        #         str(self.liste_approches[4][1]) + '\n'
         ch = ch + '\n--------------------------------------------\n\n'
         init_nb_lettres = self.sol_complet[0]
         ch_temp = str(init_nb_lettres)
@@ -728,10 +711,6 @@ class Tirage:
                     fichier.close()
                     icones.boutons_sauvegarde.configure(bg=don.proprietes.couleur_bg_select)
 
-
-
-
-
 def ordreAlpha(chaine):
     liste = []
     for ii in range(0, len(chaine)):
@@ -741,7 +720,6 @@ def ordreAlpha(chaine):
     for ii in range(0, len(chaine)):
         newListe = newListe + liste[ii]
     return newListe
-
 
 def test_solveur4(x):
     val = valeurrr()
