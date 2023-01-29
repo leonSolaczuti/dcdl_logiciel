@@ -258,25 +258,25 @@ class Dico:
 
     def ReadDico(self):
         if self.nbLettres == 2:
-            fichier = open("D2tf.dat", "r")
+            fichier = open("lexique/2L.dat", "r")
         if self.nbLettres == 3:
-            fichier = open("D3tf.dat", "r")
+            fichier = open("lexique/3L.dat", "r")
         if self.nbLettres == 4:
-            fichier = open("D4tf.dat", "r")
+            fichier = open("lexique/4L.dat", "r")
         if self.nbLettres == 5:
-            fichier = open("D5tf.dat", "r")
+            fichier = open("lexique/5L.dat", "r")
         if self.nbLettres == 6:
-            fichier = open("D6tf.dat", "r")
+            fichier = open("lexique/6L.dat", "r")
         if self.nbLettres == 7:
-            fichier = open("D7tf.dat", "r")
+            fichier = open("lexique/7L.dat", "r")
         if self.nbLettres == 8:
-            fichier = open("D8tf.dat", "r")
+            fichier = open("lexique/8L.dat", "r")
         if self.nbLettres == 9:
-            fichier = open("D9tf.dat", "r")
+            fichier = open("lexique/9L.dat", "r")
         if self.nbLettres == 10:
-            fichier = open("D10tf.dat", "r")
+            fichier = open("lexique/10L.dat", "r")
         if self.nbLettres == 11:
-            fichier = open("D11tft.txt", "r")
+            fichier = open("lexique/11L.dat", "r")
         list0 = []
         list1 = []
         list2 = []
