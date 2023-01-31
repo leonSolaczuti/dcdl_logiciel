@@ -348,19 +348,9 @@ class Tirage:
             ch_temp = self.sol_basique[ii]
 
             # on remplace les * par des ×
-            #ch_temp_modif = ''
             ch_temp_modif = ch_temp.replace('*', '×')
-            '''
-            for jj in range(1,len(ch_temp)):
-                if ch_temp[jj] == '*':
-                    ch_temp_modif = ch_temp_modif + '×'
-                else:
-                    ch_temp_modif = ch_temp_modif + ch_temp[jj]
-            '''
 
             # pour enlever les parenthèses inutiles autour de la solution
-            # ch = ch_temp
-            # for jj in range(1,len(ch_temp)-1):
             ch = ch + ch_temp_modif
             ch = ch + ' = ' + str(int(eval(ch_temp))) + '\n'
         root = tk.Tk()
@@ -678,7 +668,7 @@ class Tirage:
             new_y1[ii] = temp
 
         for ii in range(0, len(new_y1)):
-             new_y1[ii] = get_chaine_simplifiee(new_y1[ii]).strip()
+            new_y1[ii] = get_chaine_simplifiee(new_y1[ii]).strip()
 
         basique = []
         plaques = []

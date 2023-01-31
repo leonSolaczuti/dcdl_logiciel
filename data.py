@@ -398,6 +398,7 @@ class calcul:
                     idx_operateur = ii
         chaine1 = chaine[:idx_operateur].strip()
         chaine2 = chaine[idx_operateur+1:].strip()
+
         objet_chaine1 = 0
         objet_chaine2 = 0
         if chaine1[0]=='(' and chaine1[-1]==')':
@@ -469,6 +470,7 @@ class calcul:
             self.valeurs[1] = -self.valeurs[1]
             if isinstance(self.elements[1], calcul):
                 self.operateurs_inverse[1] = -1
+                self.elements[1].operateur_inverse = -1
             else:
                 self.elements[1] = -self.elements[1]
 
@@ -477,6 +479,7 @@ class calcul:
             self.valeurs[1] = -self.valeurs[1]
             if isinstance(self.elements[1], calcul):
                 self.operateurs_inverse[1] = -1
+                self.elements[1].operateur_inverse = -1
             else:
                 self.elements[1] = -self.elements[1]
 
@@ -491,7 +494,7 @@ class calcul:
 
                         if isinstance(self.elements[ii].elements[0], calcul):
                             copie_elements[ii] = self.elements[ii].elements[0]
-                            copie_operateurs_inverse[ii] = self.elements[ii].operateurs_inverse[0]
+                            copie_operateurs_inverse[ii] = self.operateurs_inverse[ii] * self.elements[ii].operateurs_inverse[0]
                         else:
                             if self.operateurs_inverse[ii]==1:
                                 copie_elements[ii] = self.elements[ii].elements[0]
@@ -503,7 +506,7 @@ class calcul:
                         for jj in range(1, len(self.elements[ii].elements)):
                             if isinstance(self.elements[ii].elements[jj], calcul):
                                 copie_elements.append(self.elements[ii].elements[jj])
-                                copie_operateurs_inverse.append(self.elements[ii].operateurs_inverse[jj])
+                                copie_operateurs_inverse.append(self.operateurs_inverse[ii] * self.elements[ii].operateurs_inverse[jj])
                             else:
                                 if self.operateurs_inverse[ii]==1:
                                     copie_elements.append(self.elements[ii].elements[jj])
@@ -520,7 +523,7 @@ class calcul:
 
                         if isinstance(self.elements[ii].elements[0], calcul):
                             copie_elements[ii] = self.elements[ii].elements[0]
-                            copie_operateurs_inverse[ii] = self.elements[ii].operateurs_inverse[0]
+                            copie_operateurs_inverse[ii] = self.operateurs_inverse[ii] * self.elements[ii].operateurs_inverse[0]
                         else:
                             if self.operateurs_inverse[ii] == 1:
                                 copie_elements[ii] = self.elements[ii].elements[0]
@@ -532,7 +535,7 @@ class calcul:
                         for jj in range(1, len(self.elements[ii].elements)):
                             if isinstance(self.elements[ii].elements[jj], calcul):
                                 copie_elements.append(self.elements[ii].elements[jj])
-                                copie_operateurs_inverse.append(self.elements[ii].operateurs_inverse[jj])
+                                copie_operateurs_inverse.append(self.operateurs_inverse[ii] * self.elements[ii].operateurs_inverse[jj])
                             else:
                                 if self.operateurs_inverse[ii] == 1:
                                     copie_elements.append(self.elements[ii].elements[jj])
