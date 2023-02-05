@@ -1,4 +1,4 @@
-from loadConsVoy import loadCons, loadVoy, genereTirageLettres
+from loadConsVoy import genereTirageLettres
 from classe import *
 from tkinter import *
 import tkinter as tk

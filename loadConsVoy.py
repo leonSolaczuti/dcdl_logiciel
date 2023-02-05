@@ -3,25 +3,6 @@
 
 import random
 
-
-def loadCons():
-    fichier = open("consonne.txt", "r")
-    listeCons = ''
-    for line in fichier.readlines():
-        listeCons = listeCons + line.strip()
-    fichier.close()
-    return listeCons
-
-
-def loadVoy():
-    fichier = open("voyelle.txt", "r")
-    listeVoy = ''
-    for line in fichier.readlines():
-        listeVoy = listeVoy + line.strip()
-    fichier.close()
-    return listeVoy
-
-
 def genereTiragePrepaLettres(prepa):
     r = random.randint(0, len(prepa) - 1)
     tirage = prepa[r]
