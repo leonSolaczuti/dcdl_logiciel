@@ -1,5 +1,4 @@
 from loadConsVoy import loadCons, loadVoy, genereTirageLettres
-from affichage import *
 import tkinter as tk
 import time
 from random import *
@@ -44,6 +43,8 @@ class Data:
         self.fichier_prepa_l = 'prepa_l.txt'
         self.fichier_prepa_c = 'prepa_c.txt'
         self.rajoutsActifs = [1,1,0] # rajouts+1, +2 et +3
+        self.taille_solution = 20
+        self.police_solution = 'Consolas'
 
     def Analyse_sabot_lettres(self, alphabet, consonnes, voyelles, boutons_val, bouton_warn, fen):
         print(alphabet)
@@ -484,6 +485,12 @@ class calcul:
                 self.elements[1] = -self.elements[1]
 
     def Simplify2(self):
+        # simplification des solutions :
+        #   suppression des parentheses inutiles
+        # principe : on regroupe les + et - ensemble d'une part
+        #            les * et / d'autre part
+        # tout ceci est fait d'une facon recursive
+
         copie_elements = self.elements.copy()
         copie_operateurs_inverse = self.operateurs_inverse.copy()
         if self.operateur == '+':
@@ -584,10 +591,6 @@ class calcul:
             for ii in range(0, len(idxTemp_del)):
                 copie.remove(valMax)
 
-
-
-
-        # idx = sorted(range(len(self.valeurs)), key=lambda k: self.valeurs[k], reverse=True)
         self.valeurs = []
         self.elements = []
         self.operateurs_inverse = []
@@ -634,13 +637,6 @@ class calcul:
                     else:
                         cha = cha + ' / ' + str(-self.valeurs[ii])
         return(cha)
-
-
-
-
-
-
-
 
     def Simplify(self):
         if self.operateur == '+':

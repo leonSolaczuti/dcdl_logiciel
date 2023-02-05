@@ -1,5 +1,4 @@
 from loadConsVoy import *
-from affichage import *
 import tkinter as tk
 import time
 from random import *
@@ -194,11 +193,6 @@ class Tirage:
                         10 * int(self.objectif_chiffres[2]) + finTirage[-1]
                 self.tirage_chiffres.append(cible)
         self.valide = 1
-
-    def Affiche(self):
-        print('PREMIER TIRAGE')
-        print(self.tirage)
-        affiche(self.tirage)
 
     def GUI_Tirage(self, don):
         #ch = ''

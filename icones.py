@@ -1,6 +1,6 @@
 from loadConsVoy import loadCons, loadVoy, genereTirageLettres
-from affichage import *
 from classe import *
+from tkinter import *
 import tkinter as tk
 import time
 from random import *
@@ -629,15 +629,16 @@ class Icones:
 
         self.reglage_temps.append(Label(self.fen))
         self.reglage_temps[0].place(x=x0_reglages, y=y0_reglages, anchor=CENTER, width=250, height=50)
-        self.reglage_temps[0].configure(font=("Helvetica", 20), text="temps de réflexion")
+        self.reglage_temps[0].configure(font=("Helvetica", 20), text="temps de réflexion",
+                                        bg=don.proprietes.couleur_fond)
 
         self.reglage_temps.append(Label(self.fen))
         self.reglage_temps[1].place(x=x0_reglages-60, y=y0_reglages+40, anchor=CENTER, width=120, height=50)
-        self.reglage_temps[1].configure(font=("Helvetica", 20), text="lettres")
+        self.reglage_temps[1].configure(font=("Helvetica", 20), text="lettres", bg=don.proprietes.couleur_fond)
 
         self.reglage_temps.append(Label(self.fen))
         self.reglage_temps[2].place(x=x0_reglages+60, y=y0_reglages+40, anchor=CENTER, width=120, height=50)
-        self.reglage_temps[2].configure(font=("Helvetica", 20), text="chiffres")
+        self.reglage_temps[2].configure(font=("Helvetica", 20), text="chiffres", bg=don.proprietes.couleur_fond)
 
         self.reglage_temps.append(OptionMenu(self.fen, variable_lettres, *OptionList_lettres))
         self.reglage_temps[3].configure(font=('Helvetica', 20))
@@ -665,15 +666,16 @@ class Icones:
 
         self.reglage_temps.append(Label(self.fen))
         self.reglage_temps[5].place(x=x0_reglages, y=y0_reglages+150, anchor=CENTER, width=250, height=50)
-        self.reglage_temps[5].configure(font=("Helvetica", 20), text="temps d'écriture")
+        self.reglage_temps[5].configure(font=("Helvetica", 20), text="temps d'écriture",
+                                        bg=don.proprietes.couleur_fond)
 
         self.reglage_temps.append(Label(self.fen))
         self.reglage_temps[6].place(x=x0_reglages - 60, y=y0_reglages + 190, anchor=CENTER, width=120, height=50)
-        self.reglage_temps[6].configure(font=("Helvetica", 20), text="lettres")
+        self.reglage_temps[6].configure(font=("Helvetica", 20), text="lettres", bg=don.proprietes.couleur_fond)
 
         self.reglage_temps.append(Label(self.fen))
         self.reglage_temps[7].place(x=x0_reglages + 60, y=y0_reglages + 190, anchor=CENTER, width=120, height=50)
-        self.reglage_temps[7].configure(font=("Helvetica", 20), text="chiffres")
+        self.reglage_temps[7].configure(font=("Helvetica", 20), text="chiffres", bg=don.proprietes.couleur_fond)
 
         self.reglage_temps.append(OptionMenu(self.fen, variable_ecrit_lettres, *OptionList_ecrit_lettres))
         self.reglage_temps[8].configure(font=('Helvetica', 20))
@@ -718,86 +720,90 @@ class Icones:
 
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[0].place(x=x0_bareme-100, y=y0_bareme, anchor=CENTER, width=250, height=50)
-        self.bareme_chiffres[0].configure(font=("Helvetica", 20), text="Barème chiffres")
+        self.bareme_chiffres[0].configure(font=("Helvetica", 20), text="Barème chiffres", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme +dx1, y=y0_bareme+dy1, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="CB")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="CB", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx1, y=y0_bareme + dy2, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 1")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 1", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx1, y=y0_bareme + dy3, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 2")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 2", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx1, y=y0_bareme + dy4, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 3")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 3", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx1, y=y0_bareme + dy5, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 4")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 4", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx1, y=y0_bareme + dy6, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 5")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 5", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx3, y=y0_bareme + dy1, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 6")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 6", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx3, y=y0_bareme + dy2, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 7")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 7", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx3, y=y0_bareme + dy3, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 8")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 8", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx3, y=y0_bareme + dy4, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 9")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 9", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx3, y=y0_bareme + dy5, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 10")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 10", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx3, y=y0_bareme + dy6, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 11")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 11", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx5, y=y0_bareme + dy1, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 12")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 12", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx5, y=y0_bareme + dy2, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 13")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 13", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx5, y=y0_bareme + dy3, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 14")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 14", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx5, y=y0_bareme + dy4, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 15")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 15", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx5, y=y0_bareme + dy5, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 16")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 16", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx5, y=y0_bareme + dy6, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 17")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 17", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx7, y=y0_bareme + dy1, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 18")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 18", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx7, y=y0_bareme + dy2, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 19")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 19", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx7, y=y0_bareme + dy3, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 20")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="± 20", bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx7, y=y0_bareme + dy4, anchor=CENTER)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="21+")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="21+", bg=don.proprietes.couleur_fond)
 
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx9, y=y0_bareme + dy7, anchor=E)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="meilleure approche")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="meilleure approche",
+                                           bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx9, y=y0_bareme + dy8, anchor=E)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="2ème meilleure approche")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="2ème meilleure approche",
+                                           bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx11, y=y0_bareme + dy7, anchor=E)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="3ème meilleure approche")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="3ème meilleure approche",
+                                           bg=don.proprietes.couleur_fond)
         self.bareme_chiffres.append(Label(self.fen))
         self.bareme_chiffres[-1].place(x=x0_bareme + dx11, y=y0_bareme + dy8, anchor=E)
-        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="4ème meilleure approche")
+        self.bareme_chiffres[-1].configure(font=("Helvetica", 15), text="4ème meilleure approche",
+                                           bg=don.proprietes.couleur_fond)
 
         bareme_liste = ['complément à 10', 'tournoi Nantes', 'manuel']
         variable_liste_baremes = StringVar(self.fen)
@@ -2131,6 +2137,9 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
         if ii not in [9,10,11,12]:
             icones.boutons_tirage[ii].configure(text='')
             icones.boutons_tirage[ii].configure(bg=don.proprietes.couleur_bg_defaut)
+        # on met le fond en blanc lors du lancement du tirage (pendant que les plaques sont enoncees)
+        if ii in [6,7,8,38,13,14,15,16,18,19,20,21,23,24,25,26,28,29,30,31,33,34,35,36]:
+            icones.boutons_tirage[ii].configure(bg=don.proprietes.couleur_fond)
     # lancement du nouveau tirage
     if don.aleatoire or don.prepare:
         if don.aleatoire:
@@ -2247,15 +2256,16 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
             time.sleep(don.tempo)
 
         total_a_trouver_str = str(tirage.tirage_chiffres[-1])
+        propr = Proprietes()
         # possibilité d'aller au-delà de 999 avec icones.boutons_tirage[38] pour le chiffre des unités
         if len(total_a_trouver_str) == 4:
-            icones.boutons_tirage[don.nbPlaquesChiffres].configure(text=total_a_trouver_str[0])
+            icones.boutons_tirage[don.nbPlaquesChiffres].configure(text=total_a_trouver_str[0], bg=propr.couleur_fond)
             icones.boutons_tirage[don.nbPlaquesChiffres].update()
-            icones.boutons_tirage[don.nbPlaquesChiffres+1].configure(text=total_a_trouver_str[1])
+            icones.boutons_tirage[don.nbPlaquesChiffres+1].configure(text=total_a_trouver_str[1], bg=propr.couleur_fond)
             icones.boutons_tirage[don.nbPlaquesChiffres+1].update()
-            icones.boutons_tirage[don.nbPlaquesChiffres+2].configure(text=total_a_trouver_str[2])
+            icones.boutons_tirage[don.nbPlaquesChiffres+2].configure(text=total_a_trouver_str[2], bg=propr.couleur_fond)
             icones.boutons_tirage[don.nbPlaquesChiffres+2].update()
-            icones.boutons_tirage[38].configure(text=total_a_trouver_str[3])
+            icones.boutons_tirage[38].configure(text=total_a_trouver_str[3], bg=propr.couleur_fond)
             icones.boutons_tirage[38].update()
             milliers = total_a_trouver_str[0]
             if don.son_actif:
@@ -2359,7 +2369,8 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
 
         elif len(total_a_trouver_str) == 3:
             for ii in range(0, len(total_a_trouver_str)):
-                icones.boutons_tirage[don.nbPlaquesChiffres + ii].configure(text=total_a_trouver_str[ii])
+                icones.boutons_tirage[don.nbPlaquesChiffres + ii].configure(text=total_a_trouver_str[ii],
+                                                                            bg=propr.couleur_fond)
                 icones.boutons_tirage[ii].update()
             centaines = total_a_trouver_str[0]
             if don.son_actif:
@@ -2513,7 +2524,7 @@ class Rajout:
             root_rajouts_f2 = tk.Tk()
             root_rajouts_f2.title('Définitions')
             S_f2 = tk.Scrollbar(root_rajouts_f2)
-            T_f2 = tk.Text(root_rajouts_f2, height=20, width=80, font=('consolas', 20))
+            T_f2 = tk.Text(root_rajouts_f2, height=20, width=80, font=(don.police_solution, don.taille_solution))
             S_f2.pack(side=tk.RIGHT, fill=tk.Y)
             T_f2.pack(side=tk.LEFT, fill=tk.Y)
             S_f2.config(command=T_f2.yview)

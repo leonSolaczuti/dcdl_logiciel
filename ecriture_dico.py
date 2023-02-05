@@ -1,6 +1,5 @@
 from classe import *
 from loadConsVoy import *
-from affichage import *
 import tkinter as tk
 import time
 import tkinter.font as tkFont
