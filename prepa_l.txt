@@ -2938,6 +2938,12 @@ ERBPSONHTE (9) | tréphones (néphrose,poternes,prothèse,théorbes,trophées)
 EANBEMLODA (9) | amendable (damnable)
 OSEBLCNUXE (8) | encoubles,encoublés(vt)[bouclées+N]
 LMTENREUUL (9) | ululement(+hululement,ululation) (mutuelle)
+AATANDEHGEE (8) | dégantée(vt),étendage (agendée(vt),agnathe,athénée(nf))
+PORINEEIARB (9) | rapinerie (péronier(adj),pineraie,robinier(nm),rôneraie)
+FNOOEOIPCTE (8) | confiote(nf)
+ASRRLEIICOF (10)| loricaires[carriole+I]
+IODDISNAREU (10)| nid-d'oiseau[douaisien+D]
+IXMENUNENBA (8) | biennaux,nubienne°
 MAEUOOSSNTR
 SLCBRUAARAT
 REEPESPELUR
@@ -3310,10 +3316,14 @@ ENSATTEDNIT
 IUMLESGLEA
 ERBPSONHTE
 EANBEMLODA
-PORINEEIARB
 TSIESAEEUFF
 VIRUQAEDELA
-IXMENUNENBA
 FNOOEOIPCTE
-ASRRLEIICOF
 UFEENCIRTII
+NNMNUOPCEEI
+DOELRETLTMI
+SEANXUUUEDT
+EDIIESREAMR
+TFUIDONUANU
+SELITUOYALR
+CPMUOEBSOLA
