@@ -2944,6 +2944,12 @@ FNOOEOIPCTE (8) | confiote(nf)
 ASRRLEIICOF (10)| loricaires[carriole+I]
 IODDISNAREU (10)| nid-d'oiseau[douaisien+D]
 IXMENUNENBA (8) | biennaux,nubienne°
+NNMNUOPCEEI (9) | pneumonie (inconnue,méconnue,minoenne)
+OOSLIOAOIVN (9) | olivaison (x)
+DOELRETLTMI (10)| détortillé(vt) (mordillée,tortillée,trémolite) ((démêloir,drôlette,illettré,mollette,mortelle,roitelet))
+GUUOJNSVUCE (9) | conjugués (x) ((souvenu))
+CPMUOEBSOLA (9) | camboulés(vt),coupables
+SEANXUUUEDT (8) | exsudant(vt),nauséeux
 MAEUOOSSNTR
 SLCBRUAARAT
 REEPESPELUR
@@ -3320,10 +3326,11 @@ TSIESAEEUFF
 VIRUQAEDELA
 FNOOEOIPCTE
 UFEENCIRTII
-NNMNUOPCEEI
-DOELRETLTMI
-SEANXUUUEDT
 EDIIESREAMR
 TFUIDONUANU
 SELITUOYALR
-CPMUOEBSOLA
+DEOIANESDLU
+GLTIUPALIIE
+IMETGENDPRI
+ENONREDOEUT
+BPLLIUXINLU
