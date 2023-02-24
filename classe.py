@@ -1,5 +1,4 @@
-from loadConsVoy import loadCons, loadVoy, genereTirageLettres
-from affichage import *
+from loadConsVoy import genereTirageLettres
 import tkinter as tk
 import time
 from random import *

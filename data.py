@@ -1,5 +1,4 @@
-from loadConsVoy import loadCons, loadVoy, genereTirageLettres
-from affichage import *
+from loadConsVoy import genereTirageLettres
 import tkinter as tk
 import time
 from random import *
@@ -40,10 +39,12 @@ class Data:
         self.nb_grosses_plaques = 314
         self.type_actuel = ''
         self.son_actif = 1
-        self.tempo = 0
+        self.tempo = 0.6
         self.fichier_prepa_l = 'prepa_l.txt'
         self.fichier_prepa_c = 'prepa_c.txt'
         self.rajoutsActifs = [1,1,0] # rajouts+1, +2 et +3
+        self.taille_solution = 20
+        self.police_solution = 'Consolas'
 
     def Analyse_sabot_lettres(self, alphabet, consonnes, voyelles, boutons_val, bouton_warn, fen):
         print(alphabet)
@@ -258,25 +259,25 @@ class Dico:
 
     def ReadDico(self):
         if self.nbLettres == 2:
-            fichier = open("D2tf.dat", "r")
+            fichier = open("lexique/2L.dat", "r")
         if self.nbLettres == 3:
-            fichier = open("D3tf.dat", "r")
+            fichier = open("lexique/3L.dat", "r")
         if self.nbLettres == 4:
-            fichier = open("D4tf.dat", "r")
+            fichier = open("lexique/4L.dat", "r")
         if self.nbLettres == 5:
-            fichier = open("D5tf.dat", "r")
+            fichier = open("lexique/5L.dat", "r")
         if self.nbLettres == 6:
-            fichier = open("D6tf.dat", "r")
+            fichier = open("lexique/6L.dat", "r")
         if self.nbLettres == 7:
-            fichier = open("D7tf.dat", "r")
+            fichier = open("lexique/7L.dat", "r")
         if self.nbLettres == 8:
-            fichier = open("D8tf.dat", "r")
+            fichier = open("lexique/8L.dat", "r")
         if self.nbLettres == 9:
-            fichier = open("D9tf.dat", "r")
+            fichier = open("lexique/9L.dat", "r")
         if self.nbLettres == 10:
-            fichier = open("D10tf.dat", "r")
+            fichier = open("lexique/10L.dat", "r")
         if self.nbLettres == 11:
-            fichier = open("D11tft.txt", "r")
+            fichier = open("lexique/11L.dat", "r")
         list0 = []
         list1 = []
         list2 = []
@@ -398,6 +399,7 @@ class calcul:
                     idx_operateur = ii
         chaine1 = chaine[:idx_operateur].strip()
         chaine2 = chaine[idx_operateur+1:].strip()
+
         objet_chaine1 = 0
         objet_chaine2 = 0
         if chaine1[0]=='(' and chaine1[-1]==')':
@@ -469,6 +471,7 @@ class calcul:
             self.valeurs[1] = -self.valeurs[1]
             if isinstance(self.elements[1], calcul):
                 self.operateurs_inverse[1] = -1
+                self.elements[1].operateur_inverse = -1
             else:
                 self.elements[1] = -self.elements[1]
 
@@ -477,10 +480,17 @@ class calcul:
             self.valeurs[1] = -self.valeurs[1]
             if isinstance(self.elements[1], calcul):
                 self.operateurs_inverse[1] = -1
+                self.elements[1].operateur_inverse = -1
             else:
                 self.elements[1] = -self.elements[1]
 
     def Simplify2(self):
+        # simplification des solutions :
+        #   suppression des parentheses inutiles
+        # principe : on regroupe les + et - ensemble d'une part
+        #            les * et / d'autre part
+        # tout ceci est fait d'une facon recursive
+
         copie_elements = self.elements.copy()
         copie_operateurs_inverse = self.operateurs_inverse.copy()
         if self.operateur == '+':
@@ -491,7 +501,7 @@ class calcul:
 
                         if isinstance(self.elements[ii].elements[0], calcul):
                             copie_elements[ii] = self.elements[ii].elements[0]
-                            copie_operateurs_inverse[ii] = self.elements[ii].operateurs_inverse[0]
+                            copie_operateurs_inverse[ii] = self.operateurs_inverse[ii] * self.elements[ii].operateurs_inverse[0]
                         else:
                             if self.operateurs_inverse[ii]==1:
                                 copie_elements[ii] = self.elements[ii].elements[0]
@@ -503,7 +513,7 @@ class calcul:
                         for jj in range(1, len(self.elements[ii].elements)):
                             if isinstance(self.elements[ii].elements[jj], calcul):
                                 copie_elements.append(self.elements[ii].elements[jj])
-                                copie_operateurs_inverse.append(self.elements[ii].operateurs_inverse[jj])
+                                copie_operateurs_inverse.append(self.operateurs_inverse[ii] * self.elements[ii].operateurs_inverse[jj])
                             else:
                                 if self.operateurs_inverse[ii]==1:
                                     copie_elements.append(self.elements[ii].elements[jj])
@@ -520,7 +530,7 @@ class calcul:
 
                         if isinstance(self.elements[ii].elements[0], calcul):
                             copie_elements[ii] = self.elements[ii].elements[0]
-                            copie_operateurs_inverse[ii] = self.elements[ii].operateurs_inverse[0]
+                            copie_operateurs_inverse[ii] = self.operateurs_inverse[ii] * self.elements[ii].operateurs_inverse[0]
                         else:
                             if self.operateurs_inverse[ii] == 1:
                                 copie_elements[ii] = self.elements[ii].elements[0]
@@ -532,7 +542,7 @@ class calcul:
                         for jj in range(1, len(self.elements[ii].elements)):
                             if isinstance(self.elements[ii].elements[jj], calcul):
                                 copie_elements.append(self.elements[ii].elements[jj])
-                                copie_operateurs_inverse.append(self.elements[ii].operateurs_inverse[jj])
+                                copie_operateurs_inverse.append(self.operateurs_inverse[ii] * self.elements[ii].operateurs_inverse[jj])
                             else:
                                 if self.operateurs_inverse[ii] == 1:
                                     copie_elements.append(self.elements[ii].elements[jj])
@@ -581,10 +591,6 @@ class calcul:
             for ii in range(0, len(idxTemp_del)):
                 copie.remove(valMax)
 
-
-
-
-        # idx = sorted(range(len(self.valeurs)), key=lambda k: self.valeurs[k], reverse=True)
         self.valeurs = []
         self.elements = []
         self.operateurs_inverse = []
@@ -631,13 +637,6 @@ class calcul:
                     else:
                         cha = cha + ' / ' + str(-self.valeurs[ii])
         return(cha)
-
-
-
-
-
-
-
 
     def Simplify(self):
         if self.operateur == '+':

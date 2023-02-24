@@ -2410,6 +2410,546 @@ EMEOIEOSLN (9) | oenolisme (x)
 ERRAINEOBT (9) | robertine°[orienter+B]
 ATSINENRAN (9) | nanisante(n)
 IEOCAIFRRM (8) | ramifier,frimaire
+IUURBMASOR (8) | rambours (surboum,bourrus)
+RETUTEPARE (9) | terreauté(vt)[atterrée+U]
+CERELGOASL (10)| recollages (glaréoles)
+ENMFIIOSIT (9) | finitisme[inimités+F]
+TTHEAERTAR (8) | tartrate
+PSAAIENDOA (8) | diapason
+UOGLNEWELN (8) | gonnelle (gonelle,eugénol,ongulée(adj))
+AOELTLRSIY (9) | loyaliste[alloties+Y],taylorisé(vt+taylorisme),royalties,royaliste[oralités+Y]
+ATUMROSAES (9) | maturases,saumâtres[amateurs+S],amauroses
+UMAICRENUS (9) | manucurés(vt),muscarine[acuminés+R]
+URERONLADL (8) | nullarde(ard)[dalleur+N(nm)],néorural
+QOIFSEAQPE (6) | poésie,pifées(vt+piffer+piffrer(vt))
+UQUPXIRAOS (9) | soupiraux (x) ((quipous(+quipu),spiraux))
+EGUOIEGHLH (7) | églogue (liguée,goulée(nf),gougée(vt),huilée,loguée)
+ESRUWOEUMA (9) | amoureuse (saumurée(vt))
+OCROINEADH (8) | horacien°(+horatien),rondache,choroïde
+UCIAINSCIL (8) | ci-inclus(e) (calcins[câlins+C])
+ARDUENMGUO (9) | gourmandé(vt) (rougeaud(e)
+THOCESOALU (10)| holocauste (x)
+SLEUTQEUSI (9) | tiqueuses(eur) (stuquées(vt))
+ASARANOENJ (7) | jaseran,jaseron
+DPHGAOUTIA (7) | pad thaï(s) (agouti,adagio,pataud(e),tupaïa)
+ERIVSANASS (9) | sevranais°[savarins+E]
+AOSMVOSUNI (8) | sous-main(s) (saumons,moisson,mousson,maisons,assouvi,monsois°,simouns,somonis)
+SDINYUNPRI (7) | pinyins (indris,purins(e),rupins(e))
+XUJSEOHIRO (8) | hors-jeux (réjouis)
+BRPROMHIEO (8) | prohiber (morbier)
+SSUSOULARI (8) | rassouls (roussis,saloirs)
+YWASLEOIHP (8) | physalie (poyaise°,opalisé(vt),paloise,léipoas)
+HESVUTISER (9) | vitreuses,revuistes
+TFIPESIUEL (8) | utilisée,stipulée,stupéfié
+UGELSNISUU (8) | inusuels (lingues,singles)
+RAKECIUTIY (8) | teriyaki (autrice,raucité)
+ETEVAFRAOC (8) | cravatée(vt)
+NCEXTOOHEE (7) | écotone,éhontée(adj)
+IUBHISOSID (8) | bushidos (x) ((bidous,bisous,bodhis))
+BIMEORIORE (8) | ombrière(nf),rombière(nf) (morbier,reboire)
+SDERIUUSLS (8) | russules,lisseurs(euse)
+FHNLOEHAUQ (7) | flanqué (flaque,faluné(vt),floqué)
+AIGTAARLJU (8) | gujarati (x)
+TAJOUOABEN (7) | bantoue(+bantou+bantu),abajoue
+BUASESPROE (9) | pare-boues
+STTERREOEE (9) | serre-tête(s)[serrette+E] (x)
+UELAESETLR (10)| sauterelle (truellées(nf),râteleuse(eur))
+LCPOCIFUNE (9) | coïnculpé(adj) (inoccupé(adj))
+UCNADOFEOC (7) | accoudé,faconde,foucade
+AARNAZTSUM (8) | azurants(e),marantas(+marante)
+CAJAETSULR (9) | éjaculats
+EIIMASOSRS (10)| raismoises (siamoises)
+VNIHUEBIHA (8) | bauhinie(nf) (x)
+NUCERAPCEE (8) | carencée(vt)[carénée+C(vt)]
+ANLRIEELRD (9) | dérailler
+ROEDCBAIDW (8) | webradio (aérobic,bocardé(vt+brocardé(vt)),diacode)
+TILIOHIEIF (6) | hilote(nm)
+ISASRYSTRF (6) | farsis,sitars,tarifs,strass,fassis(ie),rassir
+DENJUCNIAU (7) | cadjine(in +cajun)
+NCAOELPIMW (9) | policeman(s,en) (calomnié)
+UQIEHAERCS (9) | chéquiers,esquicher(vt)
+RVNAAREAIS (10)| navarraise° (x) ((rivaners)
+TRIBRELEII (8) | terrible[libérer+T],tirelire[litière+R]
+DASYLHUVEA (7) | hadales(aux),au-delàs
+OREITLSUSB (9) | surtoilés(adj),lotisseur(euse),libourets,estourbis,boulistes,strobiles
+EHLROARSDI (9) | lardoires (darioles+R,désarroi,horaires,oraliser,ordalies)
+IENUVLEIBG (8) | gibeline(in),bilingue
+RRIXMLEAEE (8) | remariée[arrimée+E]
+YCISVNANAE (9) | cayennais° (cannaies+Y,caennais)
+NQEUOVTAZI (8) | atonique,azotique,équation,évoquant
+EIRSUAXDTI (8) | aridités,diariste[raidies+T],sidéraux,taurides,taxieurs(euse)
+NAEUTLSAIR (10)| australien,naturalisé (reluisant[taurines+L],lataniers(nm)[ralentis+A],réalisant,salutaire,saturnale(nf))
+AUACDPUERD (8) | crapaude (drapeau,carpeau,daurade)
+EICTOSEMEN (10)| cétonémies (centièmes,cimentées,monétisée)
+LBOLJVICEO (6) | boille,colobe,coelio,coolie
+PRNOYTEWUA (8) | noyauter (royauté,portune,pâturon,opérant,épurant,panoter(vi),prytane,toupaye)
+UOYAJPMGNR (6) | gopura,jargon(+jargonner(vi)+jargonneux),majong(+mahjong),rampon
+ESLDLULIAI (8) | liliales
+NIATIOPLDO (9) | antipolio (adoption) ((iodlant(vi),opilion,pilotin(nm),poilant,pointal(aux),pointil))
+EOIPASXMUA (7) | axiomes,oiseaux
+MAUUATITQC (6) | acquit,tatami
+ALEHEIATCP (9) | pétéchial(e,aux+pétéchie) (acalèphe,acéphale,capitale,chapelet)
+SGENEAQEQI (8) | agénésie[saignée,gainées+E]
+LTICOIENCU (8) | cicutine(nf),colicine,concilié,conicité
+GAFHERETID (9) | frégatidé(nm)[redéfait+G] (tragédie,héritage)
+URHEEMCEIO (8) | chiourme[moucher+I],écumoire[écrouie+M]
+OYEUUTSSUD (8) | sud-ouest(inv) (x)
+MEFOATTIPN (8) | empotant,impotent,ptomaïne[pianoté+M]
+TAGNIILESM (10)| malignités (ligaments,latinisme)
+OOSESEENSM (9) | nosémoses (x) ((osmoses,sensées))
+CECSEPLEAH (9) | céphalées[capelées+H(vt)]
+AOGUTCIGHY (6) | agouti,chouïa,chouya,chaoui,chatou,gauchi(vt),gaucho
+SIEPURADEL (10)| épidurales,(al,aux),paludières(ier) (plaideurs/euse,pédaliers,pédaleurs(euse))
+NACECETOAI (9) | accointée(vt) (cacaotée(adj),occitane)
+SUERIACURV (8) | cruiseur(nm+cruiser),usuraire
+LOECEIYBCH (7) | cochlée(nf),clichée(vt),bicycle
+OFONYMEIRV (8) | omnivore,oronymie
+TSRSEIIOEC (9) | crétoises,sectorisé(vt)[croisées+T],tricoises(inv),costières,osciètres
+OFTONIGIAT (7) | footing,fagotin(nm) (fagott,gâtion(onne),gîtant(vt))
+ECEMSPITEI (10)| septicémie (x)
+EDAMNAUASU (9) | ad nauseam(inv) (x) ((amandes,manades))
+INIOSULASD (10)| sinusoïdal (x) ((niaoulis,soudains,liaisons,salinois°))
+NCAMAAMREE (9) | cameraman(s),cameramen(inv) (x)
+ERUGOEOAZO (7) | gerzeau(x),guéréza
+GEOCXUBONQ (6) | bougon(onne,+bougonner(vt)+bougonneux),genoux,conque
+SAUYENTDME (8) | asyndète,médusant
+QPIIALDERN (8) | enlaidir,plaindre
+PTRMUAUAXN (7) | paumant(vt),rampant(vi,+e,s),amurant(vt),apurant(vt)
+ASRBDGEAOU (9) | bourgades[radoubés+G(vt)],sabordage,abordages
+MNIOEATDHL (9) | ethmoïdal[modalité+H],madelinot[modalité+N](nm)
+IDEJIEBATA (7) | débâtie,diabète,jadéite
+UEZITEIRLF (8) | liftière(ier),tuilière(ier),tuilerie
+BJILEAUKSI (8) | bisaïeul(e,s) (jubilés(+vi),skiable)
+XUFTEEEIDS (9) | Fêtes-Dieu[étudiées+F] (eutexies,feudiste)
+ENTOOPTIIA (8) | pétition (patient,pianoté,piétant(vt),pinotte)
+OISSNSEASL (8) | sessions,anisoles[insolés+A(vt)]
+RSUEIENOIA (9) | noiseraie (asinerie,eurasien,saunière(ier),séniorie,usinière(ier))
+IOTIEPLSRO (9) | isotropie,pistolero,politiser[toiliers,îlotiers+P]
+LAATQUCPBE (8) | captable (abacule,placeau,claquet,câbleau,capable,péculat,pultacé(adj),plateau,tableau,tapecul)
+ASUOSVREEQ (9) | savourées (évasures,vareuses,raveuses(eur),révoqués)
+FEENSSLEED (10)| désenflées(vt) (x) ((défenses))
+MIAUOLSORC (8) | couloirs,solarium
+IRTRUFESIO (10)| fioritures (fruitiers)
+NEEDTEIITN (9) | tendinite (identité,déteinte,intentée)
+ESRGOOTNEA (9) | téragones[orangées+T]
+ISSFIFOERO (8) | ossifier (isérois,effrois,érosifs(ive),fossoir,froissé)
+ACOALRESAC (9) | saccarolé(nm+saccharolé)[acérolas+C] (caracolé(vi),caracals)
+PAESIISENI (9) | sinapisée(adj)[niaisées+P(vt)] (épaissie,épinaies)
+NMEUAEVRIS (9) | amenuiser,uniramées(adj)[saunière+M,ranimées+U],mauvéines,anévrisme[ranimées+V]
+OAESRTNOTO (8) | sortante
+RISTUFEONO (9) | troufions(nm +troufignon)
+EGTACPUOPS (8) | coupages,stoppage
+IETPFSCEIU (8) | stupéfié,spécifié (cuitées,ipséité,pieutés,piteuse)
+ALRAISSWPO (8) | parasols (saloirs)
+NONCEMRAAU (8) | caouanne(ou caouane),maçonner[romance+N]
+OATMELEAXD (7) | malaxée,oxalate,dalmate
+ICOWREYETT (8) | tricotée[cotière+T]
+ISENREEKUC (9) | euskérien(ou euskarien/euscarien) (censeure,censière(ier),énurésie,censurée,incréées,rinceuse(eur),sinécure)
+TEAMREARAT (8) | trémater(vt)
+TEEVESTKDI (8) | divettes,vedettes
+JBUMAENUNI (8) | benjamin (unanime)
+AGOKEVDEEN (7) | agendée(vt),endogée(adj)
+EHFCROEOUR (8) | fourchée,fourcher(vt),cohéreur(nm)
+IARYIISBRC (6) | cabris,carrys,ici-bas
+NTESOENRRE (9) | tonnerres
+SOCLRAREBA (10)| barcaroles[albacores+R] (arrosable)
+SPMEAROIME (10)| pommeraies (x)
+WMDNAARANE (7) | ramadan
+EVENGINGIE (8) | ingéniée (enneigé,envinée(adj))
+KTSSPMUOOT (7) | opossum,pottoks (pottos,puttos,stouts)
+TIVTOOINSE (8) | isotonie,vinosité
+MLAINSEEAP (9) | népalaise[alépines+A]
+QDILTEEGUE (9) | téléguidé[déglutie+E] (x)
+HOOCTNUEQR (9) | croquenot(nm) (hoqueton(nm),coqueron(nm),cothurne)
+MRETIALRTR (8) | atterrir(vi)[traiter+R],trimétal
+RENNIRUSZE (8) | nurserie[ruinées+R](+nursery)
+SIMBIOERMY (8) | bromisme (mômiers(ière),sommier)
+EDILAPVEEM (9) | médiévale (pélamide)
+EUQXTXAQEO (7) | exaequo(s),ex aequo(inv)
+RIOSSMEENE (9) | émersions[minorées+S]
+AGAMOLFOUN (7) | maalouf(ou malouf),mouflon[foulon+M]
+USRGQCAAEE (9) | craquages
+BONIHSLRXA (8) | rosalbin(nm) (albinos,anoblir/s,borains(e),hâloirs,harnois(nm),horsain,larbins(nm),riblons,saxhorn)
+RIMTIGEYSE (8) | mitigées,symétrie
+ENNEELLUER (7) | enrênée
+ENMURLAERI (9) | numéraire[réanimer+U]
+LAEULECSLE (9) | cellulase (calleuse,casuelle,celles-là,cellules,écuelles)
+IAISPUMURB (7) | impairs (Airbus,impurs,rumbas,saumur,surbau(x),surimi)
+AENIBXMKTT (8) | bâtiment (beatnik,taximen(inv)[mâtiné+X](+taximan(s)))
+ASAEIPATMD (8) | adamites[médiats+A](+adamisme) (adaptés,amaties)
+ECSEILESDP (9) | éclipsées[ciselées+P(vt)],déplissée(vt),épiclèses
+RIEEEFTLAC (9) | lactifère[récifale+T],cafetière
+VASIAIFNWI (7) | invasif (faisan)
+SSTRLUUIME (9) | surmulets (stimulés/er,stimulus,truismes,ulmistes)
+BDLTELIIAA (9) | dilatable[bataille+D,tailladé+B] (labilité)
+ESCFOIRLES (9) | créolisés(vt),closeries[croisées+L],frisolées(nf)
+PDEESVEOAO (8) | dépavées
+FLEEISOERT (9) | tréfilées(vt)[refilées+T],oléifères[refilées+O]
+EISTNRSEEI (10)| sintérisée(vt)[sinistrée+E(adj)]
+ECCHANEEKI (8) | chicanée(vt)[chaînée+C],échéance
+CEARENVNET (9) | recevante[entravée+C],revenante,énervante[entravée+N]
+SEIEDIULFV (9) | fluidisée(vt) (fidélisé)
+XRRIEARLII (6) | ailier,élixir
+EEIMBLDEPO (9) | déplombée(vt) (diplômée)
+JFMSAOTOSE (8) | maestoso(inv)[mastose,matossé(vt)+O]
+ORLPACMSAI (8) | acromial[maïoral+C],lamparos (amarils,asocial,calmars,compris,impalas,parasol)
+ELENXOMOSO (7) | molènes,somnolé(vi) (melons,méloés(nm),Monels,noèmes)
+PIRTNIALUF (9) | purifiant(e) (plaintif,puritain)
+CNREHUUNEE (7) | enchère,nunuche
+UIEASTNMDI (9) | médiastin(nm)[médisant+I,amnistié+D]
+FREOLPAAMU (8) | marouflé(vt),paralume
+SMIRDCAAIA (8) | camisard(nm)[camards(e)+I]
+TUEOPLENRO (9) | portelone
+EIASCRNJNA (9) | canariens[cannaies+R]
+OKIAOMCUTX (7) | comtaux (octaux,oumiak,toxico)
+URBAOISSED (9) | assourdie,baudroies,drouaises,subarides
+EIPOESTIER (9) | estropiée
+IEMENOMGFE (8) | engommée(vt) (gominée(vt),géminée(vt))
+SCIEERBNAE (10)| canebières(ou cannebière) (caribéens)
+EOSAASXRJU (8) | jarousse[ajourés+S(vt)]
+REOSITINSU (10)| turinoises (ironistes,ruinistes,sinuosité,tournisse,tunisoise)
+PAERAUMSED (9) | maraudées,paradeuse(eur) (auprès de,persuadé,serapeum,sérapéum)
+OSPLCVEACU (9) | accouplés (vacuoles)
+HINQBDAAOA (5) | badin(e),bahaï(e+bahaïsme,béhaïsme),banda,bidon,bodhi,bondi(vi),danio,niqab
+IULIISVBAP (6) | alibis,avilis(vt) (biais,laïus,pâlis,palus,suivi,pubis,valus,...)
+AINROSGPIA (8) | paraison[oranais+P],saignoir
+PCHARIAGER (9) | charriage (agraphie)
+UIPDONEQYE (7) | dépiqué(vt),youpine
+UGNRBOUCIT (7) | brution,burn-out(inv,+A:runabout),contigu
+HRINIETDAA (8) | antiride,radiante[dataire+N](ant(s)),adhérant(vi)
+TUIFSTETOA (8) | autotest[tatoués+T],faitouts,statufié,fatuités[autiste+F],foutaise
+UKGPOROQAI (6) | gopura,giaour[rougi+A],kouroi
+XIEIEFSIRD (8) | iridiées(adj)
+PLAIOTTUME (8) | optimale,ultimate
+SIEBAOMTOR (9) | ambertois°[atomiser+B]
+AESIINJACC (9) | ajacciens (x) ((aisance))
+ODIBXILSOE (7) | bolides,doloise,libidos
+EIIRPTIRNS (8) | inspirer,tripiers(ière),sprinter(eur,euse),reprints
+JEARESABLE (8) | baléares[arables+E]
+LSIEOSTOIG (10)| sitologies (oligistes) ((glossite,logistes,lotoises,ostioles))
+SMEIMAAALH (9) | hamamélis(inv) (mal-aimés,malaimés,lamaïsme)
+AOULPAMPLI (7) | pallium,malpoli (amolli,impala)
+TTOANSLEIE (9) | tonalités[étoilant+S],totalisée[isoétale+T]
+EDNUECNAST (9) | tendances[encantés+D (vt)]
+EREPXOIPED (8) | expédier (droppée(vt),expirée,période,repipée(vt))
+NSSNIAHORI (10)| hirsonnais (x) ((horsains))
+IICQFOEESR (9) | scorifiée(vt) (orifices)
+USVRKIIAOL (8) | raviolis[lavoirs+I],souvlaki (x)
+LNRFIONIDI (8) | fridolin(nm) (x)
+DNLAROETEA (8) | alaterne[alterné+A],léonarde[adornée+L(vt)],rondelet
+SDINEIARHU (9) | hirudines,uraniidés (draisine,enhardis)
+LIEONTRSSI (9) | insolites,ironistes[sinistré+O(adj)]
+NLOINEEAPR (9) | nonpareil,palonnier(nm) (pilonnée/er,périnéal,pralinée(vt))
+ESIPEDCUSP (8) | cuspides
+ACYSTLEEET (9) | clayettes
+XSAAAPEEPL (9) | sex-appeal(s) (+sexe-appeal) (x)
+SASENEYEHL (8) | halenées(vt),élyséens[sélènes+Y]
+UADENSRAIS (9) | durassien°[sardines+U]
+IUOVRMSEEI (9) | semi-ouvré(e,s) (isomérie,morveuse,virémies,voieries)
+IBNERIMOYH (9) | yohimbine(+yohimbehe) (x) ((embryon,inhiber,ombrien,ombrine))
+ORPERSENEI (10)| péronières(ier) (réserpine)
+HREILMOEMA (8) | mémoriel,immorale,amélioré,mémorial
+EONEJUSOBR (8) | subornée(vt),journées,bonjours,séjourné(vi)
+NEEIRNOGST (9) | gironnées(adj)[sorienne+G],nestorien[sorienne+T],roentgens(ou röntgen)
+ERIOERORSI (7) | rosière[soirée+R],soierie[soirée+I]
+DISORASEBE (9) | adsorbées(vt),sabordées,ardoisées(adj)
+ANXUEINTEL (8) | annexite,linteaux
+TSEULREUEF (9) | fureteuse(eur)[réfutées+U]
+EPAUMPTTOR (8) | attroupé[tatouer+P]
+NLBERERUEL (8) | éberluer,rebeller,rebrûlée
+EBOLSEOIPR (9) | périboles[poêliers(ière)+B]
+IEADFANLOC (9) | diaconale(al,aux)[cladonie+A],falconidé[cladonie+F] (caladion,cladonie[donacie+L])
+VUSSOHRUOE (8) | voussure (housser(vt))
+IENIRONOPM (8) | pionnier
+ETOBEGYEHI (7) | gobetée(vt)
+DEAMXRUOSI (9) | doux-amers (désamour,madérois,drouaise,douaires,miraudes(aud),sidéraux)
+MSEVEICTOU (9) | muscovite (eutocies,mucosité,costumée,émotives,motivées,vicomtes)
+EOZTOOPASP (8) | apoptose[popotes+A] (topazes)
+SEEHLSAACR (10)| échalasser(vt) (x)
+UAETUIEESM (8) | ameutées,amiteuse(eux+amitieux/euse)
+EDITSOSSIW (8) | dossiste,isosiste(ou isoséiste) (dioises,idiotes)
+SIUZSEESEE (7) | essuies(nf)
+OPBVAATURM (8) | marabout(+marabouter(vt)) (tambour)
+AGZKTLARAE (7) | lazaret (ratage,Tergal,karaté,galate,tarage)
+OKPUONEINA (7) | épanoui (pineau,ionone,paonne,kanoun,pionne)
+MIPTELUNUE (8) | pliement[leptine+M]
+OTRECECMGA (8) | écorçage
+PSPBRHOEIE (9) | biosphère,prohibées(vt) (x)
+REEUINERHT (9) | éreinteur(euse),euthérien (éreinter,éternuer(vi),nitrurée(vt),rentière)
+IPIUVSNARQ (7) | pasquin(nm) (Invars,parvis(inv),purins(e),raisin(+raisiné(nm)),rapins(e),ravins,rupins(e),saurin)
+EIRIBNCTAQ (8) | inabrité,binarité[binaire+T]
+LARFERROSO (8) | sororale[aérosol+R] (arroser)
+GNIDCEFOEX (8) | congédié,génocide[négocié+D]
+NPTOAENLEP (9) | pentapole (étalonné,talonnée[annotée+L],pentanol,taponnée)
+NPEBSRIPUS (8) | prussien,snipeurs(+er+euse)[pruines+S]
+AEPOUEDNGT (8) | autogène,dépotage[adoptée+G],pagnotée(vt)
+EASCAEKBSL (9) | calebasse (cassable,sécables[câblées+S])
+DEGISPISCA (8) | adipsies[dissipé+A],ascidies,capsides,spacides
+ATLEBLEIMO (8) | ballotée(vt+ballotter),batoillé(vi)[allotie+B],boletale,métabole,molalité[allotie+M],tombelle
+EYTEBOSIHO (8) | isohyète (obésité,boostée(vt+eur),shootée(vt))
+IELGYULSCT (7) | lucites,ligulés(adj),lyciets
+ESMELSIOOS (10)| solesmoise° (émissoles) ((mélisses[lissées+M],molosses))
+URILEATVOR (9) | railroute[ruralité+O],violateur(trice)
+SNEORESACD (9) | androcées[adornées+C,açoréens+D,conardes+E(ou connarde)],escadrons[conardes+S]
+SRRVRUEOSO (7) | rouvres,verrous,roseurs(nm)
+SKAANENDAJ (7) | sandjak(+R:kandjars) (ADNase,ananas,saanen)
+AONISATMME (9) | ammonites,anatomies[omanaise+T]
+ELAESCIPBA (9) | labiacées(nf) (apicales,spéciale,biplaces,capables)
+PCUQLPARNO (6) | ruclon(nm,+E:culeron,+I:cul-noir(pl:s & s)) (copra(h),cornu,lapon(one,onne),luron(onne),polar,coran,...)
+LEMURATJEU (9) | émulateur(nm) (x)
+ILAEERIRBQ (8) | libraire[blairer+I] (libérer,ailière)
+QNOITIIUIV (6) | quinto(adv) (inouï,unuit,invit)
+RADEESLAPO (9) | léopardés(adj)[polardes+E] (déplorés,désalper(vi),salopard(nm))
+LUTPIIITCU (5) | putti(inv+putto(s))
+SEONGLILEU (10)| genouillés(adj) (guenilles,soulignée)
+UNPRQUNOEL (8) | nonupler(vt)[luronne+P] (x)
+MOOELOKSME (9) | komsomole (komsomol) ((lookées(adj)))
+RCPIEVAEEA (8) | rapiécée(vt)[aciérée+P (vt)]
+TBAEMSRKAE (8) | markétés(vt)[rétamés+K]
+EIVAAMDIES (8) | demi-vies,vidimées(vt)[divisée+M],vidamies
+APJUBIIARL (7) | biaural(e,aux+binaural(e,aux)) (jabiru)
+LISOTREREE (9) | roselière(ier)
+EVPSOISTVO (8) | isotopes(+isotopie) (isopets,soviets,votives(if))
+LLEIEBESSE (9) | ébiselées(vt)[blessée+I] (x)
+HGIEEIEREC (7) | chierie[chérie+I],grièche[chérie+G]
+ENTNOSPTAE (10)| panettones (septennat,spontanée,taponnées(vt))
+LCCLYIUESN (8) | linceuls[incluse+L] (cincles,cyclisé(vt),clusien°)
+OSNNOACARO (8) | arcanson[rançons+A (+rançonner(vt))] (cranson)
+SCISGEOTEE (9) | écogestes (cogitées,cotisées,égoïstes,sociétés)
+CSEVAIDOPR (9) | poivrades[avodirés+P]
+QEAASISSRE (9) | rassasiée (arsaises°)
+ORTAVIINSC (9) | contravis,noviciats,victorias (antirois,croisant,niortais,octavins,vitrains)
+ERHUEEIOCD (9) | douchière(nf) (coudière(nf),déchirée,dérochée(vt),orchidée)
+AELLUTUFYM (7) | flûteau(+flûtiau)
+BEERTLFEIA (9) | batelière(ier)
+EVUOERGUTA (9) | touarègue[autogéré+U(adj)] (outragée,ouvragée(vt))
+OLRIANSMEN (10)| normaliens (normalisé,salonnier(e),minnéolas,nominales)
+NASRADSOUI (9) | soudanais[soudains+A]
+VECOROMODO (6) | mordve,vocero,vocéro
+ORESUGERUM (9) | rouméguer(vi) (gourmées(adj),mesureur(euse),remueurs(euse),rougeurs(nm))
+FONITIDENE (9) | éditionné(vt) (infondée(adj),notifiée,tonifiée)
+ICSSUCMAIO (7) | siamois[moisis+A],musicos(inv)
+SREIIRAEOS (9) | roseraies[arrosées+I]
+ERORSSUAAT (9) | roussâtre[sourates+R]
+IAASEEQIPF (7) | apaisée (pifées(vt+piffer))
+UPEPIOLOEE (7) | pipeule(+pipole),peuplée
+IOCOHESURE (9) | ichoreuse(eux)[rocheuse+I]
+LRLIYOICII (6) | illico(inv) (licol,lyric)
+AVOXRUMIFE (8) | fémoraux,fumivore (fériaux,fermaux(fermail pl),foireux,fovéaux,mafieux,moreaux,morveux,ormeaux)
+OCNANDIOSR (9) | corindons (connards(e+conard))
+ONTOIDMALE (9) | madelinot(nm)[modelant+I]
+XEUSSNAONV (9) | savonneux (savonnés,saxonnes) ((x))
+EOOBLXMEMR (7) | bloomer
+ETAGIRUGAF (9) | agrégatif(ive) (fatiguer,gaufrage,girafeau)
+TCELMONBUW (7) | nelumbo(+nélombo),noctule
+EISIUSEATO (8) | eustasie,taiseuse(eux)
+IMUTEVEPEL (8) | plumetée(adj+plumette)
+TRUSAMEREL (10)| marteleurs(nm) (râteleurs(euse),rétameurs(euse),serratule,urétrales)
+EXETEROGOS (8) | ergotées(vt) (Gore-Tex,Goretex(inv²))
+TEMOPSASIE (10)| étampoises (atomisées,epsomites,somatisée(vt))
+PMASEONARI (10)| parasomnie (saponaire)
+ORRAIEPPAM (8) | apparier,apparoir(v),impropre,opprimer,rapparié
+RESENRUNUT (8) | runneurs,runneuse
+VCRISAIOTU (9) | victorias (x) ((sautoir))
+IEPACEPSSH (9) | casse-pipe(s)[apepsies+C] (échappés,schappes)
+LKUSAENRYA (9) | analyseur(nm) (analyser,uranyles)
+OHCITIARAA (7) | chariot(+charriot+char(r)ioter(vt)),haricot (charia,rachat,taï-chi(s))
+IVBURATACT (8) | vautrait (rabattu,attriau(x))
+TZPOEUIAVN (9) | top niveau(x)[pointeau+V]
+YUESLBLDEB (7) | bullées,duelles
+ORMCHRIPOA (9) | comparoir(vi) (amorçoir) ((charroi,pochoir))
+TROUEIPSEE (10)| européiste (estropiée)
+OUDATISDXA (7) | distaux(al,e),adduits(nm)
+YKNSAEQELE (7) | yankees,élyséen°
+DEIREXLROE (8) | drôlerie
+ZLSECXUEAP (8) | capsulée(vt),placeuse(eur)
+TIJOCIGFUI (5) | ci-gît(+ci-gisent)
+UDOOAERMRE (9) | aérodrome (mordorée(adj+mordorure),remordue,remoudre)
+PSYEENSRRH (9) | sphyrènes (x)
+DOEXLATIEV (8) | vidéotex,vélotaxi(s),vélo-taxi(s&s)
+OAASSISLUQ (8) | quassias (laquais)
+INAOMDEDAT (8) | anatomie,démodant,amodiant,diamanté(vt)
+RULCIEERIC (8) | circuler(vi),cercueil
+TMAACIIURL (9) | lactarium (x) ((martial,marital,tramail(s)))
+RQTREODIOA (8) | oratoire,toréador
+TODSEBIIRE (9) | droitisée(vt),boiteries,désorbité(vt)
+LENPLOEEHU (8) | hélépole (polluée,hellène,phléole)
+EINMIOEPNE (8) | inopinée(adj)
+CIRTNREEOE (9) | tierceron[orienter+C],réorienté
+ASUHEREZEG (8) | guérézas
+SERASECGIA (9) | aciérages,agaceries
+PSPRECIIII (7) | pipiers(ière)
+UMONITTAIF (8) | mutation,mouftant(vi)
+TATEEHMAOS (8) | athétose,hématose
+LSFSUEUONP (8) | sulfones,sulfonés(adj)
+IATACEPRER (9) | précariat,précarité,rapatriée
+RUBTNEEGTI (9) | ringuette (bitturée(vt+biturer),bringuée(vt),brunette,géniteur,rubiette(nf),teinture,turbinée(vt))
+NEFAICNOIR (9) | financier,façonnier(e) (confiner,façonner,financer,francien,infarcie,nanifier,racinien°)
+IEPVANRPOI (8) | papivore ("rippieno" faux)
+INANEIPMOC (8) | camionné(vt)
+APTUAIHNRE (9) | naupathie
+DPNIOSEIER (9) | oedipiens,pied-noire(s&s)
+PLERGOAASO (8) | pergolas[galoper+S(vt)]
+TDIEANERUB (9) | buandière(ier),buanderie,butadiène
+ERPEUHEYTR (8) | pyrèthre,répéteur(nm)
+IULANNESVS (8) | sinusale(al,aux),neuvains
+UGXUEBCPIR (7) | guipure(+vt),curieux
+TIKICEEHVW (7) | chétive
+SCMEREOATS (9) | escamoter[amorcées+T],escamotés,massorète
+AENXRAMEKE (8) | réexamen[ramenée+X]
+ACTLSAEANA (9) | catalanes (catalase)
+TMATILTGCE (7) | lit-cage(s&s),tactile,metical(s)
+SYRRLANMIR (7) | marlins
+AUOEEDACSS (9) | escouades (codeuses(eur))
+IPLNOAPRAT (9) | palpation (notarial,patronal,plantoir,pont-rail(s&s),rational(aux))
+EPPEUIARNX (9) | périnéaux (paupière)
+TEASADOSFU (9) | autodafés (x) ((fausset,défauts,fadasse,tasseau))
+AEUNNREAOS (10)| nanoréseau (x)
+MENOORNUTU (9) | moutonner(vt) (x)
+TAEEENOPCT (9) | Pentecôte (patentée(vt),potencée(adj))
+OCANATOTEI (9) | catatonie (cotation,actinote)
+SHVVVAYOXA (5) | axoas (saxo,soya)
+SOROAAYAVL (6) | lavras,ravals (alors,alyas,avals,rayas,royal,salar,saola)
+ILINASPNEO (10)| néopilinas (liaisonné(vt),spinalien)
+ATAASERLMB (9) | malabares (albâtres,malabars)
+OCIONEIONT (8) | nicotine (cotonné(vt),connoté(vt),onction)
+NAEERLDKOS (9) | léonardes (adornées(vt))
+TINEREREIC (10)| crétinerie (x)
+GSFNAAIEEE (8) | agenaise[gainées+A],agénésie[gainées+E]
+FIECEMUUVT (7) | tuméfié
+LLXICESRIA (9) | cisailler[craillés+I(vt)] (criaillé(vi),laïciser)
+TSICERORAR (9) | oratrices[cairotes+R],arrêtoirs
+IMOSALITOV (8) | moviolas (violats) ((aïolis,avilis(vt),isolat,litsam,lotois,matois(e),moitis,somali(e),tamils))
+IIGUSIFACE (7) | aiguisé,fugaces
+SNEMEZUPAM (8) | empaumés(vt) (paumées(vt),spammée)
+UARAULIEXE (7) | aurélie
+TIDUCTUKAC (6) | dictat,diktat,tictac(s)
+AEEBTLLEAN (8) | ballante,entablée(vt) (ablatée(nf+abattée),allante,bêlante,entelle,tabelle,tenable)
+EAIOOENHPR (9) | aérophone (héparine[panière+H])
+ONISOLPOAR (9) | oloronais° (planoirs,polonais)
+EHDIGUCFEA (9) | dégauchie(vt) (aguichée)
+NOUVWMEROI (8) | émouvoir,omnivore (mouvoir,wormien(m),würmien°)
+MESGCANISA (9) | magasinés(vt) (aisances,magasins,siamangs)
+EMERPAOURR (8) | péroreur(euse)
+URDOOSHNEA (8) | au-dehors
+MVALUESIFT (8) | fautives,fauvisme,festival
+EFNIQRSUAI (9) | quinaires,iraquiens (aurifiés(vt),franques,rifaines)
+AULAARPUSM (7) | marsala (apsara,plasma,pulsar,samara,saumur,lampas(inv),palmas(inv))
+IIRDTAIUNP (8) | puritain (nuitard(e),pâturin(nm))
+WLUIUOIOSS (6) | islois° (louis,silos,slows,solos,soûls)
+YSUTATUINR (8) | suturant
+ACMSNOAODE (8) | comédons
+DITTACRTER (8) | tricarde(ard)
+ENUTITANTS (9) | suintante[annuités+T],tantinets,teintants[atteints+N]
+RALAVALOLE (7) | all-over(inv) (arolle(ou arole),orvale,avaler,ravalé,arvale)
+HEBESAMUNA (9) | haubanées(vt) (x)
+OSUTUFEGTR (9) | goutteurs(euse)
+VISESUDINE (9) | diviseuse,ensuivies
+ISARIRRPTC (8) | prâcrits,pracrits(+prâkrit/prakrit) (x)
+UQESINRBSL (8) | blinquer(vi),brisques
+ORADAGARIH (7) | harraga(INV) (adagio,hagard(e),Rhodia)
+CSDEIGIIEBT (8) | digitées(adj)
+EIINCONNDME (9) | innominée(adj)
+EOUUELLSVIA (9) | éluviales(aux),vasouillé(vi)
+SUAAOENDAAD (8) | au-dedans (dos-d'âne(inv),douanes,saudade)
+EGNBIEUESIN (10)| ingénieuse (ingéniées)
+UELEADLTUUG (8) | délutage (allégué,gadelle,lutéale)
+BTESPCAARUL (10)| pâturables
+ARELROICSTG (10)| escort-girl(s)
+IITRSUNRAEC (10)| urticaires
+LIIENBNAOAR (8) | albinien[biennal+I],bananier,baronnie,ennoblir
+LAEPREOTRUN (9) | arpenteur(nm),néorurale,opérateur,pleurante,prélature,pronateur(trice),réopérant,replanter
+SMSMANOEUEI (9) | amenuisés,manieuses,saumonées(adj),séminomes,suménoise0°,susnommée(adj)
+VNMEPEEEGTC (8) | cémentée(vt)[mécénée+T(vt)]
+NTLABOIOEIA (9) | abolition,anabolite
+CEDIPUENDNT (8) | indécent[dentine+C],inétendu[dentine+U]
+ECFLNULAOIH (10)| chefaillon (cafouillé(vi),chafouine,fonçaille,halluciné(vt))
+RSEFTREAAIR (10)| ferraraise,ferratiers(nm) (x)
+IVROTAAEETO (8) | rotative[aortite+V]
+UFNAMAULBNE (9) | funambule (flambeau) ((albumen,fumable,lambeau))
+EVEIRFULAUR (8) | aurifère,éraflure,fauverie,flaireur(euse),refleuri,uvulaire
+IEISRNTHIPA (9) | pharisien,phtiriase,piétrains,spiritain,thiaisien°
+UTARECOPUEI (10)| écrapoutie(vt) (coauteure,eupatoire,poireauté(vi))
+NNTIORRMTEO (9) | remontoir
+ECFAECSTAIJ (8) | cistacée(nf),facéties,factices
+SSEEIEECLUA (9) | ciseleuse(eur) (aléseuse(eur),caséeuse(eux),ciselées(vt),éclissée(vt),éclusées,écuissée(vt),esseulée(adj),laceuses(eur))
+SAENEZPENSD (9) | dépannées
+TAINDLEIFAU (10)| latifundia (nautilidé)
+TNTVIUUENJM (7) | uniment(adv)[mutiné+N]
+IENILSUDAPU (9) | paludines(nf)[pauliens+D]
+ESHRUMIEEIR (9) | rhumeries
+OTRNOOLRYSL (7) | rollots (rollys,Orlons,rotors,stolon,torons,trolls)
+FRYUGOAITSL (8) | larigots,loufiats,rougails
+ERNIAUNNTTN (9) | internant (inertant(vt),internat,intranet,nitrante(vt+adj),trentain)
+ITUEAENMRLC (10)| clairement,mercantile[alimenter+C],ultramince[matricule+N]
+ENIAANMONER (10)| amarnienne° (non animée[minoenne+A])
+URRPENLEIOC (9) | croupière,prunelier(+prunellier)
+IIULTOERETO (9) | roulottée(adj +rouloté)
+UNEESIIBDHD (9) | désinhibé (inhibées)
+SVRTPEOKTOS (8) | stop-over(inv),streptos[posters+T]
+OODCMRADIRL (8) | amorçoir (cordial,corrida,mirador,racloir)
+QASFEEEXADU (8) | déféqués (asexuée(adj),désaxée,exsudée(vt))
+DOEISPEISTG (9) | pégosités[poétisés+G]
+SADUUJNRMEE (9) | mudéjares(+ar)[adjurées+M(vt)] (duramens,jeûneurs,jurandes,majeures,méandres,ramendés(vt),saumurée(vt))
+EHASOMNFPUO (9) | monophase (homespun)
+PNSESLEECAA (9) | analepses
+EEMPMIFUESL (9) | emplumées(vt)
+SOREZBLEEOL (9) | ellébores(+hellébore) (rebellés)
+USSUTBEEOEE (9) | éboueuses (boueuses,bouseuse(eux),buteuses,éboutées(vt))
+UIDRECMEHSE (10)| demi-heures (déchirées,hémièdres)
+RZAQASANOMC (8) | macarons,mascaron (aramons,maracas,mascara)
+NDODCCHRKOA (7) | chardon,chocard(nm+choquard),crochon(nm+crotchon),d'accord(inv),haddock
+EDDCMESITCO (9) | codécidés(vt),docétisme[comédies+T]
+CFUPISUPMEX (7) | spumeux(euse) (césium(+caesium),cippes,fumeux,impecs)
+OEERSQSISUR (10)| seurroises° (esquisser,roqueries,rosseries)
+OTNREASUIVN (11)| innovateurs(avionneurs(euse),nautoniers(ière),nervations,touraniens,vernations,vernousain°)
+SGQPUIAZCTE (8) | pugétais°,piquages
+TROTUTAUESE (9) | tatoueurs,tatoueuse,testateur(trice),tortueuse,trotteuse(eur)
+AULGYCCISNE (9) | canicules,sacculine
+RTCTNCLEEOI (9) | centriole[rentoilé+C(vt)],contreclé(+contreclef)
+EUNJOCUTOUE (6) | écotone[contée+O]
+IZUAORENISE (9) | noiseraie,suzeraine[saunière+Z]
+POSDLEOALTM (9) | omoplates,top models(allosome,métallos,paléosol,plasmode,platodes)
+RERACTPCUIO (10)| écrapoutir,procuratie
+TAORVNETIIR (10)| introverti,retiration(irritante,itération,travertin,trévirant(vt))
+SIGTOOBEMDN (9) | mendigots(e+mendigoter(vt))
+INAEASAEPUA (8) | punaisée
+UNRSXIPIAED (10)| présidiaux(al,e) (pindarisé(vi),uraniidés)
+EPSCREHASUV (9) | pauvresse(et),phraseuse(eur),rechaussé(vt),surpêches
+ZTEIAARTSAN (9) | artisanat,ratatinés,tarentais[tartinés+A]
+ECELTSSIEID (10)| diéséliste (diésélisé(vt))
+ESEAURINSES (10)| résineuses
+RRREEAAAULQ (7) | leurrer
+YILATESERE (10)| layetières(ier) (étalières)
+LSETMIQRET (9) | lettrisme (limettes,lirettes,mélittes,métrites,mirettes,stérilet,termites)
+ODECITEDER (9) | décrédité(vt)
+RGITEFESEL (9) | tréfilées(vt)
+SERARUPESA (9) | asperseur(nm),passereau,repasseur(euse)
+LALFAMLETM (7) | malfamé(e,s),mal famé(e,s)
+JIRIDYRECE (8) | cidrerie[décrier+I]
+RHAQOSACEM (8) | achromes(+achromie)[amochés+R]
+FOJETIRONE (8) | éjointer(vt),rejointe
+NCUFRAROSU (7) | carrons,faucons
+NUQENYCEFO (7) | couenne,enfoncé,foyenne°(en)
+TBAPFURLAV (6) | abrupt,brutal,burlat,tablar(+tablard(nm))
+UIFLNEGNUEI (9) | unilingue (figuline,flinguée,infligée)
+LAEBAESVHMG (10)| emblavages (x) ((emblavés(vt)))
+ERBPSONHTE (9) | tréphones (néphrose,poternes,prothèse,théorbes,trophées)
+EANBEMLODA (9) | amendable (damnable)
+OSEBLCNUXE (8) | encoubles,encoublés(vt)[bouclées+N]
+LMTENREUUL (9) | ululement(+hululement,ululation) (mutuelle)
+AATANDEHGEE (8) | dégantée(vt),étendage (agendée(vt),agnathe,athénée(nf))
+PORINEEIARB (9) | rapinerie (péronier(adj),pineraie,robinier(nm),rôneraie)
+FNOOEOIPCTE (8) | confiote(nf)
+ASRRLEIICOF (10)| loricaires[carriole+I]
+IODDISNAREU (10)| nid-d'oiseau[douaisien+D]
+IXMENUNENBA (8) | biennaux,nubienne°
+NNMNUOPCEEI (9) | pneumonie (inconnue,méconnue,minoenne)
+OOSLIOAOIVN (9) | olivaison (x)
+DOELRETLTMI (10)| détortillé(vt) (mordillée,tortillée,trémolite) ((démêloir,drôlette,illettré,mollette,mortelle,roitelet))
+GUUOJNSVUCE (9) | conjugués (x) ((souvenu))
+CPMUOEBSOLA (9) | camboulés(vt),coupables
+SEANXUUUEDT (8) | exsudant(vt),nauséeux
 MAEUOOSSNTR
 SLCBRUAARAT
 REEPESPELUR
@@ -2777,3 +3317,24 @@ IMTAFNANDTE
 SECDSSOQPDI
 SOABRNOECPT
 IIRAPEOEACF
+NRUPGEUPOOT
+ENSATTEDNIT
+IUMLESGLEA
+ERBPSONHTE
+EANBEMLODA
+TSIESAEEUFF
+VIRUQAEDELA
+FNOOEOIPCTE
+UFEENCIRTII
+EDIIESREAMR
+TFUIDONUANU
+SELITUOYALR
+DEOIANESDLU
+GLTIUPALIIE
+IMETGENDPRI
+ENONREDOEUT
+BPLLIUXINLU
+EEEAEEENRTO
+ESAUTQSATLI
+OAHPNVEUIRI
+ENLYSBOIRTI
