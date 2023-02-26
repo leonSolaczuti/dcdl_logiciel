@@ -35,12 +35,14 @@ class MotUtilisateur:
             self.plaques_possibles_ensemble = [0,1,2,3,4,5,17,22,27,32,37]
 
     def AddLettre(self, tirage, idx, icones, don):
-        if not idx in self.idxProposition:
-            self.idxProposition.append(idx)
-            self.proposition = self.proposition + tirage.tirage[idx]
-            icones.boutons_tirage[idx].configure(bg=don.proprietes.couleur_bg_select)
-            icones.boutons_reponse[len(self.proposition)-1].configure(text=tirage.tirage[idx])
-            icones.triangle[idx].configure(fg=don.proprietes.couleur_triangle_select)
+        # on evite le plantage si on clique sur la plaque avant l'affichage de la lettre
+        if len(icones.boutons_tirage[idx]['text']):
+            if not idx in self.idxProposition:
+                self.idxProposition.append(idx)
+                self.proposition = self.proposition + tirage.tirage[idx]
+                icones.boutons_tirage[idx].configure(bg=don.proprietes.couleur_bg_select)
+                icones.boutons_reponse[len(self.proposition)-1].configure(text=tirage.tirage[idx])
+                icones.triangle[idx].configure(fg=don.proprietes.couleur_triangle_select)
 
     def AddChiffre(self, tirage, idx, icones, don):
         # appelée par Set_boutons_tirage_chiffres (icones.py)
@@ -83,7 +85,7 @@ class MotUtilisateur:
                         valeur3 = 314
                         if operateur == '+':
                             valeur3 = valeur1 + valeur2
-                        elif operateur == 'x':
+                        elif operateur == '×':
                             valeur3 = valeur1 * valeur2
                         elif operateur == '-':
                             if valeur1 >= valeur2:
@@ -91,7 +93,7 @@ class MotUtilisateur:
                             else:
                                 valeur3 = ''
                                 # à faire : rajouter un bruit
-                        elif operateur == '/':
+                        elif operateur == '÷':
                             if not valeur1 % valeur2:
                                 valeur3 = valeur1 // valeur2
                             else:

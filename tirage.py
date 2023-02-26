@@ -1,5 +1,6 @@
 from loadConsVoy import *
 import tkinter as tk
+import tkinter.scrolledtext as st
 import time
 from random import *
 import tkinter.font as tkFont
@@ -240,26 +241,26 @@ class Tirage:
         Mafenetre.maj_temps_restant()
         Mafenetre.mainloop()
 
-    def Affiche_solutions(self):
-        #fenetre = tk.Tk()
-        #scrollbar = tk.Scrollbar
-        #fenetre.option_add('*font', ('', 20))
-        #helv36 = tkFont.Font(family='Helvetica', size=36, weight='bold')
+    def Affiche_solutions(self, don):
 
         def maFoncF2(event):
             root_f2 = tk.Tk()
             root_f2.title('Définitions')
-            S_f2 = tk.Scrollbar(root_f2)
-            T_f2 = tk.Text(root_f2, height=22, width=88, font=('consolas', 16))
-            S_f2.pack(side=tk.RIGHT, fill=tk.Y)
-            T_f2.pack(side=tk.LEFT, fill=tk.Y)
-            S_f2.config(command=T_f2.yview)
-            T_f2.config(yscrollcommand=S_f2.set)
-            quote_f2 = ch2
-            T_f2.insert(tk.END, quote_f2)
+            screen_width = root_f2.winfo_screenwidth()
+            screen_height = root_f2.winfo_screenheight()
+            screen_resolution = str(int(0.90 * screen_width)) + 'x' + str(int(0.85 * screen_height)) + '+' \
+                                + str(int(0.05 * screen_width)) + '+' + str(int(0.02 * screen_height))
+            root_f2.geometry(screen_resolution)
+
+            text_area = st.ScrolledText(root_f2, font=('consolas', int(0.85*don.taille_solution)))
+            text_area.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+            root_f2.state('zoomed')
+            text_area.insert(tk.INSERT, ch2)
+            text_area.configure(state='disabled')  # disabled pour ne pas pouvoir modifier le texte
+
             tk.mainloop()
 
-        ch = 'Tirage :\n\n' + self.tirage + '\n\nSolutions : \n\n'
+        ch = 'Tirage : ' + self.tirage + '\n\nSolutions : \n\n'
         ch2 = ''
         for ii in range(0, len(self.sol_complet)):
             nb_lettres_disp = len(self.sol_complet)-ii-1
@@ -285,15 +286,19 @@ class Tirage:
 
         root = tk.Tk()
         root.title('Solutions')
-        S = tk.Scrollbar(root)
-        T = tk.Text(root, height=20, width=80, font=('consolas', 20))
-        #T = tk.Text(root, height=36, width=100)
-        S.pack(side=tk.RIGHT, fill=tk.Y)
-        T.pack(side=tk.LEFT, fill=tk.Y)
-        S.config(command=T.yview)
-        T.config(yscrollcommand=S.set)
-        quote = ch
-        T.insert(tk.END, quote)
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        screen_resolution = str(int(0.90 * screen_width)) + 'x' + str(int(0.85 * screen_height)) + '+' \
+                            + str(int(0.05 * screen_width)) + '+' + str(int(0.02 * screen_height))
+        root.geometry(screen_resolution)
+
+        text_area = st.ScrolledText(root, font=('consolas', don.taille_solution))
+        text_area.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+        root.state('zoomed')
+        text_area.insert(tk.INSERT, ch)
+        text_area.configure(state='disabled') # disabled pour ne pas pouvoir modifier le texte
+
+        # option F2
         root.bind("<F2>", maFoncF2)
         tk.mainloop()
 
@@ -306,7 +311,7 @@ class Tirage:
             nbPt.append(t)
 
 
-        ch = 'Tirage :\n\n' + str(self.tirage_chiffres) + '\n\n'
+        ch = 'Tirage : ' + str(self.tirage_chiffres) + '\n\n'
         ch = ch + '--------------------------------------------\n\n'
         if len(self.liste_approches[0])==1:
             ch = ch + '     meilleure solution : ' + str(self.liste_approches[0][0]) + \
@@ -347,16 +352,21 @@ class Tirage:
             # pour enlever les parenthèses inutiles autour de la solution
             ch = ch + ch_temp_modif
             ch = ch + ' = ' + str(int(eval(ch_temp))) + '\n'
+
         root = tk.Tk()
         root.title('Solutions')
-        S = tk.Scrollbar(root)
-        T = tk.Text(root, height=20, width=80, font=('consolas', 20))
-        S.pack(side=tk.RIGHT, fill=tk.Y)
-        T.pack(side=tk.LEFT, fill=tk.Y)
-        S.config(command=T.yview)
-        T.config(yscrollcommand=S.set)
-        quote = ch
-        T.insert(tk.END, quote)
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        screen_resolution = str(int(0.90 * screen_width)) + 'x' + str(int(0.85 * screen_height)) + '+' \
+                            + str(int(0.05 * screen_width)) + '+' + str(int(0.02 * screen_height))
+        root.geometry(screen_resolution)
+
+        text_area = st.ScrolledText(root, font=('consolas', don.taille_solution))
+        text_area.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+        root.state('zoomed')
+        text_area.insert(tk.INSERT, ch)
+        text_area.configure(state='disabled')  # disabled pour ne pas pouvoir modifier le texte
+
         tk.mainloop()
 
     def Affiche_solutions_console(self):

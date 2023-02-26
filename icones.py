@@ -45,9 +45,7 @@ class Icones:
         self.sabot_lettres = Button(self.fen)
 
     def Lancement_tirage_lettres(self, tirage, don, chrono, motUtilisateur):
-        # if don.nbLettres==10:
-        #     self.fen.geometry('900x430')
-        # else:
+        # appelee par Lancement (fenetre initiale)
         self.fen.title('Tirage')
         tirage.ajuste_tirage_prepares(don)  # on ne garde que les tirages préparés qui ont le bon nombre de
         # lettres ou plaques
@@ -82,11 +80,26 @@ class Icones:
                 else:
                     self.ValideTirage(tirage, chrono)
 
-        self.fen.geometry('954x430')
         don.type_actuel = 'lettres'
         nbLettres = don.nbLettres
         # SI TEST EN LETTRES SEULEMENT SUPPRIMER LA LIGNE SUIVANTE
         self.Del_boutons_lancement()
+
+        self.fen.geometry('954x450')
+
+        # rajout du menu
+        menu_bar = Menu(self.fen)
+        self.fen.config(menu=menu_bar)
+        menu_bar.add_command(label="Quitter", command=self.fen.destroy)
+        menu_bar.add_command(label="Rajouts", command=lambda: self.lancementRajouts(don))
+
+        menu_verif = Menu(menu_bar, tearoff=0)
+        menu_verif.add_command(label="un mot", command=lambda: self.lancementVerifMot(don))
+        #menu_verif.add_command(label="un tirage de lettres")
+        menu_bar.add_cascade(label="Vérifier", menu=menu_verif)
+
+        menu_bar.add_command(label="Paramètres", command=lambda: self.set_parametres(don))
+
         self.Set_boutons_lettres(tirage, self.fen, don, chrono)
         self.Set_chrono(chrono, don)
         self.Set_triangle(nbLettres, don)
@@ -158,10 +171,65 @@ class Icones:
         self.fen.bind("<Return>", maFonc_valide)
         self.Set_bouton_changer_lettres(tirage, motUtilisateur, don, chrono)
 
+    def set_parametres(self, don):
+        # pour la fenetre des parametres qui s'ouvre a partir de la barre du menu
+        # a completer et rajouter tous les parametres et rajouter aussi le lancement de cette fenetre pour les tirages de chiffres
+        Mafenetre = tk.Tk()
+        Mafenetre.title('Parametres')
+
+        cha = str('700x220')
+        Mafenetre.geometry(cha)
+        Mafenetre.configure(bg=don.proprietes.couleur_fond)
+
+        # BOUTON VALIDER
+        bouton_valider = Button(Mafenetre)
+        bouton_valider.configure(font=("Helvetica", 30), text="Valider", bg='dark sea green')
+        bouton_valider.place(x=690, y=210, anchor=SE, width=200, height=50)
+        bouton_valider.configure(command=Mafenetre.destroy)
+
+        # SON : actif ou inactif
+        boutons_son = []
+        boutons_son.append(Label(Mafenetre))
+        boutons_son[0].configure(font=("Helvetica", 20), text="son :", bg=don.proprietes.couleur_fond)
+        boutons_son[0].place(x=250, y=20, anchor=E)
+        val_son_0 = ['actif', 'inactif']
+        val_son = StringVar(Mafenetre)
+        val_son.set(val_son_0[0])
+        boutons_son.append(OptionMenu(Mafenetre, val_son, *val_son_0))
+        boutons_son[-1].configure(font=('Helvetica', 16))
+        boutons_son[-1].place(x=270, y=20, anchor=W, width=130, height=35)
+        def callback_son(*args):
+            if val_son.get() == 'actif':
+                don.son_actif = 1
+            else:
+                don.son_actif = 0
+        val_son.trace("w", callback_son)
+
+        # TAILLE ECRITURE
+        boutons_taille = []
+        boutons_taille.append(Label(Mafenetre))
+        boutons_taille[0].configure(font=("Helvetica", 20), text="taille des solutions :",
+                                 bg=don.proprietes.couleur_fond)
+        boutons_taille[0].place(x=250, y=70, anchor=E)
+        val_taille_0 = ['petit', 'normal', 'grand', 'très grand']
+        val_taille = StringVar(Mafenetre)
+        val_taille.set(val_taille_0[1])
+        boutons_taille.append(OptionMenu(Mafenetre, val_taille, *val_taille_0))
+        boutons_taille[-1].configure(font=('Helvetica', 16))
+        boutons_taille[-1].place(x=270, y=70, anchor=W, width=130, height=35)
+        def callback_taille(*args):
+            if val_taille.get() == 'petit':
+                don.taille_solution = 15
+            elif val_taille.get() == 'normal':
+                don.taille_solution = 20
+            elif val_taille.get() == 'grand':
+                don.taille_solution = 25
+            elif val_taille.get() == 'très grand':
+                don.taille_solution = 30
+            print(don.taille_solution)
+        val_taille.trace("w", callback_taille)
+
     def Lancement_tirage_lettres2(self, tirage, don, chrono, motUtilisateur):
-        # if don.nbLettres==10:
-        #     self.fen.geometry('900x430')
-        # else:
         def maFonc(event):
             if don.type_actuel == 'lettres':
                 lettre_a_ajouter = event.char.upper()
@@ -193,7 +261,6 @@ class Icones:
                     self.ValideTirage(tirage, chrono)
 
         chrono.reset_lettres()
-        self.fen.geometry('954x430')
         don.type_actuel = 'lettres'
         nbLettres = don.nbLettres
         self.Del_boutons_chiffres()
@@ -358,14 +425,27 @@ class Icones:
         self.fen.title('Tirage')
         chrono.reset_chiffres()
         don.type_actuel = 'chiffres'
-        # if don.nbLettres==10:
-        #     self.fen.geometry('900x430')
-        # else:
         tirage.ajuste_tirage_prepares(don) # on ne garde que les tirages préparés qui ont le bon nombre de
         # lettres ou plaques
-        self.fen.geometry('954x430')
+
         # que au départ, lors du choix entre chiffres et lettres
         self.Del_boutons_lancement()
+
+        self.fen.geometry('954x450')
+
+        # rajout du menu
+        menu_bar = Menu(self.fen)
+        self.fen.config(menu=menu_bar)
+        menu_bar.add_command(label="Quitter", command=self.fen.destroy)
+        menu_bar.add_command(label="Rajouts", command=lambda: self.lancementRajouts(don))
+
+        menu_verif = Menu(menu_bar, tearoff=0)
+        menu_verif.add_command(label="un mot", command=lambda: self.lancementVerifMot(don))
+        # menu_verif.add_command(label="un tirage de lettres")
+        menu_bar.add_cascade(label="Vérifier", menu=menu_verif)
+
+        menu_bar.add_command(label="Paramètres", command=lambda: self.set_parametres(don))
+
         self.Set_boutons_chiffres(tirage, self.fen, don, chrono)
         self.Set_boutons_sauvegarde(tirage, don)
         self.Set_chrono(chrono, don)
@@ -382,10 +462,6 @@ class Icones:
         self.Set_bouton_valider_chiffres(tirage, motUtilisateur, don, chrono)
         self.Set_boutons_nbGrossesPlaques(tirage, don)
         self.Set_bouton_changer_chiffres(tirage, motUtilisateur, don, chrono)
-
-
-
-        # motUtilisateur.AddLettre(tirage, c, self, don)
 
     def Lancement_tirage_chiffres2(self, tirage, don, chrono, motUtilisateur):
         don.type_actuel = 'chiffres'
@@ -444,9 +520,6 @@ class Icones:
                     return idx[idx2-1]
                 else:
                     return idx[idx2]
-
-
-
 
     def Del_boutons_lancement(self):
         self.bouton_lancement_lettres.destroy()
@@ -1482,12 +1555,12 @@ class Icones:
         self.boutons_tirage.append(b)
         self.boutons_tirage[-1].place(x=50 + 90 * 5.5, width=55, height=55,
                                       y=40 + 0.05*70, anchor=CENTER)
-        b = Button(self.fen, text='x', font=("Helvetica", 32), bg=don.proprietes.couleur_bg_defaut)
+        b = Button(self.fen, text='×', font=("Helvetica", 32), bg=don.proprietes.couleur_bg_defaut)
         b.configure(command=lambda c=len(self.boutons_tirage): compteUtilisateur.AddChiffre(tirage, c, self, don))
         self.boutons_tirage.append(b)
         self.boutons_tirage[-1].place(x=50 + 90 * 4.7, width=55, height=55,
                                       y=40 + 0.95*70, anchor=CENTER)
-        b = Button(self.fen, text='/', font=("Helvetica", 32), bg=don.proprietes.couleur_bg_defaut)
+        b = Button(self.fen, text='÷', font=("Helvetica", 32), bg=don.proprietes.couleur_bg_defaut)
         b.configure(command=lambda c=len(self.boutons_tirage): compteUtilisateur.AddChiffre(tirage, c, self, don))
         self.boutons_tirage.append(b)
         self.boutons_tirage[-1].place(x=50 + 90 * 5.5, width=55, height=55,
@@ -1882,6 +1955,129 @@ class Icones:
                 self.boutons_nbVoyelles[ii].configure(bg=don.proprietes.couleur_nbVoy)
             else:
                 self.boutons_nbVoyelles[ii].configure(bg=don.proprietes.couleur_fond_nbVoy)
+
+    def lancementVerifMot(self, don):
+        rajout = Rajout()
+        Mafenetre = tk.Tk()
+        Mafenetre.title("Vérification d'un mot")
+
+        cha = str('766x270')
+        Mafenetre.geometry(cha)
+        Mafenetre.configure(bg=don.proprietes.couleur_fond)
+        self.labels_rajouts = []
+        for ii in range(11):
+            self.labels_rajouts.append(Label(Mafenetre))
+            self.labels_rajouts[-1].place(x=50+ii*66, y=75, anchor=CENTER, width=60, height=60)
+            self.labels_rajouts[-1].configure(bg='antiquewhite', font=("Helvetica", 36),
+                                                  text='', borderwidth=0.5, relief="solid")
+
+        validite = Label(Mafenetre)
+        validite.configure(font=("Helvetica", 20), text="", bg=don.proprietes.couleur_fond)
+        validite.place(x=50, y=150, anchor=W)
+
+        definition = Label(Mafenetre)
+        definition.configure(font=("Consolas", 15), text="", bg=don.proprietes.couleur_fond, justify='left')
+        definition.place(x=20, y=210, anchor=W)
+
+        def rajouts_addLettre(event):
+            lettre_a_ajouter = event.char.upper()
+            if len(rajout.base) <= rajout.max_nbLettres:
+                self.labels_rajouts[len(rajout.base)].configure(text=lettre_a_ajouter)
+                rajout.base = rajout.base + lettre_a_ajouter
+            for jj in range(11):
+                self.labels_rajouts[jj].configure(bg='antiquewhite')
+            validite.configure(text="")
+            definition.configure(text="")
+
+        def rajout_delLettre(event):
+            if len(rajout.base):
+                rajout.base = rajout.base[:-1]
+                self.labels_rajouts[len(rajout.base)].configure(text='')
+            for jj in range(11):
+                self.labels_rajouts[jj].configure(bg='antiquewhite')
+            validite.configure(text="")
+            definition.configure(text="")
+
+        def mot_valide(event):
+            valide = False
+            if len(rajout.base):
+                sortie = rajout.Cherche_solutions0(don)
+                valide = sortie[0]
+                defini = sortie[1]
+            if valide:
+                for jj in range(11):
+                    self.labels_rajouts[jj].configure(bg=don.proprietes.couleur_valide)
+                    validite.configure(text="Le mot est valide")
+                if len(defini):
+                    txt = "définition : "+defini
+                    if len(txt)>66:
+                        txt = txt[0:65] + '\n' + txt[65:-1]
+                    if len(txt) > 134:
+                        txt = txt[0:133] + '\n' + txt[133:-1]
+                    if len(txt) > 202:
+                        txt = txt[0:201] + '\n' + txt[201:-1]
+                    definition.configure(text=txt)
+            else:
+                for jj in range(11):
+                    self.labels_rajouts[jj].configure(bg=don.proprietes.couleur_faux)
+                    validite.configure(text="Ce mot n'est pas valide")
+
+        Mafenetre.bind("<a>", rajouts_addLettre)
+        Mafenetre.bind("<b>", rajouts_addLettre)
+        Mafenetre.bind("<c>", rajouts_addLettre)
+        Mafenetre.bind("<d>", rajouts_addLettre)
+        Mafenetre.bind("<e>", rajouts_addLettre)
+        Mafenetre.bind("<f>", rajouts_addLettre)
+        Mafenetre.bind("<g>", rajouts_addLettre)
+        Mafenetre.bind("<h>", rajouts_addLettre)
+        Mafenetre.bind("<i>", rajouts_addLettre)
+        Mafenetre.bind("<j>", rajouts_addLettre)
+        Mafenetre.bind("<k>", rajouts_addLettre)
+        Mafenetre.bind("<l>", rajouts_addLettre)
+        Mafenetre.bind("<m>", rajouts_addLettre)
+        Mafenetre.bind("<n>", rajouts_addLettre)
+        Mafenetre.bind("<o>", rajouts_addLettre)
+        Mafenetre.bind("<p>", rajouts_addLettre)
+        Mafenetre.bind("<q>", rajouts_addLettre)
+        Mafenetre.bind("<r>", rajouts_addLettre)
+        Mafenetre.bind("<s>", rajouts_addLettre)
+        Mafenetre.bind("<t>", rajouts_addLettre)
+        Mafenetre.bind("<u>", rajouts_addLettre)
+        Mafenetre.bind("<v>", rajouts_addLettre)
+        Mafenetre.bind("<w>", rajouts_addLettre)
+        Mafenetre.bind("<x>", rajouts_addLettre)
+        Mafenetre.bind("<y>", rajouts_addLettre)
+        Mafenetre.bind("<z>", rajouts_addLettre)
+        Mafenetre.bind("<A>", rajouts_addLettre)
+        Mafenetre.bind("<B>", rajouts_addLettre)
+        Mafenetre.bind("<C>", rajouts_addLettre)
+        Mafenetre.bind("<D>", rajouts_addLettre)
+        Mafenetre.bind("<E>", rajouts_addLettre)
+        Mafenetre.bind("<F>", rajouts_addLettre)
+        Mafenetre.bind("<G>", rajouts_addLettre)
+        Mafenetre.bind("<H>", rajouts_addLettre)
+        Mafenetre.bind("<I>", rajouts_addLettre)
+        Mafenetre.bind("<J>", rajouts_addLettre)
+        Mafenetre.bind("<K>", rajouts_addLettre)
+        Mafenetre.bind("<L>", rajouts_addLettre)
+        Mafenetre.bind("<M>", rajouts_addLettre)
+        Mafenetre.bind("<N>", rajouts_addLettre)
+        Mafenetre.bind("<O>", rajouts_addLettre)
+        Mafenetre.bind("<P>", rajouts_addLettre)
+        Mafenetre.bind("<Q>", rajouts_addLettre)
+        Mafenetre.bind("<R>", rajouts_addLettre)
+        Mafenetre.bind("<S>", rajouts_addLettre)
+        Mafenetre.bind("<T>", rajouts_addLettre)
+        Mafenetre.bind("<U>", rajouts_addLettre)
+        Mafenetre.bind("<V>", rajouts_addLettre)
+        Mafenetre.bind("<W>", rajouts_addLettre)
+        Mafenetre.bind("<X>", rajouts_addLettre)
+        Mafenetre.bind("<Y>", rajouts_addLettre)
+        Mafenetre.bind("<Z>", rajouts_addLettre)
+        Mafenetre.bind("<BackSpace>", rajout_delLettre)
+        Mafenetre.bind("<Return>", mot_valide)
+
+        Mafenetre.mainloop()
 
     def lancementRajouts(self, don):
         rajout = Rajout()
@@ -2494,7 +2690,7 @@ def printTop_chiffres(tirage, don, icones):
 def solveur(tirage, don):
     if len(tirage.sol_complet) == 0:
         tirage.Solveur(don)
-    tirage.Affiche_solutions()
+    tirage.Affiche_solutions(don)
 
 def solveur_chiffres(tirage, don):
     if len(tirage.sol_complet) == 0:
@@ -2518,9 +2714,42 @@ class Rajout:
     def Get_base_min(self):
         self.base_min = ordreAlpha(self.base.lower())
 
+    def Cherche_solutions0(self, don):
+        # pour tester la validite d'un mot, equivalent a un rajout +0
+
+        longueur_base = len(self.base)
+        tirages1 = self.base.lower()
+        dico1 = don.dico[longueur_base - 2]
+        mot_valide = False
+        definition = []
+
+        for iii in range(len(dico1.basique)):
+            if dico1.basique[iii] == tirages1:
+                mot_valide = True
+                definition = dico1.definitions[iii]
+
+        return mot_valide, definition
+
     # RAJOUTS
     def Cherche_solutions(self,don):
         def rajout_FoncF2(event):
+            root_rajouts_f2 = tk.Tk()
+            root_rajouts_f2.title('Définitions')
+            screen_width = root_rajouts_f2.winfo_screenwidth()
+            screen_height = root_rajouts_f2.winfo_screenheight()
+            screen_resolution = str(int(0.90 * screen_width)) + 'x' + str(int(0.85 * screen_height)) + '+' \
+                                + str(int(0.05 * screen_width)) + '+' + str(int(0.02 * screen_height))
+            root_rajouts_f2.geometry(screen_resolution)
+
+            text_area = st.ScrolledText(root_rajouts_f2, font=('consolas', int(0.85*don.taille_solution)))
+            text_area.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+            root_rajouts_f2.state('zoomed')
+            text_area.insert(tk.INSERT, cha2)
+            text_area.configure(state='disabled')  # disabled pour ne pas pouvoir modifier le texte
+            tk.mainloop()
+
+
+            '''
             root_rajouts_f2 = tk.Tk()
             root_rajouts_f2.title('Définitions')
             S_f2 = tk.Scrollbar(root_rajouts_f2)
@@ -2532,6 +2761,7 @@ class Rajout:
             quote_f2 = cha2
             T_f2.insert(tk.END, quote_f2)
             tk.mainloop()
+            '''
 
         alphabet = 'abcdefghijklmnopqrstuvwxyz'
         self.Get_base_min()
@@ -2693,6 +2923,23 @@ class Rajout:
                     cha = cha + '\n'
 
         root = tk.Tk()
+        root.title('Rajouts')
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
+        screen_resolution = str(int(0.90 * screen_width)) + 'x' + str(int(0.85 * screen_height)) + '+' \
+                            + str(int(0.05 * screen_width)) + '+' + str(int(0.02 * screen_height))
+        root.geometry(screen_resolution)
+
+        text_area = st.ScrolledText(root, font=('consolas', int(don.taille_solution)))
+        text_area.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+        root.state('zoomed')
+        text_area.insert(tk.INSERT, cha)
+        text_area.configure(state='disabled')  # disabled pour ne pas pouvoir modifier le texte
+        root.bind("<F2>", rajout_FoncF2)
+        tk.mainloop()
+
+        '''
+        root = tk.Tk()
         root.title('Solutions')
         S = tk.Scrollbar(root)
         T = tk.Text(root, height=20, width=80, font=('consolas', 20))
@@ -2702,7 +2949,8 @@ class Rajout:
         T.config(yscrollcommand=S.set)
         quote = cha
         T.insert(tk.END, quote)
-        root.bind("<F2>", rajout_FoncF2)
-        tk.mainloop()
+        '''
+
+        #tk.mainloop()
 
 
