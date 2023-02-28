@@ -130,7 +130,7 @@ aacehnt acanthe acanthe;plante ornementale à feuilles longues et vertes
 aaceinr acarien acarien
 aacelsu acaules acaules
 aabccel accable accablé
-accdeer acceder accéder;v.i
+accdeer acceder accéder
 accenst accents accents
 acceept accepte accepté
 acceiss accises accises
@@ -862,7 +862,7 @@ aeinrtt antrite antrite*(08);inflammation de l'antre mastoïdien
 aeinrsu anuries anuries
 aeeintx anxiete anxiété
 aeinuxx anxieux anxieux
-aeiorst aoriste aoriste;temps de conjugaison exprimant une action en train de se finir ou de commencer
+aeiorst aoriste aoriste;temps de la conjugaison, qui présente l’action comme passée, mais à un moment indéterminé, que l’on retrouve dans certaines langues indo-européennes telles que le sanskrit, le serbe, le bulgare, le croate, l’ancien tchèque ou le grec (ancien et moderne)
 aeiortt aortite aortite
 aaosttu aoutats aoutats~(12)
 aaosttu aoutats aoûtats
@@ -3427,8 +3427,8 @@ acehiss chiasse chiasse
 abchiin chibani chibani(13);immigré maghrébin de la 1ère génération
 bchikou chibouk chibouk;(ou chibouque) pipe turque à long tuyau
 aacchin chicana chicana(12);féminin de chicano (mexicain exilé aux Etats-Unis)
-accehin chicane chicane;contestation dans une procédure judiciaire ou querelle dans laquelle entre de la mauvaise foi ou obstacle ne permettant pas d'aller droit pour une personne ou un véhicule ou passage entre des obstacle
-accehin chicane chicané;chicaner(vt) : ergoter ou contester avec mauvaise foi ou chercher querelle ou tracasser au Canada
+accehin chicane chicane;toute objection sophistique ou trop subtile, toute contestation mal fondée, en quelque matière que ce soit ou dispositif destiné à ralentir la circulation des voitures en les faisant zigzaguer, dans l’espoir d’augmenter la sécurité routière
+accehin chicane chicané;chicaner (vt) : soulever, dans un procès, un point mineur de droit pour embrouiller l’affaire (+chicaneur, chicaneuse)
 acchino chicano chicano;qualifie les mexicains immigrés aux États-Unis
 acchhis chichas chichas(09)
 ccehhis chiches chiches
@@ -6529,7 +6529,7 @@ ceeiipr epicier épicier
 deeiopt epidote épidote;silicate naturel qui se trouve dans les roches métamorphiques
 eeeiprr epierre épierré;épierrer(vt) : enlever les pierres
 eeiprsu epieurs épieurs
-eeeipsu epieuse épieuse;celle qui épie
+eeeipsu epieuse épieuse;celle qui épie (+épieur)
 eeegips epigees épigées
 eeginop epigone épigone;successeur ou disciple sans personnalité ou imitateur (les épigones du surréalisme)
 eeginpy epigyne épigyne;s'emploie pour un organe floral qui semble inséré sur l'ovaire
@@ -6791,7 +6791,7 @@ eeiqstu etiques étiques
 aeegirt etirage étirage;action d'étirer une pièce de métal ou des fibres textiles ou du verre
 aeinrtt etirant étirant
 eeeirst etirees étirées
-eeirrtu etireur étireur*;celui qui étire des matières comme les métaux ou les peaux ou des matières textiles
+eeirrtu etireur étireur*;celui qui étire des matières comme les métaux, les peaux ou des matières textiles (+étireuse)
 eeiisst etisies étisies*
 eeeffot etoffee étoffée
 eeffort etoffer étoffer
@@ -8834,7 +8834,7 @@ aaeghsv havages havages
 aaehnsv havanes havanes
 aeehntv havenet havenet;(ou haveneau) filet pour pécher la crevette
 aehrsuv haveurs haveurs*
-aeehsuv haveuse haveuse;machine à haver
+aeehsuv haveuse haveuse;machine à haver (+haveur)
 aahirsv havrais havrais°(01)
 aaehinw hawaien hawaïen;(ou hawaiien) relatif aux îles Hawaï ou émettant une lave très fluide en parlant d'un type de volcan
 aeehmsu heaumes heaumes
@@ -10688,7 +10688,7 @@ aaehmrt marathe marathe;(ou marathi) qui concerne les Mahrattes (peuple de l'éta
 aahimrt marathi marathi;(ou marathe) qui concerne les Mahrattes (peuple de l'état du Maharastra en Inde)
 aaemrrt maratre marâtre;belle-mère ou épouse du père pour les enfants nés d'un autre mariage ou mère dénaturée ou qui rudoie ses enfants
 aademru maraude maraude
-aademru maraude maraudé
+aademru maraude maraudé;marauder (vt) : pratiquer la maraude, c'est-à-dire voler des fruits, des légumes, de la volaille
 aadmrsu marauds marauds
 abeemrr marbree marbrée
 abemrrr marbrer marbrer
@@ -12187,7 +12187,7 @@ beilosu oublies oubliés
 delorsu oudlers oudlers
 eginoru ougrien ougrien;désigne un groupe de langues faisant partie de la famille ouralienne
 agiouuy ouguiya ouguiya;unité monétaire de la Mauritanie
-deiioru ouidire ouï-dire
+deiioru ouidire ouï-dire;(inv) ce qu’on n’a ni vu ni entendu soi-même et qu’on ne sait que par le rapport d’une autre personne ou par le bruit public
 giooruu ouigour ouïgour;d'une langue turque de l'Asie Centrale
 eeillou ouillee ouillée
 eilloru ouiller ouiller
@@ -15311,7 +15311,7 @@ aansttu sautant sautant
 aeesstu sautees sautées
 aerstuu sauteur sauteur
 aeirstu sautier sautier;secrétaire administratif du Parlement du canton de Genève en Suisse
-aiorstu sautoir sautoir;collier de métal ou de perles etc. descendant sur la poitrine ou pièce honorable en forme de croix de Saint-André formée par la réunion de la barre et de la bande ou emplacement spécialement aménagé p
+aiorstu sautoir sautoir;Long collier de perles ou d'autres matières qui descend très bas sur la poitrine ou piste d’élan pour le saut en hauteur ou en longueur, le saut à la perche ou le triple saut
 aaegsuv sauvage sauvage
 aanstuv sauvant sauvant
 aeessuv sauvees sauvées
@@ -15607,7 +15607,7 @@ aegrsuv sevruga sévruga;ou sévrouga
 aeegssx sexages sexages
 eeostxy sexetoy sexe-toy*~(19)
 eerssux sexeurs sexeurs(12)
-eeessux sexeuse sexeuse(12);personne qui pratique le sexage(détermination du sexe des animaux)
+eeessux sexeuse sexeuse(12);personne qui pratique le sexage (détermination du sexe des animaux, +sexeur)
 eeimssx sexisme sexisme;attitude discriminatoire fondée sur le sexe
 eeisstx sexiste sexiste;relatif au sexisme ou partisan du sexisme (attitude discriminatoire fondée sur le sexe)
 ehopssx sexshop sex-shop
@@ -15975,7 +15975,7 @@ loosssu soussol sous-sol
 aenostu soutane soutane
 enostuu soutenu soutenu
 einostu soutien soutien
-eiorstu soutier soutier;matelot qui était chargé d'alimenter en charbon les chaufferies d'un navire ou personne qui occupe une fonction subalterne et ingrate généralement indispensable
+eiorstu soutier soutier;celui qui travaille dans la discrétion et le labeur à une œuvre pour le compte d’un autre (+soutière)
 fiosstu soutifs soutifs(01)
 eiorstu soutire soutiré
 aorsstu soutras soutras

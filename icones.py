@@ -2741,7 +2741,8 @@ class Rajout:
                                 + str(int(0.05 * screen_width)) + '+' + str(int(0.02 * screen_height))
             root_rajouts_f2.geometry(screen_resolution)
 
-            text_area = st.ScrolledText(root_rajouts_f2, font=('consolas', int(0.85*don.taille_solution)))
+            # wrap=WORD pour ne pas couper un mot en deux avec un saut de ligne
+            text_area = st.ScrolledText(root_rajouts_f2, wrap=WORD, font=('consolas', int(0.85*don.taille_solution)))
             text_area.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
             root_rajouts_f2.state('zoomed')
             text_area.insert(tk.INSERT, cha2)

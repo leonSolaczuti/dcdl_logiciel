@@ -1796,7 +1796,7 @@ adeiorsv avodires avodirés
 aeiinosv avoisine avoisiné
 aanorttv avortant avortant
 aeeorstv avortees avortées
-aeorrtuv avorteur avorteur
+aeorrtuv avorteur avorteur;(+avorteuse)
 anoorstv avortons avortons
 aabelouv avouable avouable
 ailnosuv avulsion avulsion;extraction d'une dent par arrachement
@@ -5921,7 +5921,7 @@ cdeeeinn decennie décennie
 cdeeenst decentes décentes
 cdeeenrt decentre décentré
 cdeefipt deceptif déceptif(15);propre à décevoir ou à tromper les attentes
-ccdeeelr decercle décerclé;décercler(vt) : enlever les cercles d'un tonneau par ex
+ccdeeelr decercle décerclé;décercler(vt) : enlever les cercles d'un tonneau par exemple
 cdeeeenr decernee décernée
 cdeeenrr decerner décerner
 cdeeenrs decernes décernés
@@ -7333,8 +7333,8 @@ demprsuu dumpeurs dumpeurs*~(19)
 dgimnpsu dumpings dumpings
 deensttu dunettes dunettes
 deinossu dunoises dunoises°(01)
-addelnou duodenal duodénal;relatif au (début de l'intestin grêle à la sortie de l'estomac)
-ddemnouu duodenum duodénum;début de l'intestin grêle à la sortie de l'estomac
+addelnou duodenal duodénal;relatif au duodénum (partie qui relie l’estomac à l’intestin grêle)
+ddemnouu duodenum duodénum;partie qui relie l’estomac à l’intestin grêle
 deloopsu duopoles duopoles
 deeiprsu duperies duperies
 deepssuu dupeuses dupeuses
@@ -7344,19 +7344,19 @@ deelpsux duplexes duplexés
 cdeilpsu duplices duplices(12)
 deilpquu duplique dupliqué
 abdelrsu durables durables
-adeillru duraille duraille(06);difficile
+adeillru duraille duraille(06);en argot, qui est dur, difficile
 ademnrsu duramens duramens
 adfirstu duratifs duratifs
 adeirtuv durative durative;duratif : relatif à la notion de durée
 deemnrtu durement durement
-deeemrru duremere dure-mère;méninge externe très résistante
-dillnoru durillon durillon
+deeemrru duremere dure-mère;méninge externe très résistante (pluriel : dures-mères)
+dillnoru durillon durillon;sorte de petit cal, dureté qui se forme principalement aux pieds et aux mains, par l’épaississement de la peau
 dimrsuuv duumvirs duumvirs
 adenttuv duvetant duvetant;se duveter : se couvrir de duvet
 deeestuv duvetees duvetées
 deetuuvx duveteux duveteux;ayant du duvet
 deellsux duxelles duxelles(00);hachis de champignons de Paris servant de farce
-addeiquy dyadique dyadique;nombre dyadique : nombre de la (a/2)^k où a est rationnel et f un entier naturel
+addeiquy dyadique dyadique;nombre dyadique : nombre de la forme (a/2^b) où a est un entier rationnel et b un entier naturel (i.e. >0)
 acdehiry dyarchie dyarchie;gouvernement simultané de deux rois
 adeimnsy dynamise dynamisé
 adeimnty dynamite dynamite
@@ -8989,7 +8989,7 @@ eeeiqttu etiquete étiqueté
 abeeilrt etirable étirable
 aeegirst etirages étirages
 eeirrstu etireurs étireurs*
-eeeirstu etireuse étireuse*;celle qui étire des matières comme les métaux ou les peaux ou des matières textiles ou machine à étirer ou à laminer
+eeeirstu etireuse étireuse*;celle qui étire des matières comme les métaux, les peaux ou des matières textiles (+étireur)
 aeffnott etoffant étoffant
 eeeffost etoffees étoffées
 aeilnott etoilant étoilant
@@ -13374,7 +13374,7 @@ aaclmntu maculant maculant
 aceelmsu maculees maculées
 aabcmmsu macumbas macumbas
 adeeimnr maderien madérien°(01)
-adeeimrs maderise madérisé;madériser(vt) : prendre ou donner à un vin le goût et l'apparence du vin de Madère
+adeeimrs maderise madérisé;madériser (vt) : oxyder un vin, le porto est madérisé en cuves
 adeimors maderois madérois°(01)
 aadimnrs madirans madirans
 aadegmru madrague madrague;enceinte de filets à compartiments fixes utilisés pour la pêche au thon
@@ -13772,7 +13772,7 @@ aeimrstx marxiste marxiste;relatif au marxisme (théorie philosophique politique 
 aadlmnry maryland maryland;tabac provenant de l'état du Maryland aux États-Unis
 aaacmrss mascaras mascaras
 aacemrst mascaret mascaret;vague déferlante se produisant dans un estuaire par la rencontre du flux et du reflux
-aacmnors mascaron mascaron;masque sculpté qui sert à orner les fontaines ou les clefs des arcades etc
+aacmnors mascaron mascaron;en architecture tête ou masque de fantaisie, qu’on met pour ornement à la clef des arcades, aux fontaines, etc.
 acemostt mascotte mascotte
 acilmnsu masculin masculin
 aaegmqsu masquage masquage
@@ -21623,7 +21623,7 @@ aceehopt tophacee tophacée
 acehopst tophaces tophacés
 aeiioprt topiaire topiaire;se dit de l'art de tailler les arbres et les arbustes pour obtenir des formes variées géométriques ou autres
 eiopqstu topiques topiques
-delmoopt topmodel top model
+delmoopt topmodel top model;(pluriel : top models)
 emnoopty toponyme toponyme;nom de lieu
 adeoqstu toquades toquades
 aenoqttu toquante toquante;(ou tocante) montre
