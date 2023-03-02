@@ -45,6 +45,7 @@ class Data:
         self.rajoutsActifs = [1,1,0] # rajouts+1, +2 et +3
         self.taille_solution = 20
         self.police_solution = 'Consolas'
+        self.pause = 0
 
     def Analyse_sabot_lettres(self, alphabet, consonnes, voyelles, boutons_val, bouton_warn, fen):
         print(alphabet)

@@ -99,6 +99,7 @@ class Icones:
         menu_bar.add_cascade(label="Vérifier", menu=menu_verif)
 
         menu_bar.add_command(label="Paramètres", command=lambda: self.set_parametres(don))
+        menu_bar.add_command(label="Aide", command=lambda: self.set_aide(don))
 
         self.Set_boutons_lettres(tirage, self.fen, don, chrono)
         self.Set_chrono(chrono, don)
@@ -228,6 +229,44 @@ class Icones:
                 don.taille_solution = 30
             print(don.taille_solution)
         val_taille.trace("w", callback_taille)
+
+    def set_aide(selfself,don):
+        # appelée lorsqu'on veut afficher l'aide
+        Mafenetre = tk.Tk()
+        Mafenetre.title('Aide')
+
+        screen_width = Mafenetre.winfo_screenwidth()
+        screen_height = Mafenetre.winfo_screenheight()
+        screen_resolution = str(int(0.90 * screen_width)) + 'x' + str(int(0.85 * screen_height)) + '+' \
+                            + str(int(0.05 * screen_width)) + '+' + str(int(0.02 * screen_height))
+        Mafenetre.geometry(screen_resolution)
+
+        # wrap=WORD pour ne pas couper un mot en deux avec un saut de ligne
+        text_area = st.ScrolledText(Mafenetre, wrap=WORD, font=('arial', int(0.85 * don.taille_solution)))
+        text_area.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+        Mafenetre.state('zoomed')
+
+        # on alterne entre les titres et les descriptions
+        texte1 = []
+        texte1.append("Raccourcis : \n")
+        liste_raccourcis = """  F2 : afficher les définitions (depuis la fenêtres des solutions en lettres)
+  espace : mettre en pause l'énoncé du tirage\n\n"""
+        texte1.append(liste_raccourcis)
+        texte1.append("Lancement d'un tirage de lettres : ")
+        texte1.append("à partir de la fenêtre des tirages de lettres, cliquer sur 'nouveau tirage'\n\n")
+        texte1.append("Lancement d'un tirage de chiffres : ")
+        texte1.append("même principe que pour les lettres, aller sur la fenêtre des chiffres puis cliquer sur "
+                      "'nouveau tirage'\n\n")
+        #print(tk.font.families())
+        for iligne in range(len(texte1)):
+            if not iligne % 2:
+                text_area.insert(tk.INSERT, texte1[iligne], 'titre')
+            else:
+                text_area.insert(tk.INSERT, texte1[iligne])
+        text_area.tag_config('titre', foreground='red', font=('arial', int(0.85 * don.taille_solution),'bold'))
+        text_area.configure(state='disabled')  # disabled pour ne pas pouvoir modifier le texte
+
+        tk.mainloop()
 
     def Lancement_tirage_lettres2(self, tirage, don, chrono, motUtilisateur):
         def maFonc(event):
@@ -445,6 +484,7 @@ class Icones:
         menu_bar.add_cascade(label="Vérifier", menu=menu_verif)
 
         menu_bar.add_command(label="Paramètres", command=lambda: self.set_parametres(don))
+        menu_bar.add_command(label="Aide", command=lambda: self.set_aide(don))
 
         self.Set_boutons_chiffres(tirage, self.fen, don, chrono)
         self.Set_boutons_sauvegarde(tirage, don)
@@ -2209,6 +2249,12 @@ def Lancement_tirage_lettres(icones, tirage, don, chrono, motUtilisateur):
     icones.Set_boutons_nbVoyelles(tirage, don)
 
 def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
+    # test pause
+    flag_affichage_fini = False
+    def MiseEnPause(event):
+        don.pause = 1-don.pause
+    icones.fen.bind("<space>", MiseEnPause)
+    # fin test pause
 
     # activation des boutons s'ils ne l'étaient pas déjà auparavant
     icones.bouton_valider.configure(bg=don.proprietes.couleur_fond_boutons6, borderwidth=4,
@@ -2265,18 +2311,46 @@ def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
         else: # tirage préparé
             icones.boutons_sauvegarde.configure(bg=don.proprietes.couleur_bg_select)
             tirage.Genere_prepa_lettres(don)
-        for ii in range(0, len(icones.boutons_tirage)):
-            icones.boutons_tirage[ii].configure(text=tirage.tirage[ii])
-            icones.triangle[ii].configure(text=tirage.tirage[ii])
-            if don.son_actif:
-                time.sleep(1.2)
-            time.sleep(don.tempo)
-            icones.boutons_tirage[ii].update()
-            if don.son_actif:
-                pygame.mixer.init()
-                cha = 'sons/' + tirage.tirage[ii].upper() + '.mp3'
-                pygame.mixer.music.load(cha)
-                pygame.mixer.music.play()
+        ii = 0
+        while not flag_affichage_fini:
+            if not don.pause:
+
+                if ii == len(icones.boutons_tirage)-1:
+                    flag_affichage_fini = True
+
+                icones.boutons_tirage[ii].configure(text=tirage.tirage[ii])
+                icones.triangle[ii].configure(text=tirage.tirage[ii])
+
+                icones.boutons_tirage[ii].update()
+
+                if don.son_actif:
+                    pygame.mixer.init()
+                    cha = 'sons/' + tirage.tirage[ii].upper() + '.mp3'
+                    pygame.mixer.music.load(cha)
+                    pygame.mixer.music.play()
+
+                if don.son_actif:
+                    time.sleep(1.2)
+                time.sleep(don.tempo)
+                ii = ii + 1
+                icones.fen.update()
+            else:
+                icones.fen.update()
+
+
+        #for ii in range(0, len(icones.boutons_tirage)):
+            #    icones.boutons_tirage[ii].configure(text=tirage.tirage[ii])
+            #    icones.triangle[ii].configure(text=tirage.tirage[ii])
+                #   if don.son_actif:
+            #       time.sleep(1.2)
+            #   time.sleep(don.tempo)
+            #   icones.boutons_tirage[ii].update()
+                #   if don.son_actif:
+                #      pygame.mixer.init()
+                #      cha = 'sons/' + tirage.tirage[ii].upper() + '.mp3'
+                #      pygame.mixer.music.load(cha)
+                #      pygame.mixer.music.play()
+
         chrono.actif = 1
         chrono.val_actuelle += 1
         icones.chrono.configure(text=chrono.val_actuelle)
@@ -2290,6 +2364,15 @@ def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
         tirage.Reinit()
 
 def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chrono):
+    # test pause
+    flag_affichage_fini = False
+
+    def MiseEnPause(event):
+        don.pause = 1 - don.pause
+
+    icones.fen.bind("<space>", MiseEnPause)
+    # fin test pause
+
     # activation des boutons s'ils ne l'étaient pas déjà auparavant
     icones.bouton_valider.configure(bg=don.proprietes.couleur_fond_boutons6,
                                   command=lambda: motUtilisateur.ValideReponse_chiffres(tirage, don, icones, chrono))
@@ -2344,112 +2427,131 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
             icones.boutons_sauvegarde.configure(bg=don.proprietes.couleur_bg_select)
             tirage.Genere_prepa_chiffres(don)
         # +++ mise à jour des icônes
-        for ii in range(0,len(tirage.tirage_chiffres)-1):
-            icones.boutons_tirage[ii].configure(text=str(tirage.tirage_chiffres[ii]))
-            icones.boutons_tirage[ii].update()
 
-            if don.son_actif:
-                pygame.mixer.init()
-                if tirage.tirage_chiffres[ii] in [1,2,3,4,5,6,7,8,9,10,25,50,75,100]:
-                    cha = 'sons/' + str(tirage.tirage_chiffres[ii]) + '.mp3'
-                    pygame.mixer.music.load(cha)
-                    pygame.mixer.music.play()
-                else: # cas d'une plaque exotique
-                    num_str = str(tirage.tirage_chiffres[ii])
-                    if len(num_str)<4:
-                        if len(num_str) == 3:
-                            centaines = num_str[0]
-                        else:
-                            centaines = []
-                            reste = num_str
-                        if centaines == '1':
-                            cha = 'sons/100.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                            time.sleep(0.5)
-                        elif centaines in ['23456789']:
-                            cha = 'sons/' + centaines + '.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                            time.sleep(0.5)
-                            cha = 'sons/100.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                            time.sleep(0.8)
-                        if int(reste) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-                                          25,
-                                          30, 31,
-                                          40, 41, 50, 51,
-                                          60, 61, 70, 71, 75, 80, 81, 91]:
-                            cha = 'sons/' + str(int(reste)) + '.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                        elif reste[0] == '2':
-                            cha = 'sons/20.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                            time.sleep(0.7)
-                            cha = 'sons/' + reste[1] + '.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                        elif reste[0] == '3':
-                            cha = 'sons/30.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                            time.sleep(0.7)
-                            cha = 'sons/' + reste[1] + '.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                        elif reste[0] == '4':
-                            cha = 'sons/40.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                            time.sleep(0.7)
-                            cha = 'sons/' + reste[1] + '.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                        elif reste[0] == '5':
-                            cha = 'sons/50.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                            time.sleep(0.7)
-                            cha = 'sons/' + reste[1] + '.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                        elif reste[0] == '6':
-                            cha = 'sons/60.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                            time.sleep(0.7)
-                            cha = 'sons/' + reste[1] + '.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                        elif reste[0] == '7':
-                            cha = 'sons/60.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                            time.sleep(0.7)
-                            cha = 'sons/' + str(10 + int(reste[1])) + '.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                        elif reste[0] == '8':
-                            cha = 'sons/80.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                            time.sleep(0.7)
-                            cha = 'sons/' + reste[1] + '.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                        elif reste[0] == '9':
-                            cha = 'sons/80.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                            time.sleep(0.7)
-                            cha = 'sons/' + str(10 + int(reste[1])) + '.mp3'
-                            pygame.mixer.music.load(cha)
-                            pygame.mixer.music.play()
-                time.sleep(1.1)
-            time.sleep(don.tempo)
+        # test pause
+        ii = 0
+        while not flag_affichage_fini:
+            if not don.pause:
+
+                if ii == len(tirage.tirage_chiffres)-2:
+                    flag_affichage_fini = True
+
+
+
+
+
+                # for ii in range(0,len(tirage.tirage_chiffres)-1):
+                icones.boutons_tirage[ii].configure(text=str(tirage.tirage_chiffres[ii]))
+                icones.boutons_tirage[ii].update()
+
+                if don.son_actif:
+                    pygame.mixer.init()
+                    if tirage.tirage_chiffres[ii] in [1,2,3,4,5,6,7,8,9,10,25,50,75,100]:
+                        cha = 'sons/' + str(tirage.tirage_chiffres[ii]) + '.mp3'
+                        pygame.mixer.music.load(cha)
+                        pygame.mixer.music.play()
+                    else: # cas d'une plaque exotique
+                        num_str = str(tirage.tirage_chiffres[ii])
+                        if len(num_str)<4:
+                            if len(num_str) == 3:
+                                centaines = num_str[0]
+                            else:
+                                centaines = []
+                                reste = num_str
+                            if centaines == '1':
+                                cha = 'sons/100.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                                time.sleep(0.5)
+                            elif centaines in ['23456789']:
+                                cha = 'sons/' + centaines + '.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                                time.sleep(0.5)
+                                cha = 'sons/100.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                                time.sleep(0.8)
+                            if int(reste) in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+                                              25,
+                                              30, 31,
+                                              40, 41, 50, 51,
+                                              60, 61, 70, 71, 75, 80, 81, 91]:
+                                cha = 'sons/' + str(int(reste)) + '.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                            elif reste[0] == '2':
+                                cha = 'sons/20.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                                time.sleep(0.7)
+                                cha = 'sons/' + reste[1] + '.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                            elif reste[0] == '3':
+                                cha = 'sons/30.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                                time.sleep(0.7)
+                                cha = 'sons/' + reste[1] + '.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                            elif reste[0] == '4':
+                                cha = 'sons/40.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                                time.sleep(0.7)
+                                cha = 'sons/' + reste[1] + '.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                            elif reste[0] == '5':
+                                cha = 'sons/50.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                                time.sleep(0.7)
+                                cha = 'sons/' + reste[1] + '.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                            elif reste[0] == '6':
+                                cha = 'sons/60.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                                time.sleep(0.7)
+                                cha = 'sons/' + reste[1] + '.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                            elif reste[0] == '7':
+                                cha = 'sons/60.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                                time.sleep(0.7)
+                                cha = 'sons/' + str(10 + int(reste[1])) + '.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                            elif reste[0] == '8':
+                                cha = 'sons/80.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                                time.sleep(0.7)
+                                cha = 'sons/' + reste[1] + '.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                            elif reste[0] == '9':
+                                cha = 'sons/80.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                                time.sleep(0.7)
+                                cha = 'sons/' + str(10 + int(reste[1])) + '.mp3'
+                                pygame.mixer.music.load(cha)
+                                pygame.mixer.music.play()
+                    time.sleep(1.1)
+                time.sleep(don.tempo)
+
+                ii = ii + 1
+
+                icones.fen.update()
+            else:
+                icones.fen.update()
 
         total_a_trouver_str = str(tirage.tirage_chiffres[-1])
         propr = Proprietes()
