@@ -1046,6 +1046,7 @@ auditionner
 auditionnés
 auditoriums
 augmentatif
+augustéenne
 augustinien
 aujourd'huis
 auréomycine
@@ -1133,6 +1134,8 @@ aventuriers
 aventurines
 aventurisme
 aventuriste
+averrhoïste
+averroïstes
 avertisseur
 aveuglantes
 aveuglement
@@ -1192,6 +1195,7 @@ bacillifère
 bacilluries
 backgammons
 backgrounds
+baconiennes
 bactéricide
 bactériémie
 bactérienne
@@ -1228,6 +1232,7 @@ balourdises
 balsamiques
 baltringues
 balustrades
+balzacienne
 bambousaies
 banana split
 bananeraies
@@ -1269,9 +1274,11 @@ barlotières
 barographes
 baroquismes
 baroudeuses
+barrésienne
 barricadant
 barricadées
 bartavelles
+barthésiens
 bartonelles
 barycentres
 barymétries
@@ -1338,6 +1345,9 @@ béquillarde
 béquillards
 bergamasque
 bergamotier
+bergmaniens
+bergsoniens
+bernanosien
 bernardines
 bersaglieri
 bersabliers
@@ -1434,6 +1444,7 @@ biscotterie
 biscuiterie
 bisexualité
 bisexuelles
+bismarckien
 bissecteurs
 bissectrice
 bissections
@@ -1461,6 +1472,7 @@ blanchâtres
 blanchiment
 blanc-manger
 blanquettes
+blanquistes
 blasphémant
 blasphémées
 blastocyste
@@ -1482,12 +1494,14 @@ blogosphère
 blondinette
 blottissant
 bodhisattva
+bodléiennes
 bohémiennes
 boisseliers
 boitillante
 boitillants
 bolchevique
 bolchevisme
+bollandiste
 bombardiers
 bonasseries
 bonbonnière
@@ -1616,11 +1630,13 @@ branlements
 branquignol
 braquemarts
 breakdances
+brechtienne
 bredouillée
 bredouiller
 bredouilles
 bredouillés
 bredouillis
+brejnéviens
 brésilienne
 bretonnante
 bretonnants
@@ -1704,6 +1720,7 @@ burgaudines
 businessman
 businessmen
 butyromètre
+byroniennes
 cabaretière
 cabaretiers
 câblogramme
@@ -1809,6 +1826,7 @@ campagnards
 campanaires
 campanistes
 camping-cars
+camusiennes
 canadiennes
 canaillerie
 canalicules
@@ -2053,6 +2071,7 @@ ceinturages
 célébration
 célérifères
 célibataire
+céliniennes
 célioscopie
 cellérières
 cellophanes
@@ -2108,6 +2127,7 @@ cessez-le-feu
 cessibilité
 cétologique
 cétologiste
+cézannienne
 chagrinante
 chagrinants
 chahuteuses
@@ -2242,6 +2262,7 @@ chatoyantes
 chattemites
 chattertons
 chats-tigres
+chaucériens
 chaude-pisse
 chauffantes
 chauffe-bain
@@ -2314,6 +2335,7 @@ chinoiserie
 chipoteuses
 chippendale
 chiquenaude
+chiraquiens
 chiridienne
 chiromancie
 chiropraxie
@@ -2336,6 +2358,7 @@ cholestases
 cholestérol
 cholostases
 chomdriomes
+chomskienne
 chorégraphe
 choroïdiens
 chouannerie
@@ -2381,6 +2404,7 @@ cicatriciel
 cicatricule
 cicatrisant
 cicatrisées
+cicéroniens
 cigarettier
 cimentation
 cimenteries
@@ -2429,6 +2453,7 @@ classicisme
 classieuses
 classifiant
 classifiées
+claudéliens
 claudicante
 claudicants
 claudiquant
@@ -2813,6 +2838,7 @@ confortable
 confortique
 confrontant
 confrontées
+confucéenne
 confusément
 congélateur
 congélation
@@ -3381,6 +3407,7 @@ customisant
 customisées
 cyanophycée
 cyanuration
+cybercaméra
 cybercrimes
 cyberespace
 cyberguerre
@@ -3434,12 +3461,14 @@ dandinement
 dandinettes
 dangereuses
 dangerosité
+dantonistes
 darjeelings
 darwinienne
 darwinismes
 darwinistes
 dauphinelle
 dauphinoise
+davidiennes
 débagoulant
 débagoulées
 débâillonné
@@ -3512,6 +3541,7 @@ débrouillés
 débroussant
 débroussées
 débudgétisé
+debussystes
 décachetage
 décachetant
 décachetées
@@ -4658,6 +4688,7 @@ dindonneaux
 dinosaurien
 dinothérium
 diocésaines
+dioclétiens
 dionysiaque
 dioptriques
 diphosphate
@@ -4751,6 +4782,7 @@ dispositifs
 disposition
 disputaillé
 disqualifié
+disraeliens
 disruptives
 disruptions
 dissecteurs
@@ -4859,6 +4891,7 @@ dominicales
 dominoterie
 dominotière
 dominotiers
+domitiennes
 dommageable
 donjuanisme
 d'ores et déjà
@@ -4906,6 +4939,7 @@ duplicateur
 duplication
 durabilités
 durablement
+durassienne
 durcisseurs
 dynamiciens
 dynamisante
@@ -5122,7 +5156,8 @@ effroyables
 égyptiennes
 égyptologie
 égyptologue
-einteiniums
+einsteinien
+einsteinium
 éjaculateur
 éjaculation
 ektachromes
@@ -5701,6 +5736,7 @@ aquatoriaux
 éradication
 éraflements
 éraillement
+érasmiennes
 érectilités
 éreintantes
 éreintement
@@ -5741,6 +5777,7 @@ escarboucle
 escarcelles
 escarmouche
 escarpement
+eschylienne
 esclavagées
 esclavonnes
 escogriffes
@@ -5889,6 +5926,7 @@ euphorisant
 euphorisées
 eurafricain
 eurasiennes
+euripidiens
 euristiques
 eurocrédits
 eurodéputée
@@ -6172,6 +6210,7 @@ fauchaisons
 fauconneaux
 fauconnerie
 fauconniers
+faulknérien
 faunistique
 fautivement
 faux-bourdon
@@ -15128,6 +15167,93 @@ volatilisés
 volatilités
 volcaniques
 volcanismes
+volettement
+volleyballs
+volley-balls
+volleyeuses
+volontaires
+volontariat
+voltairiens
+voltamètres
+voltampères
+voltigement
+voltigeuses
+volubilités
+volumateurs
+volumatrice
+volumineuse
+voluptuaire
+voluptueuse
+vomériennes
+vomissement
+vomito negro
+vorticelles
+vousoiement
+vouvoiement
+voyoucratie
+vrombissant
+vulcanienne
+vulcanisant
+vulcanisées
+vulgarisant
+vulgarisées
+vulgarismes
+vulgum pecus
+vulnérables
+vulnéraires
+vulnérantes
+vultuosités
+wagnérienne
+wagon-foudre
+wagon-trémie
+wahhabismes
+wallingante
+wallingants
+wallonismes
+warrantages
+water-closet
+wateringues
+waterproofs
+webdesigner
+white-spirit
+winchesters
+wintergreen
+wolframites
+xénodevises
+xénogreffes
+xénophilies
+xénophobies
+xéranthèmes
+xérodermies
+xérographie
+xiphoïdiens
+xiphophores
+xylographes
+xylographie
+yaourtières
+youtubeuses
+yponomeutes
+yttrialites
+zézaiements
+zidovudines
+zigouigouis
+zigouillant
+zigouillées
+zigounettes
+zigzagantes
+zinzinulant
+zombiesques
+zoologiques
+zoologistes
+zooplancton
+zootechnies
+zoroastrien
+zostérienne
+zygomatique
+zygomorphes
+zygomycètes
+zygopétales
+
 
 
 https://www.youtube.com/watch?v=etDXn05FAbs

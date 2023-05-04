@@ -2962,6 +2962,18 @@ TUREEFDLEUC (10)| déculturée(vt),déflecteur(nm) (x)
 GRMIDRIAEEC (10)| grimacière(ier) (cigarière(ier),démaigrie/ir,germicide)
 EEANAELBZEA (7) | alezane(an),balzane
 OSUTEEEPRFD (10)| pet-de-soeur[déportées+U]
+YMUOTCETOS (8) | otocyste[cotoyés+T]
+EARMDTURRI (10)| trimardeur(nm) (terrarium[meurtrir+A],trimarder(vt))
+NIRSEEBXIE (8) | ébéniers(nm),ibériens,sibérien
+AICCITSEIS (8) | accessit,siccités (accises,ascites)
+BAIATTLOTA (6) | balata,blotti (aboli,balai,oblat,tabla,tolba,total)
+HASHSOELRT (8) | holsters[stérols+H]
+UUTWXERNAE (8) | entéraux (auteure,entraxe,neuraux,uraneux)
+OIPAAEIGRL (9) | plagiaire (x)
+ACDNTPIESC (9) | accidents (distancé,peccants(adj),pintades,pitances)
+ZSEUANLOEQ (8) | azulènes
+NNUEEMIEAS (9) | amenuisée[anémiées+U],meusienne
+RAORITSFOR (8) | arrosoir,raiforts (orfrois,rafiots,sororat)
 MAEUOOSSNTR
 SLCBRUAARAT
 REEPESPELUR
@@ -3378,3 +3390,31 @@ IAAPSMRBERE
 OELISNCIHEE
 IEBOQANESDT
 EUMBDNIRCRO
+LANIANIGYLV
+LOAUTAEOMGI
+ULDTEETLJIS
+ONSTOCAOOIM
+REMIAIUEICX
+LUTEIBEEUAD
+RETOONINSQD
+CPILUVDUAQE
+ICSLCGPMUAU
+ILEEATANSSM
+WOEAMARSLIC
+NUEIMIARALV
+EEIVRSRELRU
+RREESUPETOI
+DNDPEGEILGE
+SOFEILEUSBE
+NIRHEURPHDE
+IUPGAASRSSE
+ESUEPYEDRUL
+AUSXIAREEGS
+IEEUSOTINME
+TETINEIEROE
+UHLNEEIEACR
+EWISOPEOTSM
+UFNEECLSDTQ
+AFEPDEDAGAA
+UIFGEEUSNEL
+ILLTDHSAINE
