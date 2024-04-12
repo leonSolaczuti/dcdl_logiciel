@@ -1,7 +1,11 @@
+# pour ecrire un fichier .dat (ou .txt) avec les trois colonnes a partir d'une liste de mots
+# utile surtout pour les entree chaque annee
+# le fichier d'entree doit etre encode en ANSI (facile a faire avec notepad)
+
 from unidecode import unidecode
 
-nomFichierLu = 'd11_v0.txt'
-nomFichierEcrit = 'd11_v0.dat'
+nomFichierLu = 'entrees2024_gen.txt'
+nomFichierEcrit = 'entrees2024_gen.dat'
 fichierLu = open(nomFichierLu, "r")
 fichierEcrit = open(nomFichierEcrit,'w')
 

@@ -28,7 +28,14 @@ class Icones:
         self.boutons_nbVoyelles = []
         self.score = Label(Mafenetre)
         self.tops = Label(Mafenetre)
-        self.boutons_aleatoire = []
+
+        self.choix_alea = StringVar(Mafenetre)
+        self.options_alea = ['aléatoire', 'préparé', 'manuel']
+        self.choix_alea.set('aléatoire')
+        self.boutons_aleatoire = OptionMenu(Mafenetre, self.choix_alea, *self.options_alea)
+
+
+        # self.boutons_aleatoire = []
         self.bouton_lancement_lettres = []
         self.bouton_lancement_chiffres = []
         self.position_actuelle_chiffres = []
@@ -79,7 +86,6 @@ class Icones:
                     motUtilisateur.ValideReponse(tirage, don, self, chrono)
                 else:
                     self.ValideTirage(tirage, chrono)
-
         don.type_actuel = 'lettres'
         nbLettres = don.nbLettres
         # SI TEST EN LETTRES SEULEMENT SUPPRIMER LA LIGNE SUIVANTE
@@ -389,8 +395,9 @@ class Icones:
             ii.destroy()
         self.score.destroy()
         self.tops.destroy()
-        for ii in self.boutons_aleatoire:
-            ii.destroy()
+        self.boutons_aleatoire.destroy()
+        # for ii in self.boutons_aleatoire:
+        #     ii.destroy()
         for ii in self.boutons_nbVoyelles:
             ii.destroy()
         Mafenetre = self.fen
@@ -410,7 +417,7 @@ class Icones:
         self.boutons_nbVoyelles = []
         self.score = Label(Mafenetre)
         self.tops = Label(Mafenetre)
-        self.boutons_aleatoire = []
+        self.boutons_aleatoire = OptionMenu(Mafenetre, self.choix_alea, *self.options_alea)
         self.bouton_lancement_lettres = []
         self.bouton_lancement_chiffres = []
         self.position_actuelle_chiffres = []
@@ -434,8 +441,10 @@ class Icones:
             ii.destroy()
         self.score.destroy()
         self.tops.destroy()
-        for ii in self.boutons_aleatoire:
-            ii.destroy()
+        self.boutons_aleatoire.destroy()
+        # for ii in self.bouto
+        # ns_aleatoire:
+        #     ii.destroy()
         for ii in self.boutons_nbVoyelles:
             ii.destroy()
         Mafenetre = self.fen
@@ -456,7 +465,7 @@ class Icones:
         self.boutons_nbVoyelles = []
         self.score = Label(Mafenetre)
         self.tops = Label(Mafenetre)
-        self.boutons_aleatoire = []
+        self.boutons_aleatoire = self.boutons_aleatoire = OptionMenu(Mafenetre, self.choix_alea, *self.options_alea)
         self.position_actuelle_chiffres = []
         self.bouton_changer = Button(Mafenetre)
 
@@ -542,7 +551,6 @@ class Icones:
                 else:
                     return idx[idx2]
 
-
     def Decrement_position_actuelle_chiffres(self, don):
         if don.nbPlaquesChiffres == 6:
             idx = [13,14,15,17,18,19,20,22,23,24,25,27,28,29,30,32,33,34,35,37]
@@ -578,7 +586,6 @@ class Icones:
         for ii in self.boutons_temporisation:
             ii.destroy()
 
-
     def AddLettre(self, tirage, lettre):
         if tirage.valide==0:
             tirage.AddLettre(lettre)
@@ -608,7 +615,6 @@ class Icones:
             #         if len(tirage.objectif_chiffres) > 0:
             #             tirage.objectif_chiffres.append(0)
             #             self.boutons_tirage[5 + len(tirage.objectif_chiffres)].configure(text=str(0))
-
 
     def DelLettre(self, tirage):
         tirage.DelLettre()
@@ -719,7 +725,7 @@ class Icones:
 
         val_tempo_0 = ['0', '0.5', '1', '1.5', '2']
         val_tempo = StringVar(self.fen)
-        val_tempo.set(val_tempo_0[0])
+        val_tempo.set(val_tempo_0[1])
         self.boutons_son.append(OptionMenu(self.fen, val_tempo, *val_tempo_0))
         self.boutons_son[-1].configure(font=('Helvetica', 16))
         self.boutons_son[-1].place(x=690, y=345, anchor=CENTER, width=90, height=35)
@@ -1429,7 +1435,6 @@ class Icones:
 
         fenetre.mainloop()
 
-
     def Set_boutons_chiffres(self, tirage, fen, don, chrono):
         # boutons en haut à droite
         tx = don.geom.taille_x
@@ -1440,81 +1445,245 @@ class Icones:
             for ii in range(0, len(liste_chiffres)):
                 self.boutons_chiffres.append(Button(fen))
                 if liste_chiffres[ii]==0:
-                    self.boutons_chiffres[ii].configure(font=("Helvetica", 18),
+                    self.boutons_chiffres[ii].configure(font=(don.font, 18),
                                                         text='.',
                                                         bg=don.proprietes.couleur_bg_select)
                 else:
-                    self.boutons_chiffres[ii].configure(font=("Helvetica", 18),
+                    self.boutons_chiffres[ii].configure(font=(don.font, 18),
                                                    text=str(liste_chiffres[ii]),
                                                    bg=don.proprietes.couleur_bg_select)
                 posX = ii % 7
                 posY = (ii-posX)/7
-                self.boutons_chiffres[ii].place(x=tx - 310 + 46 * posX,
-                                               y=27 + 46 * posY,
-                                               anchor=CENTER, width=45, height=45)
+                # self.boutons_chiffres[ii].place(x=tx - 310 + 46 * posX,
+                #                                y=27 + 46 * posY,
+                #                                anchor=CENTER, width=45, height=45)
             # bouton annuler
             self.boutons_chiffres.append(Button(fen))
-            self.boutons_chiffres[-1].place(x=tx - 310 + 46 * 2,
-                                           y=27 + 46 * 2,
-                                           anchor=CENTER, width=45*3, height=45)
-            self.boutons_chiffres[-1].configure(font=("Helvetica", 18), text='annuler',
+            # self.boutons_chiffres[-1].place(x=tx - 310 + 46 * 2,
+            #                                y=27 + 46 * 2,
+            #                                anchor=CENTER, width=45*3, height=45)
+            self.boutons_chiffres[-1].configure(font=(don.font, 18), text='annuler',
                                                bg=don.proprietes.couleur_bg_select)
 
             # bouton valider
             self.boutons_chiffres.append(Button(fen))
-            self.boutons_chiffres[-1].place(x=tx - 310 + 46 * 5,
-                                           y=27 + 46 * 2,
-                                           anchor=CENTER, width=45 * 3, height=45)
-            self.boutons_chiffres[-1].configure(font=("Helvetica", 18), text='valider',
+            # self.boutons_chiffres[-1].place(x=tx - 310 + 46 * 5,
+            #                                y=27 + 46 * 2,
+            #                                anchor=CENTER, width=45 * 3, height=45)
+            self.boutons_chiffres[-1].configure(font=(don.font, 18), text='valider',
                                                bg=don.proprietes.couleur_bg_select)
 
+    def update_positions(self, event=None, don=None):
+        if don is None:
+            return
+        self.tx = self.fen.winfo_width()
+        self.ty = self.fen.winfo_height()
+        for ii in range(len(self.boutons_lettres)):
+            if ii < len(self.liste_lettres):
+                posX = ii % 8
+                posY = (ii // 8)
+                posX_px = self.tx-int((290 - 35 * posX) * (self.tx / don.geom.taille_x))
+                posY_px = int(20 + 35 * posY * (self.ty / don.geom.taille_y))
+                self.boutons_lettres[ii].place(x=posX_px, y=posY_px, anchor=CENTER,
+                                               width=int(34 * (self.tx / don.geom.taille_x)),
+                                               height=int(34 * (self.ty / don.geom.taille_y)))
+            elif ii == len(self.boutons_lettres) - 2:
+                posX_px = self.tx-int((290 - 35 * 3.75) * (self.tx / don.geom.taille_x))
+                posY_px = int(20 + 35 * 3 * (self.ty / don.geom.taille_y))
+                self.boutons_lettres[ii].place(x=posX_px, y=posY_px, anchor=CENTER,
+                                               width=int(34 * 2.5 * (self.tx / don.geom.taille_x)),
+                                               height=int(34 * (self.ty / don.geom.taille_y)))
+            elif ii == len(self.boutons_lettres) - 1:
+                posX_px = self.tx-int((290 - 35 * 6.25) * (self.tx / don.geom.taille_x))
+                posY_px = int(20 + 35 * 3 * (self.ty / don.geom.taille_y))
+                self.boutons_lettres[ii].place(x=posX_px, y=posY_px, anchor=CENTER,
+                                               width=int(34 * 2.5 * (self.tx / don.geom.taille_x)),
+                                               height=int(34 * (self.ty / don.geom.taille_y)))
+        posX = don.geom.posX
+        posY = don.geom.posY
+        self.chrono.place(x=0.48*self.tx, y=self.ty*200/430, anchor=CENTER, width=70, height=32)
 
-
-
-
-
-
-
+        self.tops.place(x=0.87*self.tx, y=250*self.ty/don.geom.taille_y, anchor=CENTER)
+        self.bouton_top.place(x=0.8 * self.tx - 65, y=300*self.ty/don.geom.taille_y, anchor=CENTER, width=130, height=45)
+        self.bouton_effacer.place(x=0.6 * self.tx, y=350*self.ty/don.geom.taille_y, anchor=CENTER, width=100, height=45)
+        self.bouton_raz.place(x=0.6 * self.tx, y=400*self.ty/don.geom.taille_y, anchor=CENTER, width=100, height=45)
+        self.bouton_valider.place(x=0.6 * self.tx, y=300*self.ty/don.geom.taille_y, anchor=CENTER, width=100, height=45)
+        self.score.place(x=0.62 * self.tx, y=250*self.ty/don.geom.taille_y, anchor=CENTER)
+        self.bouton_next.place(x=0.8 * self.tx, y=350*self.ty/don.geom.taille_y, anchor=CENTER, width=260, height=45)
+        self.bouton_changer.place(x=0.8 * self.tx, y=400*self.ty/don.geom.taille_y, anchor=CENTER, width=260, height=45)
+        self.boutons_aleatoire.place(x=0.59 * self.tx, y=(don.geom.y_voyelles - 0.1 * don.geom.dy_voyelles)*self.ty/don.geom.taille_y,
+                                        anchor=CENTER, width=130, height=35)
+        self.bouton_solutions.place(x=0.8 * self.tx + 70* self.tx/don.geom.taille_x, y=300*self.ty/don.geom.taille_y, anchor=CENTER, width=120, height=45)
+        self.boutons_sauvegarde.place(x=0.59 * self.tx, y=(don.geom.y_voyelles + don.geom.dy_voyelles) * self.ty/don.geom.taille_y,
+                                      anchor=CENTER, width=130, height=35)
+        self.boutons_nbVoyelles[0].place(x=0.82 * self.tx, y=(don.geom.y_voyelles + 0.5 * don.geom.dy_voyelles) * self.ty/don.geom.taille_y, anchor=E)
+        self.boutons_nbVoyelles[1].place(x=0.84 * self.tx, y=don.geom.y_voyelles * self.ty/don.geom.taille_y, anchor=CENTER, width=34, height=34)
+        self.boutons_nbVoyelles[2].place(x=0.88 * self.tx, y=don.geom.y_voyelles * self.ty/don.geom.taille_y, anchor=CENTER, width=34, height=34)
+        self.boutons_nbVoyelles[3].place(x=0.92 * self.tx, y=don.geom.y_voyelles * self.ty/don.geom.taille_y, anchor=CENTER, width=34, height=34)
+        self.boutons_nbVoyelles[4].place(x=0.96 * self.tx, y=don.geom.y_voyelles * self.ty/don.geom.taille_y, anchor=CENTER, width=34, height=34)
+        self.boutons_nbVoyelles[5].place(x=0.84 * self.tx, y=(don.geom.y_voyelles + don.geom.dy_voyelles) * self.ty/don.geom.taille_y, anchor=CENTER, width=34,
+                                          height=34)
+        self.boutons_nbVoyelles[6].place(x=0.88 * self.tx, y=(don.geom.y_voyelles + don.geom.dy_voyelles) * self.ty/don.geom.taille_y, anchor=CENTER, width=34,
+                                          height=34)
+        self.boutons_nbVoyelles[7].place(x=0.92 * self.tx, y=(don.geom.y_voyelles + don.geom.dy_voyelles) * self.ty/don.geom.taille_y, anchor=CENTER, width=34,
+                                          height=34)
+        self.boutons_nbVoyelles[8].place(x=0.96 * self.tx, y=(don.geom.y_voyelles + don.geom.dy_voyelles) * self.ty/don.geom.taille_y, anchor=CENTER, width=34,
+                                          height=34)
+        if don.type_actuel == 'lettres':
+            for ii in range(0, don.nbLettres):
+                self.boutons_reponse[ii].place(x=(60 + 54 * ii) * self.tx/don.geom.taille_x, y=110 * self.ty/don.geom.taille_y, anchor=CENTER, width=50, height=50)
+                self.boutons_tirage[ii].place(x=(60 + 54 * ii) * self.tx/don.geom.taille_x, y=30 * self.ty/don.geom.taille_y, anchor=CENTER, width=50, height=50)
+        if don.type_actuel == 'chiffres':
+            for ii in range(0, don.nbPlaquesChiffres):
+                posX = ii % 3
+                posY = (ii - posX) / 3
+                self.boutons_tirage[ii].place(x=(50 + 90 * posX) * self.tx/don.geom.taille_x, y=(40 + 70 * posY) * self.ty/don.geom.taille_y, anchor=CENTER, width=80, height=60)
+            for ii in range(0, 3):
+                self.boutons_tirage[ii + don.nbPlaquesChiffres].place(x=(50 + 70 * (3.7 + 0.55 * ii))* self.tx/don.geom.taille_x,
+                                                                      y=75*self.ty/don.geom.taille_y, anchor=CENTER)
+            self.boutons_tirage[don.nbPlaquesChiffres+3].place(x=473*self.tx/don.geom.taille_x, width=55, height=55,
+                                          y=43.5*self.ty/don.geom.taille_y, anchor=CENTER)
+            self.boutons_tirage[don.nbPlaquesChiffres+4].place(x=545*self.tx/don.geom.taille_x, width=55, height=55,
+                                          y=43.5*self.ty/don.geom.taille_y, anchor=CENTER)
+            self.boutons_tirage[don.nbPlaquesChiffres + 5].place(x=473 * self.tx / don.geom.taille_x, width=55,
+                                                                 height=55,
+                                                                 y=106.5 * self.ty / don.geom.taille_y, anchor=CENTER)
+            self.boutons_tirage[don.nbPlaquesChiffres + 6].place(x=545*self.tx/don.geom.taille_x, width=55,
+                                                                 height=55,
+                                                                 y=106.5 * self.ty / don.geom.taille_y, anchor=CENTER)
+            for ii in range(0, 5):
+                self.boutons_tirage[don.nbPlaquesChiffres + 7 + ii*5].place(x=50*self.tx/don.geom.taille_x,
+                                                                            y=(190 + 50 * ii)*self.ty / don.geom.taille_y,
+                                                                            anchor=CENTER)
+                self.boutons_tirage[don.nbPlaquesChiffres + 7 + ii*5+1].place(x=125*self.tx/don.geom.taille_x,
+                                                                              y=(190 + 50 * ii)*self.ty / don.geom.taille_y,
+                                                                              anchor=CENTER)
+                self.boutons_tirage[don.nbPlaquesChiffres + 7 + ii*5+2].place(x=200*self.tx/don.geom.taille_x,
+                                                                              y=(190 + 50 * ii)*self.ty / don.geom.taille_y,
+                                                                              anchor=CENTER)
+                self.boutons_tirage[don.nbPlaquesChiffres + 7 + ii*5+3].place(x=275*self.tx/don.geom.taille_x,
+                                                                              y=(190 + 50 * ii)*self.ty / don.geom.taille_y,
+                                                                              anchor=CENTER)
+                self.boutons_tirage[don.nbPlaquesChiffres + 7 + ii*5+4].place(x=360*self.tx/don.geom.taille_x,
+                                                                              y=(190 + 50 * ii)*self.ty / don.geom.taille_y,
+                                                                              anchor=CENTER, width=110, height=50)
+            self.boutons_tirage[-1].place(x=424.5*self.tx/don.geom.taille_x, y=75*self.ty / don.geom.taille_y, anchor=CENTER)
+            liste_chiffres = sorted(set(don.listeChiffres))
+            for ii in range(0, len(liste_chiffres)+1):
+                posX = ii % 7
+                posY = (ii - posX) / 7
+                self.boutons_chiffres[ii].place(x=(don.geom.taille_x - 310 + 46 * posX)*self.tx/don.geom.taille_x,
+                                               y=(27 + 46 * posY)*self.ty / don.geom.taille_y,
+                                               anchor=CENTER, width=45, height=45)
+            self.boutons_chiffres[len(liste_chiffres)+1].place(x=(don.geom.taille_x - 218)*self.tx/don.geom.taille_x,
+                                            y=119*self.ty / don.geom.taille_y,
+                                            anchor=CENTER, width=135, height=45)
+            self.boutons_chiffres[len(liste_chiffres)+2].place(x=(don.geom.taille_x - 80)*self.tx/don.geom.taille_x,
+                                           y=119*self.ty / don.geom.taille_y,
+                                           anchor=CENTER, width=135, height=45)
 
 
     def Set_boutons_lettres(self, tirage, fen, don, chrono):
-        tx = don.geom.taille_x
-        if len(self.boutons_lettres) == 0:
-            liste_lettres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ.'
-            for ii in range(0, len(liste_lettres)):
-                self.boutons_lettres.append(Button(fen))
-                self.boutons_lettres[ii].configure(font=("Helvetica", 18),
-                                                   text=liste_lettres[ii],
-                                                   bg=don.proprietes.couleur_bg_select)
-                posX = ii % 8
-                posY = (ii-posX)/8
-                self.boutons_lettres[ii].place(x=tx - 290 + 35 * posX,
-                                               y=20 + 35 * posY,
-                                               anchor=CENTER, width=34, height=34)
-            # bouton annuler
+        self.tx = fen.winfo_width()
+        self.ty = fen.winfo_height()
+        self.liste_lettres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ.'
+        self.boutons_lettres = []
+        for ii in range(0, len(self.liste_lettres)):
             self.boutons_lettres.append(Button(fen))
-            self.boutons_lettres[-1].place(x=tx - 290 + 35 * 3.75,
-                                           y=20 + 35 * 3,
-                                           anchor=CENTER, width=34*2.5, height=34)
-            self.boutons_lettres[-1].configure(font=("Helvetica", 17), text='annuler',
+            self.boutons_lettres[ii].configure(font=(don.font, 18),
+                                               text=self.liste_lettres[ii],
                                                bg=don.proprietes.couleur_bg_select)
+            posX = ii % 8
+            posY = (ii // 8)
+            posX_px = self.tx-int((posX + 0.5) * (self.tx / 8))
+            posY_px = int((posY + 0.5) * (self.ty / 4))
+            self.boutons_lettres[ii].place(x=posX_px, y=posY_px, anchor=CENTER, width=int(34 * (self.tx / 600)),
+                                           height=int(34 * (self.ty / 250)))
 
-            # bouton valider
-            self.boutons_lettres.append(Button(fen))
-            self.boutons_lettres[-1].place(x=tx - 290 + 35 * 6.25,
-                                           y=20 + 35 * 3,
-                                           anchor=CENTER, width=34 * 2.5, height=34)
-            self.boutons_lettres[-1].configure(font=("Helvetica", 18), text='valider',
-                                               bg=don.proprietes.couleur_bg_select)
+        # bouton annuler
+        self.boutons_lettres.append(Button(fen))
+        posX_px = self.tx-int(3.75 * (self.tx / 600))
+        posY_px = int(3 * (self.ty / 250))
+        self.boutons_lettres[-1].place(x=posX_px, y=posY_px, anchor=CENTER, width=int(34 * 2.5 * (self.tx / 600)),
+                                       height=int(34 * (self.ty / 250)))
+        self.boutons_lettres[-1].configure(font=(don.font, 17), text='annuler', bg=don.proprietes.couleur_bg_select)
+
+        # bouton valider
+        self.boutons_lettres.append(Button(fen))
+        posX_px = self.tx-int(6.25 * (self.tx / 600))
+        posY_px = int(3 * (self.ty / 250))
+        self.boutons_lettres[-1].place(x=posX_px, y=posY_px, anchor=CENTER, width=int(34 * 2.5 * (self.tx / 600)),
+                                       height=int(34 * (self.ty / 250)))
+        self.boutons_lettres[-1].configure(font=(don.font, 18), text='valider', bg=don.proprietes.couleur_bg_select)
+
+        fen.bind("<Configure>", lambda event: self.update_positions(event, don))
+
+    #
+    # def Set_boutons_lettres(self, tirage, fen, don, chrono):
+    #     tx = don.geom.taille_x
+    #     if len(self.boutons_lettres) == 0:
+    #         liste_lettres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ.'
+    #         for ii in range(0, len(liste_lettres)):
+    #             self.boutons_lettres.append(Button(fen))
+    #             self.boutons_lettres[ii].configure(font=("Helvetica", 18),
+    #                                                text=liste_lettres[ii],
+    #                                                bg=don.proprietes.couleur_bg_select)
+    #             posX = ii % 8
+    #             posY = (ii-posX)/8
+    #             self.boutons_lettres[ii].place(x=tx - 290 + 35 * posX,
+    #                                            y=20 + 35 * posY,
+    #                                            anchor=CENTER, width=34, height=34)
+    #         # bouton annuler
+    #         self.boutons_lettres.append(Button(fen))
+    #         self.boutons_lettres[-1].place(x=tx - 290 + 35 * 3.75,
+    #                                        y=20 + 35 * 3,
+    #                                        anchor=CENTER, width=34*2.5, height=34)
+    #         self.boutons_lettres[-1].configure(font=("Helvetica", 17), text='annuler',
+    #                                            bg=don.proprietes.couleur_bg_select)
+    #
+    #         # bouton valider
+    #         self.boutons_lettres.append(Button(fen))
+    #         self.boutons_lettres[-1].place(x=tx - 290 + 35 * 6.25,
+    #                                        y=20 + 35 * 3,
+    #                                        anchor=CENTER, width=34 * 2.5, height=34)
+    #         self.boutons_lettres[-1].configure(font=("Helvetica", 18), text='valider',
+    #                                            bg=don.proprietes.couleur_bg_select)
+
+
+    # def Set_chrono(self, chrono, don):
+    #
+    #     def update_position_chrono(event=None):
+    #         nonlocal posX_chrono, posY_chrono
+    #         posX_chrono = int(self.fen.winfo_width() / 2)  # Position X au milieu de la fenêtre
+    #         posY_chrono = int(self.fen.winfo_height() * 0.1)  # Position Y à 10% de la hauteur de la fenêtre
+    #
+    #         # Configuration du chronomètre avec les nouvelles coordonnées
+    #         self.chrono.place(x=posX_chrono, y=posY_chrono, anchor=CENTER)
+    #
+    #     # Création du chronomètre avec la position initiale
+    #     posX_chrono = int(self.fen.winfo_width() / 2)  # Position X au milieu de la fenêtre
+    #     posY_chrono = int(self.fen.winfo_height() * 0.1)  # Position Y à 10% de la hauteur de la fenêtre
+    #
+    #     self.chrono = Label(self.fen, text=chrono.val_disp, relief=FLAT, font=("Helvetica", 26), fg="red")
+    #     self.chrono.configure(bg=don.proprietes.couleur_fond)
+    #     self.chrono.place(x=posX_chrono, y=posY_chrono, anchor=CENTER)
+    #
+    #     # Lier la fonction de mise à jour à l'événement de redimensionnement
+    #     self.fen.bind("<Configure>", update_position_chrono)
+    #
+    #     # Initialisation de la position du chronomètre
+    #     update_position_chrono()
 
 
     def Set_chrono(self, chrono, don):
 
         posX = don.geom.posX
         posY = don.geom.posY
-        self.chrono.configure(text=chrono.val_disp, relief=FLAT, font=("Helvetica", 26), fg="red")
+        self.chrono.configure(text=chrono.val_disp, relief=FLAT, font=(don.font, 26), fg="red")
         self.chrono.configure(bg=don.proprietes.couleur_fond)
         self.chrono.place(x=posX, y=posY, anchor=CENTER, width=70, height=32)
+        self.fen.bind("<Configure>", lambda event: self.update_positions(event, don))
+
 
     def Set_triangle(self, nbLettres, don):
 
@@ -1555,13 +1724,10 @@ class Icones:
     def Set_boutons_tirage(self, tirage, motUtilisateur, nbLettres, don):
 
         for ii in range(0, nbLettres):
-            b = Button(self.fen, text='', font=("Helvetica", 30), bg=don.proprietes.couleur_bg_defaut)
+            b = Button(self.fen, text='', font=(don.font_tirage, 30), bg=don.proprietes.couleur_bg_defaut)
             self.boutons_reponse.append(b)
-            self.boutons_reponse[ii].place(x=60 + 54 * ii, y=110, anchor=CENTER, width=50, height=50)
-
-            b = Button(self.fen, text='', font=("Helvetica", 30), bg=don.proprietes.couleur_bg_defaut)
+            b = Button(self.fen, text='', font=(don.font_tirage, 30), bg=don.proprietes.couleur_bg_defaut)
             self.boutons_tirage.append(b)
-            self.boutons_tirage[ii].place(x=60 + 54 * ii, y=30, anchor=CENTER, width=50, height=50)
         for ii in range(0, nbLettres):
             self.boutons_tirage[ii].configure(command=lambda c=ii: motUtilisateur.AddLettre(tirage, c, self, don))
 
@@ -1573,281 +1739,226 @@ class Icones:
             posX = ii % 3
             posY = (ii-posX)/3
 
-            b = Button(self.fen, text='', font=("Helvetica", 34), bg=don.proprietes.couleur_bg_defaut)
+            b = Button(self.fen, text='', font=(don.font_tirage, 34), bg=don.proprietes.couleur_bg_defaut)
             self.boutons_tirage.append(b)
-            self.boutons_tirage[ii].place(x=50 + 90 * posX, y=40 + 70 * posY, anchor=CENTER, width=80, height=60)
-            # self.boutons_tirage[ii].configure(command=lambda c=ii: motUtilisateur.AddChiffre(tirage, c, self, don))
         # ajout du total à trouver
         for ii in range(0, 3):
-            b = Label(self.fen, text='', font=("Helvetica", 48))
+            b = Label(self.fen, text='', font=(don.font_tirage, 48))
             self.boutons_tirage.append(b)
-            self.boutons_tirage[ii+don.nbPlaquesChiffres].place(x=50 + 70 * (3.7 + 0.55*ii),
-                                                                y=40 + 70 * 0.5, anchor=CENTER)
             self.boutons_tirage[ii+don.nbPlaquesChiffres].configure(bg=don.proprietes.couleur_fond)
         # ajout des signes des opérations
-        b = Button(self.fen, text='+', font=("Helvetica", 32), bg=don.proprietes.couleur_bg_defaut)
+        b = Button(self.fen, text='+', font=(don.font_tirage, 32), bg=don.proprietes.couleur_bg_defaut)
         b.configure(command=lambda c=len(self.boutons_tirage): compteUtilisateur.AddChiffre(tirage, c, self, don))
         self.boutons_tirage.append(b)
-        self.boutons_tirage[-1].place(x=50 + 90 * 4.7, width=55, height=55,
-                                      y=40 + 0.05*70, anchor=CENTER)
-        b = Button(self.fen, text='-', font=("Helvetica", 32), bg=don.proprietes.couleur_bg_defaut)
+        b = Button(self.fen, text='-', font=(don.font_tirage, 32), bg=don.proprietes.couleur_bg_defaut)
         b.configure(command=lambda c=len(self.boutons_tirage): compteUtilisateur.AddChiffre(tirage, c, self, don))
         self.boutons_tirage.append(b)
-        self.boutons_tirage[-1].place(x=50 + 90 * 5.5, width=55, height=55,
-                                      y=40 + 0.05*70, anchor=CENTER)
-        b = Button(self.fen, text='×', font=("Helvetica", 32), bg=don.proprietes.couleur_bg_defaut)
+        b = Button(self.fen, text='×', font=(don.font_tirage, 32), bg=don.proprietes.couleur_bg_defaut)
         b.configure(command=lambda c=len(self.boutons_tirage): compteUtilisateur.AddChiffre(tirage, c, self, don))
         self.boutons_tirage.append(b)
-        self.boutons_tirage[-1].place(x=50 + 90 * 4.7, width=55, height=55,
-                                      y=40 + 0.95*70, anchor=CENTER)
-        b = Button(self.fen, text='÷', font=("Helvetica", 32), bg=don.proprietes.couleur_bg_defaut)
+        b = Button(self.fen, text='÷', font=(don.font_tirage, 32), bg=don.proprietes.couleur_bg_defaut)
         b.configure(command=lambda c=len(self.boutons_tirage): compteUtilisateur.AddChiffre(tirage, c, self, don))
         self.boutons_tirage.append(b)
-        self.boutons_tirage[-1].place(x=50 + 90 * 5.5, width=55, height=55,
-                                      y=40 + 0.95*70, anchor=CENTER)
+
         for ii in range(0, don.nbPlaquesChiffres):
             self.boutons_tirage[ii].configure(command=lambda c=ii: compteUtilisateur.AddChiffre(tirage, c, self, don))
         nb_plaques_tirage_reel = len(self.boutons_tirage)
         # ajout des opérations
         y0 = 190
         for ii in range(0, 5):
-            b = Label(self.fen, text='', font=("Helvetica", 28))
+            b = Label(self.fen, text='', font=(don.font_tirage, 28))
             self.boutons_tirage.append(b)
-            self.boutons_tirage[-1].place(x=50, y=y0 + 50 * ii, anchor=CENTER)
             self.boutons_tirage[-1].configure(bg=don.proprietes.couleur_fond)
 
-            b = Label(self.fen, text='', font=("Helvetica", 28))
+            b = Label(self.fen, text='', font=(don.font_tirage, 28))
             self.boutons_tirage.append(b)
-            self.boutons_tirage[-1].place(x=125, y=y0 + 50 * ii, anchor=CENTER)
             self.boutons_tirage[-1].configure(bg=don.proprietes.couleur_fond)
 
-            b = Label(self.fen, text='', font=("Helvetica", 28))
+            b = Label(self.fen, text='', font=(don.font_tirage, 28))
             self.boutons_tirage.append(b)
-            self.boutons_tirage[-1].place(x=200, y=y0 + 50 * ii, anchor=CENTER)
             self.boutons_tirage[-1].configure(bg=don.proprietes.couleur_fond)
 
-            b = Label(self.fen, text='', font=("Helvetica", 28))
+            b = Label(self.fen, text='', font=(don.font_tirage, 28))
             self.boutons_tirage.append(b)
-            self.boutons_tirage[-1].place(x=275, y=y0 + 50 * ii, anchor=CENTER)
             self.boutons_tirage[-1].configure(bg=don.proprietes.couleur_fond)
 
-            b = Button(self.fen, text='', font=("Helvetica", 28))
+            b = Button(self.fen, text='', font=(don.font_tirage, 28))
             self.boutons_tirage.append(b)
-            self.boutons_tirage[-1].place(x=360, y=y0 + 50 * ii, anchor=CENTER, width=110, height=50)
             self.boutons_tirage[-1].configure(
                 command=lambda c=len(self.boutons_tirage)-1: compteUtilisateur.AddChiffre(tirage, c, self, don))
         self.boutons_tirage[-1].configure(command=[])
 
         # ajout d'une quatrième plaque pour le total à trouver
-        b = Label(self.fen, text='', font=("Helvetica", 48))
+        b = Label(self.fen, text='', font=(don.font_tirage, 48))
         self.boutons_tirage.append(b)
-        self.boutons_tirage[-1].place(x=50 + 70 * (3.7 + 0.55 * 3), y=40 + 70 * 0.5, anchor=CENTER)
         self.boutons_tirage[-1].configure(bg=don.proprietes.couleur_fond)
 
     def Set_score(self, don):
-
         taille_x = don.geom.taille_x
-        cha = 'score : ' + str(don.score) + ' / ' + str(don.total)
+        cha = 'Score : ' + str(don.score) + ' / ' + str(don.total)
         self.score.configure(text=cha,
-                               font=("Helvetica", 20),
+                               font=(don.font, 20),
                                fg='blue', bg=don.proprietes.couleur_fond)
-        self.score.place(x=0.62 * taille_x, y=250, anchor=CENTER)
 
     def Set_tops(self, don):
-
         taille_x = don.geom.taille_x
         cha = 'Tops : ' + str(don.nbTops) + ' / ' + str(don.nbTirages)
         self.tops.configure(text=cha,
-                              font=("Helvetica", 20),
+                              font=(don.font, 20),
                               fg='blue', bg=don.proprietes.couleur_fond)
-        self.tops.place(x=0.87 * taille_x, y=250, anchor=CENTER)
 
     def Set_bouton_top(self, tirage, don):
-
         taille_x = don.geom.taille_x
-        # self.bouton_top.configure(text='top',
-        #                           bg=don.proprietes.couleur_fond_boutons6,
-        #                           font=("Helvetica", 20),
-        #                           command=lambda: printTop(tirage, don, self))
         self.bouton_top.configure(text='top',
                                     bg=don.proprietes.couleur_bg_select,
-                                    font=("Helvetica", 20))
-        self.bouton_top.place(x=0.8 * taille_x - 65, y=300, anchor=CENTER, width=130, height=45)
+                                    font=(don.font, 20))
 
     def Set_bouton_top_chiffres(self, tirage, don):
         taille_x = don.geom.taille_x
-        # self.bouton_top.configure(text='top',
-        #                             bg=don.proprietes.couleur_fond_boutons6,
-        #                             font=("Helvetica", 20),
-        #                             command=lambda: printTop_chiffres(tirage, don, self))
         self.bouton_top.configure(text='top',
                                   bg=don.proprietes.couleur_bg_select,
-                                  font=("Helvetica", 20))
-        self.bouton_top.place(x=0.8 * taille_x - 65, y=300, anchor=CENTER, width=130, height=45)
+                                  font=(don.font, 20))
 
     def Set_bouton_effacer(self, tirage, motUtilisateur, don):
-
         taille_x = don.geom.taille_x
-        # self.bouton_effacer.configure(text='effacer',
-        #                                 bg=don.proprietes.couleur_fond_boutons6,
-        #                                 font=("Helvetica", 20),
-        #                                 command=lambda: motUtilisateur.DelLettre(tirage, self, don))
         self.bouton_effacer.configure(text='effacer',
                                         bg=don.proprietes.couleur_bg_select,
-                                        font=("Helvetica", 20))
-        self.bouton_effacer.place(x=0.6 * taille_x, y=350, anchor=CENTER, width=100, height=45)
+                                        font=(don.font, 20))
 
     def Set_bouton_effacer_chiffres(self, tirage, motUtilisateur, don):
-
         taille_x = don.geom.taille_x
-        # self.bouton_effacer.configure(text='effacer',
-        #                                 bg=don.proprietes.couleur_fond_boutons6,
-        #                                 font=("Helvetica", 20),
-        #                                 command=lambda: motUtilisateur.DelChiffre(self, don))
         self.bouton_effacer.configure(text='effacer',
                                       bg=don.proprietes.couleur_bg_select,
-                                      font=("Helvetica", 20))
-        self.bouton_effacer.place(x=0.6 * taille_x, y=350, anchor=CENTER, width=100, height=45)
+                                      font=(don.font, 20))
 
     def Set_bouton_raz(self, tirage, motUtilisateur, don):
-
         taille_x = don.geom.taille_x
         self.bouton_raz.configure(text='RAZ',
-                                  font=("Helvetica", 20),
+                                  font=(don.font, 20),
                                   bg=don.proprietes.couleur_bg_select)
-        self.bouton_raz.place(x=0.6 * taille_x, y=400, anchor=CENTER, width=100, height=45)
 
     def Set_bouton_raz_chiffres(self, tirage, motUtilisateur, don):
-
         taille_x = don.geom.taille_x
         self.bouton_raz.configure(text='RAZ',
-                                  font=("Helvetica", 20),
+                                  font=(don.font, 20),
                                   bg=don.proprietes.couleur_bg_select)
-        self.bouton_raz.place(x=0.6 * taille_x, y=400, anchor=CENTER, width=100, height=45)
+        # self.bouton_raz.place(x=0.6 * taille_x, y=400, anchor=CENTER, width=100, height=45)
 
     def Set_bouton_valider(self, tirage, motUtilisateur, don, chrono):
 
         taille_x = don.geom.taille_x
         self.bouton_valider.configure(text='valider',
-                                      font=("Helvetica", 20),
+                                      font=(don.font, 20),
                                       bg=don.proprietes.couleur_bg_select, borderwidth=4)
-        self.bouton_valider.place(x=0.6 * taille_x, y=300, anchor=CENTER, width=100, height=45)
+        # self.bouton_valider.place(x=0.6 * taille_x, y=300, anchor=CENTER, width=100, height=45)
 
     def Set_bouton_valider_chiffres(self, tirage, motUtilisateur, don, chrono):
 
         taille_x = don.geom.taille_x
         self.bouton_valider.configure(text='valider',
-                                      font=("Helvetica", 20),
+                                      font=(don.font, 20),
                                       bg=don.proprietes.couleur_bg_select, borderwidth=4)
         self.bouton_valider.place(x=0.6 * taille_x, y=300, anchor=CENTER, width=100, height=45)
 
     def Set_bouton_solutions(self, tirage, don):
-
         taille_x = don.geom.taille_x
-        # self.bouton_solutions.configure(text='solutions',
-        #                                 font=("Helvetica", 20),
-        #                                 bg=don.proprietes.couleur_fond_boutons6,
-        #                                 command=lambda: solveur(tirage, don))
         self.bouton_solutions.configure(text='solutions',
-                                      font=("Helvetica", 20),
+                                      font=(don.font, 20),
                                       bg=don.proprietes.couleur_bg_select)
-        self.bouton_solutions.place(x=0.8 * taille_x + 70, y=300, anchor=CENTER, width=120, height=45)
+        # self.bouton_solutions.place(x=0.8 * taille_x + 70, y=300, anchor=CENTER, width=120, height=45)
 
     def Set_bouton_solutions_chiffres(self, tirage, don):
-
         taille_x = don.geom.taille_x
-        # self.bouton_solutions.configure(text='solutions',
-        #                                 font=("Helvetica", 20),
-        #                                 bg=don.proprietes.couleur_fond_boutons6,
-        #                                 command=lambda: solveur_chiffres(tirage, don))
         self.bouton_solutions.configure(text='solutions',
-                                      font=("Helvetica", 20),
+                                      font=(don.font, 20),
                                       bg=don.proprietes.couleur_bg_select)
-        self.bouton_solutions.place(x=0.8 * taille_x + 70, y=300, anchor=CENTER, width=120, height=45)
+        # self.bouton_solutions.place(x=0.8 * taille_x + 70, y=300, anchor=CENTER, width=120, height=45)
 
     def Set_bouton_next(self, tirage, motUtilisateur, don, chrono):
-
         taille_x = don.geom.taille_x
         self.bouton_next.configure(text='nouveau tirage',
-                                 font=("Arial", 20),
+                                 font=(don.font, 20),
                                  bg=don.proprietes.couleur_fond_boutons6,
                                  command=lambda: lancement_tirage_suivant(don, tirage, motUtilisateur,
                                                                           self, chrono))
-        self.bouton_next.place(x=0.8 * taille_x + 0, y=350, anchor=CENTER, width=260, height=45)
+        # self.bouton_next.place(x=0.8 * taille_x + 0, y=350, anchor=CENTER, width=260, height=45)
 
     def Set_bouton_next_chiffres(self, tirage, motUtilisateur, don, chrono):
 
         taille_x = don.geom.taille_x
         self.bouton_next.configure(text='nouveau tirage',
-                                 font=("Arial", 20),
+                                 font=(don.font, 20),
                                  bg=don.proprietes.couleur_fond_boutons6,
                                  command=lambda: lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur,
                                                                           self, chrono))
-        self.bouton_next.place(x=0.8 * taille_x + 0, y=350, anchor=CENTER, width=260, height=45)
+        # self.bouton_next.place(x=0.8 * taille_x + 0, y=350, anchor=CENTER, width=260, height=45)
 
     def Set_bouton_changer_chiffres(self, tirage, motUtilisateur, don, chrono):
         # pour passer des chiffres aux lettres
-
         taille_x = don.geom.taille_x
         self.bouton_changer.configure(text='lettres',
-                                 font=("Arial", 20),
+                                 font=(don.font, 20),
                                  bg=don.proprietes.couleur_changer,
                                  command=lambda: self.Lancement_tirage_lettres2(tirage, don, chrono, motUtilisateur))
-        self.bouton_changer.place(x=0.8 * taille_x + 0, y=400, anchor=CENTER, width=260, height=45)
+        # self.bouton_changer.place(x=0.8 * taille_x + 0, y=400, anchor=CENTER, width=260, height=45)
 
     def Set_bouton_changer_lettres(self, tirage, motUtilisateur, don, chrono):
         # pour passer des lettres aux chiffres
 
         taille_x = don.geom.taille_x
         self.bouton_changer.configure(text='chiffres',
-                                 font=("Arial", 20),
+                                 font=(don.font, 20),
                                  bg=don.proprietes.couleur_changer,
                                  command=lambda: self.Lancement_tirage_chiffres2(tirage, don, chrono, motUtilisateur))
-        self.bouton_changer.place(x=0.8 * taille_x + 0, y=400, anchor=CENTER, width=260, height=45)
+        # self.bouton_changer.place(x=0.8 * taille_x + 0, y=400, anchor=CENTER, width=260, height=45)
 
     def Set_boutons_aleatoire(self, don):
-
         dy_voyelles = don.geom.dy_voyelles
         y_voyelles = don.geom.y_voyelles
         taille_x = don.geom.taille_x
 
         liste_aleatoire = ['aléatoire', 'préparé', 'manuel']
-        variable_aleatoire = StringVar(self.fen)
+        variable_aleatoire = self.choix_alea #StringVar(self.fen)
         if don.prepare == 1:
             variable_aleatoire.set(liste_aleatoire[1])
         elif don.manuel == 1:
             variable_aleatoire.set(liste_aleatoire[2])
         else:
             variable_aleatoire.set(liste_aleatoire[0])
-        self.bareme_chiffres.append(OptionMenu(self.fen, variable_aleatoire, *liste_aleatoire))
-        self.bareme_chiffres[-1].configure(font=('Helvetica', 15))
-        self.bareme_chiffres[-1].place(x=0.59 * taille_x, y=y_voyelles - 0.1 * dy_voyelles,
-                                       anchor=CENTER, width=130, height=35)
+
+        self.boutons_aleatoire.place(x=0.59 * taille_x, y=y_voyelles - 0.1 * dy_voyelles,
+                                        anchor=CENTER, width=130, height=35)
+        self.boutons_aleatoire.configure(font=(don.font, 15))
+
+        # self.bareme_chiffres.append(OptionMenu(self.fen, variable_aleatoire, *liste_aleatoire))
+        # self.bareme_chiffres[-1].configure(font=(don.font, 15))
+        # self.bareme_chiffres[-1].place(x=0.59 * taille_x, y=y_voyelles - 0.1 * dy_voyelles,
+        #                                anchor=CENTER, width=130, height=35)
         def callback_aleatoire(*args):
-            if variable_aleatoire.get() == 'aléatoire':
+            if self.choix_alea.get() == 'aléatoire':
                 don.aleatoire = 1
                 don.prepare = 0
                 don.manuel = 0
-            if variable_aleatoire.get() == 'manuel':
+            if self.choix_alea.get() == 'manuel':
                 don.aleatoire = 0
                 don.prepare = 0
                 don.manuel = 1
-            if variable_aleatoire.get() == 'préparé':
+            if self.choix_alea.get() == 'préparé':
                 don.aleatoire = 0
                 don.prepare = 1
                 don.manuel = 0
-        variable_aleatoire.trace("w", callback_aleatoire)
+        self.choix_alea.trace("w", callback_aleatoire)
 
     def Set_boutons_sauvegarde(self, tirage, don):
         dy_voyelles = don.geom.dy_voyelles
         y_voyelles = don.geom.y_voyelles
         taille_x = don.geom.taille_x
 
-        self.boutons_sauvegarde.configure(font=('Helvetica', 15), text='Sauvegarde',
+        self.boutons_sauvegarde.configure(font=(don.font, 15), text='Sauvegarde',
                                            bg=don.proprietes.couleur_bg_select,
                                            command=lambda: tirage.sauvegarde(self, don))
-        self.boutons_sauvegarde.place(x=0.59 * taille_x, y=y_voyelles + 1 * dy_voyelles,
-                                       anchor=CENTER, width=130, height=35)
+        # self.boutons_sauvegarde.place(x=0.59 * taille_x, y=y_voyelles + 1 * dy_voyelles,
+        #                                anchor=CENTER, width=130, height=35)
 
 
 
@@ -1858,61 +1969,48 @@ class Icones:
         taille_x = don.geom.taille_x
         self.boutons_nbVoyelles.append(Label(self.fen))
         self.boutons_nbVoyelles[0].configure(text='voyelles :',
-                                               font=("Helvetica", 20), bg=don.proprietes.couleur_fond)
-        self.boutons_nbVoyelles[0].place(x=0.82 * taille_x, y=y_voyelles + 0.5 * dy_voyelles, anchor=E)
+                                               font=(don.font, 20), bg=don.proprietes.couleur_fond)
 
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='2',
                                                 bg=don.proprietes.couleur_fond_nbVoy,
-                                                font=("Helvetica", 20),
+                                                font=(don.font, 20),
                                                 command=lambda: don.SetSetNbVoy(2, self, 'fixe'))
-        self.boutons_nbVoyelles[-1].place(x=0.84 * taille_x, y=y_voyelles, anchor=CENTER, width=34, height=34)
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='3',
                                                 bg=don.proprietes.couleur_fond_nbVoy,
-                                                font=("Helvetica", 20),
+                                                font=(don.font, 20),
                                                 command=lambda: don.SetSetNbVoy(3, self, 'fixe'))
-        self.boutons_nbVoyelles[-1].place(x=0.88 * taille_x, y=y_voyelles, anchor=CENTER, width=34, height=34)
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='4',
                                                 bg=don.proprietes.couleur_fond_nbVoy,
-                                                font=("Helvetica", 20),
+                                                font=(don.font, 20),
                                                 command=lambda: don.SetSetNbVoy(4, self, 'fixe'))
-        self.boutons_nbVoyelles[-1].place(x=0.92 * taille_x, y=y_voyelles, anchor=CENTER, width=34, height=34)
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='5',
                                                 bg=don.proprietes.couleur_fond_nbVoy,
-                                                font=("Helvetica", 20),
+                                                font=(don.font, 20),
                                                 command=lambda: don.SetSetNbVoy(5, self, 'fixe'))
-        self.boutons_nbVoyelles[-1].place(x=0.96 * taille_x, y=y_voyelles, anchor=CENTER, width=34, height=34)
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='6',
                                                 bg=don.proprietes.couleur_fond_nbVoy,
-                                                font=("Helvetica", 20),
+                                                font=(don.font, 20),
                                                 command=lambda: don.SetSetNbVoy(6, self, 'fixe'))
-        self.boutons_nbVoyelles[-1].place(x=0.84 * taille_x, y=y_voyelles + dy_voyelles, anchor=CENTER, width=34,
-                                            height=34)
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='7',
                                                 bg=don.proprietes.couleur_fond_nbVoy,
-                                                font=("Helvetica", 20),
+                                                font=(don.font, 20),
                                                 command=lambda: don.SetSetNbVoy(7, self, 'fixe'))
-        self.boutons_nbVoyelles[-1].place(x=0.88 * taille_x, y=y_voyelles + dy_voyelles, anchor=CENTER, width=34,
-                                            height=34)
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='8',
                                                 bg=don.proprietes.couleur_fond_nbVoy,
-                                                font=("Helvetica", 20),
+                                                font=(don.font, 20),
                                                 command=lambda: don.SetSetNbVoy(8, self, 'fixe'))
-        self.boutons_nbVoyelles[-1].place(x=0.92 * taille_x, y=y_voyelles + dy_voyelles, anchor=CENTER, width=34,
-                                            height=34)
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='?',
                                                 bg=don.proprietes.couleur_nbVoy,
-                                                font=("Helvetica", 20),
+                                                font=(don.font, 20),
                                                 command=lambda: don.SetSetNbVoy(314, self))
-        self.boutons_nbVoyelles[-1].place(x=0.96 * taille_x, y=y_voyelles + dy_voyelles, anchor=CENTER, width=34,
-                                            height=34)
 
     def Set_boutons_nbGrossesPlaques(self, tirage, don):
 
@@ -1921,68 +2019,49 @@ class Icones:
         taille_x = don.geom.taille_x
         self.boutons_nbVoyelles.append(Label(self.fen))
         self.boutons_nbVoyelles[0].configure(text='grosses\nplaques',
-                                               font=("Helvetica", 20), bg=don.proprietes.couleur_fond)
-        self.boutons_nbVoyelles[0].place(x=0.75 * taille_x, y=y_voyelles + 0.5 * dy_voyelles, anchor=CENTER)
+                                               font=(don.font, 20), bg=don.proprietes.couleur_fond)
+        # self.boutons_nbVoyelles[0].place(x=0.75 * taille_x, y=y_voyelles + 0.5 * dy_voyelles, anchor=CENTER)
 
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='0',
                                                 bg=don.proprietes.couleur_fond_nbVoy,
-                                                font=("Helvetica", 20),
+                                                font=(don.font, 20),
                                                 command=lambda: self.Set_nb_grosses_plaques(0, don))
-        self.boutons_nbVoyelles[-1].place(x=0.84 * taille_x, y=y_voyelles, anchor=CENTER, width=34, height=34)
-
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='1',
                                               bg=don.proprietes.couleur_fond_nbVoy,
-                                              font=("Helvetica", 20),
+                                              font=(don.font, 20),
                                               command=lambda: self.Set_nb_grosses_plaques(1, don))
-        self.boutons_nbVoyelles[-1].place(x=0.88 * taille_x, y=y_voyelles, anchor=CENTER, width=34, height=34)
-
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='2',
                                               bg=don.proprietes.couleur_fond_nbVoy,
-                                              font=("Helvetica", 20),
+                                              font=(don.font, 20),
                                               command=lambda: self.Set_nb_grosses_plaques(2, don))
-        self.boutons_nbVoyelles[-1].place(x=0.92 * taille_x, y=y_voyelles, anchor=CENTER, width=34, height=34)
-
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='3',
                                               bg=don.proprietes.couleur_fond_nbVoy,
-                                              font=("Helvetica", 20),
+                                              font=(don.font, 20),
                                               command=lambda: self.Set_nb_grosses_plaques(3, don))
-        self.boutons_nbVoyelles[-1].place(x=0.96 * taille_x, y=y_voyelles, anchor=CENTER, width=34, height=34)
-
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='4',
                                               bg=don.proprietes.couleur_fond_nbVoy,
-                                              font=("Helvetica", 20),
+                                              font=(don.font, 20),
                                               command=lambda: self.Set_nb_grosses_plaques(4, don))
-        self.boutons_nbVoyelles[-1].place(x=0.84 * taille_x, y=y_voyelles + dy_voyelles,
-                                          anchor=CENTER, width=34, height=34)
-
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='5',
                                               bg=don.proprietes.couleur_fond_nbVoy,
-                                              font=("Helvetica", 20),
+                                              font=(don.font, 20),
                                               command=lambda: self.Set_nb_grosses_plaques(5, don))
-        self.boutons_nbVoyelles[-1].place(x=0.88 * taille_x, y=y_voyelles + dy_voyelles,
-                                          anchor=CENTER, width=34, height=34)
-
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='6',
                                               bg=don.proprietes.couleur_fond_nbVoy,
-                                              font=("Helvetica", 20),
+                                              font=(don.font, 20),
                                               command=lambda: self.Set_nb_grosses_plaques(6, don))
-        self.boutons_nbVoyelles[-1].place(x=0.92 * taille_x, y=y_voyelles + dy_voyelles,
-                                          anchor=CENTER, width=34, height=34)
-
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='?',
                                               bg=don.proprietes.couleur_nbVoy,
-                                              font=("Helvetica", 20),
+                                              font=(don.font, 20),
                                               command=lambda: self.Set_nb_grosses_plaques(314, don))
-        self.boutons_nbVoyelles[-1].place(x=0.96 * taille_x, y=y_voyelles + dy_voyelles,
-                                          anchor=CENTER, width=34, height=34)
 
     def Set_nb_grosses_plaques(self, val, don):
         don.Set_nb_grosses_plaques(val)
@@ -2337,20 +2416,6 @@ def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
             else:
                 icones.fen.update()
 
-
-        #for ii in range(0, len(icones.boutons_tirage)):
-            #    icones.boutons_tirage[ii].configure(text=tirage.tirage[ii])
-            #    icones.triangle[ii].configure(text=tirage.tirage[ii])
-                #   if don.son_actif:
-            #       time.sleep(1.2)
-            #   time.sleep(don.tempo)
-            #   icones.boutons_tirage[ii].update()
-                #   if don.son_actif:
-                #      pygame.mixer.init()
-                #      cha = 'sons/' + tirage.tirage[ii].upper() + '.mp3'
-                #      pygame.mixer.music.load(cha)
-                #      pygame.mixer.music.play()
-
         chrono.actif = 1
         chrono.val_actuelle += 1
         icones.chrono.configure(text=chrono.val_actuelle)
@@ -2436,11 +2501,6 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
                 if ii == len(tirage.tirage_chiffres)-2:
                     flag_affichage_fini = True
 
-
-
-
-
-                # for ii in range(0,len(tirage.tirage_chiffres)-1):
                 icones.boutons_tirage[ii].configure(text=str(tirage.tirage_chiffres[ii]))
                 icones.boutons_tirage[ii].update()
 
@@ -2850,21 +2910,6 @@ class Rajout:
             text_area.insert(tk.INSERT, cha2)
             text_area.configure(state='disabled')  # disabled pour ne pas pouvoir modifier le texte
             tk.mainloop()
-
-
-            '''
-            root_rajouts_f2 = tk.Tk()
-            root_rajouts_f2.title('Définitions')
-            S_f2 = tk.Scrollbar(root_rajouts_f2)
-            T_f2 = tk.Text(root_rajouts_f2, height=20, width=80, font=(don.police_solution, don.taille_solution))
-            S_f2.pack(side=tk.RIGHT, fill=tk.Y)
-            T_f2.pack(side=tk.LEFT, fill=tk.Y)
-            S_f2.config(command=T_f2.yview)
-            T_f2.config(yscrollcommand=S_f2.set)
-            quote_f2 = cha2
-            T_f2.insert(tk.END, quote_f2)
-            tk.mainloop()
-            '''
 
         alphabet = 'abcdefghijklmnopqrstuvwxyz'
         self.Get_base_min()

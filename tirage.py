@@ -111,7 +111,6 @@ class Tirage:
         self.tirages_prepares_lettres = new_l
         self.tirages_prepares_chiffres = new_c
 
-
     def Genere_chiffres(self, don, *args):
         # appelée par lancement_tirage_suivant_chiffres (icones.py)
         self.tirage_chiffres = []
@@ -194,16 +193,64 @@ class Tirage:
                         10 * int(self.objectif_chiffres[2]) + finTirage[-1]
                 self.tirage_chiffres.append(cible)
         self.valide = 1
-
+    """
     def GUI_Tirage(self, don):
-        #ch = ''
-        #for ii in range(0, len(self.tirage)):
-        #    ch = ch + self.tirage[ii] + ' '
-        #w = tk.Label(master, text=ch, font=("Helvetica", 40))
-        #w.pack()
-        #w.mainloop()
-        # BoutonLancer = Button(Mafenetre, text ='Lancer', command = NouveauLance)
-        # BoutonQuitter = Button(Mafenetre, text ='Quitter', command = Mafenetre.destroy)
+        Mafenetre = tk.Tk()
+        Mafenetre.title('Tirage0')
+
+        # Définir une taille initiale
+        largeur = 800
+        hauteur = 250
+        Mafenetre.geometry(f"{largeur}x{hauteur}")
+
+        Bouton = []
+        motUtilisateur = MotUtilisateur()
+
+        boutons_reponse = []
+        for ii in range(0, len(self.tirage)):
+            b = Button(Mafenetre, text='', font=("Helvetica", 30), bg=self.couleur_bg_defaut)
+            boutons_reponse.append(b)
+            boutons_reponse[ii].place(relx=(ii + 1) / (len(self.tirage) + 1), rely=0.55, anchor=CENTER, width=50,
+                                      height=50)
+
+        for ii in range(0, len(self.tirage)):
+            b = Button(Mafenetre, text=self.tirage[ii], font=("Helvetica", 30), bg=self.couleur_bg_defaut)
+            Bouton.append(b)
+            b.configure(
+                command=lambda c=ii: motUtilisateur.AddLettre(self, c, Bouton[c], boutons_reponse))
+            Bouton[ii].place(relx=(ii + 1) / (len(self.tirage) + 1), rely=0.12, anchor=CENTER, width=50, height=50)
+
+        # Placer les boutons en fonction de la largeur de la fenêtre
+        BoutonErase = Button(Mafenetre, text='effacer', font=("Helvetica", 20),
+                             command=lambda: motUtilisateur.DelLettre(self, Bouton, boutons_reponse))
+        BoutonErase.place(relx=0.2, rely=0.8, anchor=CENTER)
+
+        BoutonRAZ = Button(Mafenetre, text='RAZ', font=("Helvetica", 20),
+                           command=lambda: motUtilisateur.DelLettreRAZ(self, Bouton, boutons_reponse))
+        BoutonRAZ.place(relx=0.4, rely=0.8, anchor=CENTER)
+
+        BoutonSolutions = Button(Mafenetre, text='voir les solutions', font=("Helvetica", 20),
+                                 command=lambda: solveur(self, don))
+        BoutonSolutions.place(relx=0.75, rely=0.8, anchor=CENTER)
+
+        # Redimensionner les widgets lorsque la fenêtre est redimensionnée
+        def resize(event):
+            nonlocal largeur, hauteur
+            largeur = event.width
+            hauteur = event.height
+            for b in boutons_reponse:
+                b.place(relx=b.place_info()['relx'] * largeur / 600, rely=b.place_info()['rely'] * hauteur / 250,
+                        anchor=CENTER, width=50, height=50)
+            for b in Bouton:
+                b.place(relx=b.place_info()['relx'] * largeur / 600, rely=b.place_info()['rely'] * hauteur / 250,
+                        anchor=CENTER, width=50, height=50)
+
+        Mafenetre.bind("<Configure>", resize)
+
+        Mafenetre.mainloop()
+
+    
+    def GUI_Tirage(self, don):
 
         Mafenetre = tk.Tk()
         Mafenetre.title('Tirage')
@@ -216,15 +263,12 @@ class Tirage:
         for ii in range(0, len(self.tirage)):
             b = Button(Mafenetre, text='', font=("Helvetica", 30), bg=self.couleur_bg_defaut)
             boutons_reponse.append(b)
-            # b.configure(command=lambda c=ii: motUtilisateur.AddLettre(self, c, Bouton[c]))
             boutons_reponse[ii].place(x=60 + 54 * ii, y=110, anchor=CENTER, width=50, height=50)
 
         for ii in range(0, len(self.tirage)):
             b = Button(Mafenetre, text=self.tirage[ii], font=("Helvetica", 30), bg=self.couleur_bg_defaut)
             Bouton.append(b)
             b.configure(command=lambda c=ii: motUtilisateur.AddLettre(self, c, Bouton[c], boutons_reponse))
-            #Bouton.append(Button(Mafenetre, text=self.tirage[ii], font=("Helvetica", 30),
-            #                    command=lambda c=ii: motUtilisateur.AddLettre(self.tirage[c])))
             Bouton[ii].place(x=60+54*ii, y=30, anchor=CENTER, width=50, height=50)
 
         BoutonErase = Button(Mafenetre, text='effacer', font=("Helvetica", 20),
@@ -240,10 +284,11 @@ class Tirage:
         BoutonSolutions.place(relx=0.75, y=200, anchor=CENTER)
         Mafenetre.maj_temps_restant()
         Mafenetre.mainloop()
+    """
 
     def Affiche_solutions(self, don):
 
-        def maFoncF2(event):
+        def maFoncF2(event=None):
             root_f2 = tk.Tk()
             root_f2.title('Définitions')
             screen_width = root_f2.winfo_screenwidth()
@@ -301,9 +346,21 @@ class Tirage:
 
         # option F2
         root.bind("<F2>", maFoncF2)
+
+        # menu pour accéder directement aux définitions (par ex tablettes où on n'a pas de F2
+        menu_bar = Menu(root)
+        root.config(menu=menu_bar)
+        menu_bar.add_command(label="Quitter", command=root.destroy)
+        menu_bar.add_command(label="Définitions (F2)", command=maFoncF2)
         tk.mainloop()
 
+
     def Affiche_solutions_chiffres(self, don):
+        """
+        retourne les solutions en chiffres
+        :param don:
+        :return:
+        """
         cible = self.tirage_chiffres[-1]
         nbPt = []
         for ii in range(len(self.liste_approches)):

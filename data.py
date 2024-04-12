@@ -46,6 +46,8 @@ class Data:
         self.taille_solution = 20
         self.police_solution = 'Consolas'
         self.pause = 0
+        self.font = "corbel"
+        self.font_tirage = "Helvetica"
 
     def Analyse_sabot_lettres(self, alphabet, consonnes, voyelles, boutons_val, bouton_warn, fen):
         print(alphabet)
@@ -221,6 +223,9 @@ class Geometrie:
         self.taille_y0 = 470
         self.taille_x = 954
         self.taille_y = 430
+
+        self.tx = 0
+        self.ty = 0
         # positions du chrono
         self.posX = 0.48 * self.taille_x
         self.posY = 200
