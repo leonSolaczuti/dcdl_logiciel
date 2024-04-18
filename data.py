@@ -47,7 +47,8 @@ class Data:
         self.police_solution = 'Consolas'
         self.pause = 0
         self.font = "corbel"
-        self.font_tirage = "Helvetica"
+        self.font_tirage = "corbel"
+        self.disposition = 0 # 0 en triangle / 1 pour consonnes en haut et voyelles en bas
 
     def Analyse_sabot_lettres(self, alphabet, consonnes, voyelles, boutons_val, bouton_warn, fen):
         print(alphabet)
