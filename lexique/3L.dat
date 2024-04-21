@@ -2,12 +2,12 @@ ace ace ace
 aad ada Ada;langage de programmation orienté objet dont les premières versions remontent au début des années 1980
 ado ado ado
 afu afu AFU(09);acronyme de assistance au freinage d'urgence
-aag aga aga*;(ou agha) titre d'un officier civil ou militaire, ou une partie de ce titre. En tant que titre, il était placé après le nom des militaires ou des fonctionnaires de la cour qui le recevait
+aag aga aga;(ou agha) titre d'un officier civil ou militaire, ou une partie de ce titre. En tant que titre, il était placé après le nom des militaires ou des fonctionnaires de la cour qui le recevait
 aeg age age;(Agriculture) pièce de la charrue, horizontale, reliée au tracteur, et qui soutient les pièces aratoires : soc et versoir, rasette, coutre, etc. 
 aeg age âge
 aeg age âgé
 agi agi agi
-adi aid aïd*(09);Aïd-el-Kébir ou Aïd-el-Fitr (fêtes musulmanes)
+adi aid aïd(09);Aïd-el-Kébir ou Aïd-el-Fitr (fêtes musulmanes)
 ail ail ail
 air air air
 ais ais ais;(vieilli) planche de bois
@@ -20,13 +20,13 @@ aan ana ana;s’emploie isolément pour désigner un recueil de pensées, un almanach
 aen ane âne
 ans ans ans
 aip api api
-app app app*#(20);application
+app app app(20);application
 aar ara ara
 acr arc arc
 aer are are
 ars ars ars
 art art art
-aas asa ASA*
+aas asa ASA
 aes ase ase;plante herbacée vivace de la famille des Apiaceae, dont l’espèce la plus connue est l’ase fétide 
 aux aux aux
 aev ave Ave
@@ -36,7 +36,7 @@ abc bac bac
 abi bai bai
 abl bal bal
 abn ban ban
-abo bao bao*(22);petit pain farci chinois 
+abo bao bao(22);petit pain farci chinois 
 abr bar bar
 abs bas bas
 abt bat bât
@@ -47,11 +47,11 @@ bee bee béé;béer (vi) : ouvrir la bouche d’étonnement, d’admiration ou de curios
 bel bel bel
 ben ben ben;bénard, pantalon
 ber ber ber;charpente sur laquelle on fait reposer la coque d'un navire
-beu beu beu*#(16);beuh : cannabis
+beu beu beu(16);beuh : cannabis
 bey bey bey;titre du sultan ou des hauts fonctionnaires ottomans
-bbi bib bib*#(21);biberon
+bbi bib bib(21);biberon
 bci bic Bic
-bfi bif bif*#(01);bifteck
+bfi bif bif(01);bifteck
 bio bio bio
 bip bip bip
 bis bis bis
@@ -59,7 +59,7 @@ bit bit bit;unité d'information pouvant prendre la valeur 0 ou la valeur 1
 bel ble blé
 abo boa boa
 bbo bob bob;chapeau de toile pliable
-bfo bof bof*;marquant la déception
+bfo bof bof;marquant la déception
 blo bol bol
 bno bon bon
 bop bop bop;style de jazz
@@ -94,33 +94,33 @@ coq coq coq
 cor cor cor
 cos cos COS(00);coefficient d'occupation des sols
 cou cou cou
-cox cox cox*(07);pomme à couteau d'une variété à chair juteuse et acidulée
-cer cre cré*(01);sacré
+cox cox cox(07);pomme à couteau d'une variété à chair juteuse et acidulée
+cer cre cré(01);sacré
 cir cri cri
 cru cru cru
 cru cru crû
 clu cul cul
-cpu cup cup*(21);unité de mesure utilisée en cuisine ou protection féminine en forme de coupe que l'on place dans le vagin pour recueillir les flux de menstruation
+cpu cup cup(21);unité de mesure utilisée en cuisine ou protection féminine en forme de coupe que l'on place dans le vagin pour recueillir les flux de menstruation
 ctu cut cut(00);passage brutal d'un plan à un autre (préférer "coupe sèche")
 abd dab dab;distributeur automatique de billets ou parent
-acd dac d'ac*(01)
-adl dal dal*(21);(ou dhal) plat d’origine indienne réalisé à base de lentilles, de pois ou de haricots
+acd dac d'ac(01)
+adl dal dal(21);(ou dhal) plat d’origine indienne réalisé à base de lentilles, de pois ou de haricots
 adm dam dam;(nm) préjudice (au grand dam de quelqu'un)
 adn dan dan
 ado dao dao;(ou tao) principe d'ordre et d'unité du cosmos dans la pensée chinoise ancienne
 bde deb deb;(nf) débutante
-bde deb déb*#(05)
-cde dec déc'*#;caché à déconner
+bde deb déb(05)
+cde dec déc';caché à déconner
 del del DEL;diode électroluminescente
-dem dem dém*#(05);démission
-deo deo déo*#;déodorant
+dem dem dém(05);démission
+deo deo déo;déodorant
 der der der;dernier
 des des des
 des des dés
 des des dès
 dey dey dey;ancien chef du gouvernement d'Alger
-adi dia dia#(08);diapositive
-din din DIN*
+adi dia dia(08);diapositive
+din din DIN
 dit dit dit
 dix dix dix
 cdo doc doc
@@ -142,7 +142,7 @@ aeu eau eau
 ceu ecu ecu(05)
 ceu ecu écu
 ego ego ego
-ego ego égo~(12)
+ego ego égo(12)
 elu elu élu
 emu emu ému
 eno eon éon;chez les gnostiques ensemble des puissances éternelles émanées de l'être par lesquelles il peut exercer son action sur le monde
@@ -157,9 +157,9 @@ eeu eue eue
 esu eus eus
 eux eux eux
 eev eve Ève(12);la femme considérée comme éternel féminin
-eox exo exo*#(09);exercice
+eox exo exo(09);exercice
 acf fac fac
-aff faf faf*;fasciste
+aff faf faf;fasciste
 afn fan fan
 afq faq FAQ(02);foire aux questions
 afr far far
@@ -175,7 +175,7 @@ fil fil fil
 fin fin fin
 fiu fiu fiu(15);(invariable) nonchalance ou détachement causé par des états d’âme
 fiv fiv FIV;pour fécondation in vitro
-bfo fob fob*#;en marine commerciale franco à bord
+bfo fob fob;en marine commerciale franco à bord
 cfo foc foc
 fio foi foi
 flo fol fol
@@ -184,26 +184,26 @@ fou fou fou
 fox fox fox
 fiu fui fui
 fnu fun fun
-fru fur fur*;à proportion ou à mesure
-ftu fut fut~(12)
+fru fur fur;à proportion ou à mesure
+ftu fut fut(12)
 ftu fut fût
 agg gag gag
 agi gai gai
 agl gal gal;unité de mesure de l'accélération de la pesanteur 0.01 m par s2
 agn gan gan;dialecte chinois
 agp gap gap
-agv gav gav*(22);garantie accidents de la vie
+agv gav gav(22);garantie accidents de la vie
 agy gay gay
 agz gaz gaz
 egl gel gel
-ego geo géo*(01);géographie
+ego geo géo(01);géographie
 fgi gif gif(15);Graphics Interchange Format : format d'image numérique couramment utilisé sur la Toile
 gin gin gin
 gir gir GIR(12);groupe d'intervention régionale
 glu glu glu
 gio goi goï;(ou goy) terme par le quel les juifs désignent les non-juifs
 gno gon gon;symbole du grade en géométrie
-gos gos gos*(15)
+gos gos gos(15)
 goy goy goy;(ou goï) qui n'est pas juif
 egr gre gré
 egu gue gué
@@ -212,10 +212,10 @@ gsu gus gus;(ou gusse) familièrement un homme quelconque
 gmy gym gym
 ahi hai haï
 ahn han han;qui se rapporte aux Han
-ehu heu heu*
+ehu heu heu
 chi hic hic
 ehi hie hie;(ou dame) lourde masse emmanchée servant à damer les pavages
-hit hit hit*
+hit hit hit
 hot hot hot
 bhu hub hub(05);plate-forme aéroportuaire de correspondance pour concentrer les avions
 ehu hue hué
@@ -223,7 +223,7 @@ hiu hui hui;aujourd'hui
 cii ici ici
 dei ide ide;poisson d'eau douce de la famille des cyprinidés ressemblant au gardon
 fis ifs ifs
-eil ile ile~(12)
+eil ile ile(12)
 eil ile île
 ils ils ils
 ino ion ion
@@ -231,17 +231,17 @@ eip ipe ipé(00);arbre d'Amérique tropicale appelé aussi ébène verte
 eir ire ire
 ios iso iso;norme ISO définie par l'Organisation internationale de normalisation
 eiv ive ive;(ou ivette) nom vulgaire d'une plante de la famille des labiées
-eix ixe ixé*;ixer(vt) : classer un film dans la catégorie X
-ajm jam jam*#(01);(ou jam-session) séance d'improvisation d'un groupe de musiciens de jazz
-ajn jan jan*;au tric trac coup qui fait perdre ou gagner des points
-ajp jap jap*#(01);abréviation de japonais
-ajr jar jar*;(ou jard) amas de sable et de gravier qui se trouve au fond d'une rivière
+eix ixe ixé;ixer(vt) : classer un film dans la catégorie X
+ajm jam jam(01);(ou jam-session) séance d'improvisation d'un groupe de musiciens de jazz
+ajn jan jan;au tric trac coup qui fait perdre ou gagner des points
+ajp jap jap(01);abréviation de japonais
+ajr jar jar;(ou jard) amas de sable et de gravier qui se trouve au fond d'une rivière
 ajs jas jas;barre transversale d'un ancre ou bassin de saline ou bergerie dans le Midi
 ejt jet jet
 eju jeu jeu
 bjo job job
 jsu jus jus
-akn kan kan*;(ou khan) ancien titre des souverains mongols
+akn kan kan;(ou khan) ancien titre des souverains mongols
 aks kas kas
 ekt ket ket(11);enfant des rues de Bruxelles souvent malicieux et frondeur
 hik khi khi
@@ -255,13 +255,13 @@ kop kop kop(13);tribune où se rassemblent les supporteurs d'un club de foot ou c
 kot kot kot;(ou kotch ou kotje) chambre d'étudiant ou débarras en Belgique
 iks ksi ksi
 akw kwa kwa(00);ensemble d'une cinquantaine de langues parlées au Nigeria et en Côte d'Ivoire
-kuy kyu kyu*;degré dans les sports de combat japonais
+kuy kyu kyu;degré dans les sports de combat japonais
 acl lac lac
 adl lad lad;garçon d'écurie
 ail lai lai
 alo lao lao
 als las las
-del led led*(10);diode électroluminescente
+del led led(10);diode électroluminescente
 eil lei lei
 ekl lek lek;unité monétaire principale de l'Albanie
 els les les
@@ -278,7 +278,7 @@ ils lis lis
 ilt lit lit
 blo lob lob;au tennis coup faisant passer la balle très haut pour que l'adversaire ne puisse pas l'intercepter
 flo lof lof;côté du navire exposé au vent
-glo log log#(01)
+glo log log(01)
 ilo loi loi
 lot lot lot
 elu lue lue
@@ -291,12 +291,12 @@ acm mac mac
 aim mai mai
 alm mal mal
 amn man man;(ou ver blanc) larve du hanneton
-amo mao mao*#(01)
+amo mao mao(01)
 ams mas mas
 amt mat mat
-amt mat mat'*#(06);matin
+amt mat mat'(06);matin
 amt mat mât
-amx max max*(01)
+amx max max(01)
 cem mec mec
 emr mer mer
 ems mes mes
@@ -323,13 +323,13 @@ mru mur mûr
 msu mus mus
 emy mye mye;mollusque bivalve comestible vivant dans le sable
 acn nac nac(06);nouvel animal de compagnie
-anp nap NAP*;acronyme de Neuilly Auteuil Passy : élégant ou distingué
+anp nap NAP;acronyme de Neuilly Auteuil Passy : élégant ou distingué
 any nay nay(00);(ou ney) flûte de roseau du Proche Orient
 een nee née
 efn nef nef
 emn nem nem
-eno neo néo*(01);néoplasme : prolifération de tissus cancéreux
-ens nes nes*#(01);nescafé
+eno neo néo(01);néoplasme : prolifération de tissus cancéreux
+ens nes nes(01);nescafé
 ens nes nés
 ent net net
 eny ney ney(00);(ou nay) flûte de roseau du Proche Orient
@@ -340,7 +340,7 @@ ein nie nié
 mno nom nom
 nno non non
 nos nos nos
-nos nos nôs*
+nos nos nôs
 enu nue nue
 enu nue nué;nuer(vt) : disposer des couleurs selon les nuances
 inu nui nui
@@ -355,7 +355,7 @@ ilo oil oïl
 ako oka oka;fromage du Canada
 alo ola ola
 cno onc onc;jamais
-eop ope ope*;trou percé dans un mur
+eop ope ope;trou percé dans un mur
 eor ore öre;monnaie divisionnaire de la Suède
 ors ors ors
 eos ose ose
@@ -363,7 +363,7 @@ eos ose osé
 ost ost ost;(ou host) armée au Moyen Âge
 eot ote ôté
 dou oud oud(00);instrument de musique à cordes pincées des pays arabes
-fou ouf ouf*
+fou ouf ouf
 iou oui oui
 iou oui ouï
 otu out out
@@ -376,13 +376,13 @@ anp pan pan
 apr par par
 aps pas pas
 apt pat pat
-dep ped pèd*#(04)
-elp pel PEL*(15)
+dep ped pèd(04)
+elp pel PEL(15)
 epp pep pep
 ept pet pet
 epu peu peu
 hip phi phi
-hop pho phô*(13)
+hop pho phô(13)
 bip pib PIB(13)
 cip pic pic
 eip pie pie
@@ -422,15 +422,15 @@ eer ree réé;réer (vi) : bramer, crier en parlant du cerf
 egr reg reg
 emr rem rem
 epr rep rep(17);réseau d'éducation prioritaire
-hor rho rho*
+hor rho rho
 hor rho rhô
 air ria ria
 bir rib RIB
 fir rif rif;(ou rifle) bagarre ou combat
 irs ris ris
-irt rit rit*#(06);rite
+irt rit rit(06);rite
 irz riz riz
-bor rob rob*;suc épuré d'un fruit cuit épaissi jusqu'à consistance de miel
+bor rob rob;suc épuré d'un fruit cuit épaissi jusqu'à consistance de miel
 cor roc roc
 ior roi roi
 mor rom rom;qui appartient à l'un des trois groupes dont l'ensemble forme les Tsiganes ou (ROM) en informatique synonyme de mémoire morte
@@ -447,7 +447,7 @@ ais sai saï;autre nom du capucin (singe cébidé d'Amérique centrale vivant en tro
 als sal sal;grand arbre de l'Inde fournissant un bois précieux
 ars sar sar
 ass sas sas
-asx sax sax*;saxophone
+asx sax sax;saxophone
 ces sec sec
 els sel sel
 ens sen sen
@@ -469,13 +469,13 @@ nos son son
 ost sot sot
 osu sou sou
 aps spa spa(04)
-eps spe spé*#
+eps spe spé
 ips spi spi;(ou spinnaker) voile triangulaire de grande surface légère et très creuse que les yachts envoient dans la marche au vent arrière et aux allures portantes
 csu suc suc;liquide organique susceptible d'être extrait des tissus végétaux et animaux ou liquide organique produit par sécrétion et contenant des enzymes ou le meilleur de la substance de quelque chose
 dsu sud sud
-esu sue sue*
+esu sue sue
 esu sue sué
-psu sup sup*#
+psu sup sup
 rsu sur sur
 rsu sur sûr
 ssu sus sus
@@ -493,7 +493,7 @@ cet tec tec;abréviation de Tonne Équivalent Charbon : Unité employée de même que
 eet tee tee
 ekt tek tek
 elt tel tel
-ent ten ten#(05);abréviation de tenuto (expression qui indique que les sons doivent être tenus exactement selon leur durée)
+ent ten ten(05);abréviation de tenuto (expression qui indique que les sons doivent être tenus exactement selon leur durée)
 ept tep tep;abréviation de Tonne Équivalent Pétrole : unité servant dans les bilans énergétiques à comparer les sources d'énergie au pétrole brut pris comme référence (selon les estimations une tonne de pétrole é
 ert ter ter
 est tes tes
@@ -539,7 +539,7 @@ ilv vil vil;de peu de prix ou sans grandeur d'âme
 inv vin vin
 isv vis vis
 itv vit vit;sexe de l'homme
-alv vla v'là*(01);voilà
+alv vla v'là(01);voilà
 lov vol vol
 osv vos vos
 euv vue vue
@@ -550,7 +550,7 @@ bew web web(00)
 kow wok wok(00);ustensile de cuisson de forme conique
 now won won;monnaie de la Corée du Sud et de la Corée du Nord
 suw wus wus
-isx xis xis~(12)
+isx xis xis(12)
 aky yak yak
 eny yen yen;unité monétaire principale du Japon
 iny yin yin;principe passif complémentaire du yang
@@ -565,11 +565,11 @@ enz zen zen
 epz zep ZEP(00);zone d'éducation prioritaire
 giz zig zig;(ou zigue) individu
 ipz zip Zip;(nom déposé) fermeture à glissière
-boz zob zob*
+boz zob zob
 eoz zoe zoé;forme larvaire de certains crustacés
 ooz zoo zoo
 puz zup ZUP;zone à urbaniser par priorité
 suz zus ZUS(10);zone urbaine sensible
-zzz zzz zzz*#;caché à zzzz...
+zzz zzz zzz;caché à zzzz...
 eil iel iel(23)
 fmo mof mof(23);meilleur ouvrier de France

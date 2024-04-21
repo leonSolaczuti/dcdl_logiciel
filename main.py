@@ -7,6 +7,7 @@ import pygame
 from icones import *
 from tirage import *
 import numpy
+import copy
 from motUtilisateur import *
 #from datetime import timedelta, datetime, date, time
 

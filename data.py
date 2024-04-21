@@ -49,6 +49,8 @@ class Data:
         self.font = "corbel"
         self.font_tirage = "corbel"
         self.disposition = 0 # 0 en triangle / 1 pour consonnes en haut et voyelles en bas
+        self.affiche_boutons_lettres = False # True seulement si on est en mode manuel, inutile sinon d'afficher le pave numerique
+        self.affiche_boutons_chiffres = False  # True seulement si on est en mode manuel
 
     def Analyse_sabot_lettres(self, alphabet, consonnes, voyelles, boutons_val, bouton_warn, fen):
         print(alphabet)
