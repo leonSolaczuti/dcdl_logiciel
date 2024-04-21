@@ -1434,7 +1434,7 @@ class Icones:
         label_type.place(x=170, y=40, anchor=CENTER)
         label_type.configure(text='Type de sabot :', font=("Helvetica", 20))
 
-        typeSabots = ['Tournoi', 'Le Francophone', 'manuel']
+        typeSabots = ['Tournoi', 'Le Francophone', 'TV', 'manuel']
         var_typeSabot = StringVar(fenetre)
         var_typeSabot.set(typeSabots[0])
         bouton_typeSabot = OptionMenu(fenetre, var_typeSabot, *typeSabots)
@@ -1447,12 +1447,17 @@ class Icones:
                                    34, 10, 1, 4, 2, 2]
             valeurs_gadu = [179, 26, 66, 36, 323, 29, 29, 23, 186, 13, 8, 83, 54,
                             103, 173, 34, 13, 149, 162, 117, 129, 25, 8, 13, 10, 10]
+            valeurs_tv = [185, 27, 57, 72, 393, 33, 30, 23, 165, 4, 1, 97, 52,
+                          126, 114, 51, 22, 110, 134, 101, 132, 39, 2, 12, 11, 5]
             if var_typeSabot.get() == 'Le Francophone':
                 for ii in range(26):
                     value[ii].set(str(valeurs_francophone[ii]))
             if var_typeSabot.get() == 'Tournoi':
                 for ii in range(26):
                     value[ii].set(str(valeurs_gadu[ii]))
+            if var_typeSabot.get() == 'TV':
+                for ii in range(26):
+                    value[ii].set(str(valeurs_tv[ii]))
         var_typeSabot.trace("w", callback_typeSabot)
 
         fenetre.mainloop()
