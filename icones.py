@@ -1434,7 +1434,7 @@ class Icones:
         label_type.place(x=170, y=40, anchor=CENTER)
         label_type.configure(text='Type de sabot :', font=("Helvetica", 20))
 
-        typeSabots = ['Le Francophone', 'manuel']
+        typeSabots = ['Tournoi', 'Le Francophone', 'manuel']
         var_typeSabot = StringVar(fenetre)
         var_typeSabot.set(typeSabots[0])
         bouton_typeSabot = OptionMenu(fenetre, var_typeSabot, *typeSabots)
@@ -1442,13 +1442,17 @@ class Icones:
         bouton_typeSabot.place(x=400, y=40, anchor=CENTER, width=250, height=50)
 
         def callback_typeSabot(*args):
+            # francophone : 245 voyelles / 278 consonnes
             valeurs_francophone = [42, 8, 16, 20, 94, 8, 8, 6, 40, 2, 1, 26, 14, 34, 33, 14, 6, 32, 36, 30,
                                    34, 10, 1, 4, 2, 2]
+            valeurs_gadu = [179, 26, 66, 36, 323, 29, 29, 23, 186, 13, 8, 83, 54,
+                            103, 173, 34, 13, 149, 162, 117, 129, 25, 8, 13, 10, 10]
             if var_typeSabot.get() == 'Le Francophone':
                 for ii in range(26):
                     value[ii].set(str(valeurs_francophone[ii]))
-                print(len(valeurs))
-            print('toto')
+            if var_typeSabot.get() == 'Tournoi':
+                for ii in range(26):
+                    value[ii].set(str(valeurs_gadu[ii]))
         var_typeSabot.trace("w", callback_typeSabot)
 
         fenetre.mainloop()

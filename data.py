@@ -12,12 +12,32 @@ from motUtilisateur import *
 
 class Data:
     def __init__(self):
-        self.listeCons = 'BBBBBBBBCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDFFFFFFFFGGGGGGGGHHHHHHJJKLLLLLLLLLLLLLLL' + \
-            'LLLLLLLLLLLMMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNPPPPPPPPPPPPPPQQQQQQRRRRRRRRRRRRRRRRRR' + \
-            'RRRRRRRRRRRRRRSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTVVVVVVVVVVWXXXXZZ'
-        self.listeVoy = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE' + \
-            'EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIOOOOOOOO' + \
-            'OOOOOOOOOOOOOOOOOOOOOOOOOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUYY'
+        valeurs_francophone = [42, 8, 16, 20, 94, 8, 8, 6, 40, 2, 1, 26, 14, 34, 33, 14, 6, 32, 36, 30,
+                               34, 10, 1, 4, 2, 2]
+        valeurs_gadu = [179, 26, 66, 36, 323, 29, 29, 23, 186, 13, 8, 83, 54,
+                        103, 173, 34, 13, 149, 162, 117, 129, 25, 8, 13, 10, 10]
+        liste_voy = 'AEIOUY'
+        liste_cons = 'BCDFGHJKLMNPQRSTVWXZ'
+        alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        self.listeCons = ''
+        self.listeVoy = ''
+        compt_voy = 0
+        compt_cons = 0
+        for ii in range(len(alphabet)):
+            if alphabet[ii] in liste_voy:
+                for jj in range(valeurs_gadu[ii]):
+                    self.listeVoy = self.listeVoy + alphabet[ii]
+                    compt_voy = compt_voy + 1
+            if alphabet[ii] in liste_cons:
+                for jj in range(valeurs_gadu[ii]):
+                    self.listeCons = self.listeCons + alphabet[ii]
+                    compt_cons = compt_cons + 1
+        # self.listeCons = 'BBBBBBBBCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDFFFFFFFFGGGGGGGGHHHHHHJJKLLLLLLLLLLLLLLL' + \
+        #     'LLLLLLLLLLLMMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNPPPPPPPPPPPPPPQQQQQQRRRRRRRRRRRRRRRRRR' + \
+        #     'RRRRRRRRRRRRRRSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTVVVVVVVVVVWXXXXZZ'
+        # self.listeVoy = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE' + \
+        #     'EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIOOOOOOOO' + \
+        #     'OOOOOOOOOOOOOOOOOOOOOOOOOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUYY'
         self.nbLettres = 11
         self.nbVoy = []
         self.dico = []
