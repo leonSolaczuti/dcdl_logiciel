@@ -58,8 +58,8 @@ class Data:
         self.bareme_chiffres = Bareme()
         self.nb_grosses_plaques = 314
         self.type_actuel = ''
-        self.son_actif = 1
-        self.tempo = 0.6
+        self.son_actif = 0
+        self.tempo = 0 # 0.6
         self.fichier_prepa_l = 'prepa_l.txt'
         self.fichier_prepa_c = 'prepa_c.txt'
         self.rajoutsActifs = [1,1,0] # rajouts+1, +2 et +3

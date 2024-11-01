@@ -28,6 +28,10 @@ class Tirage:
         self.valide = 0
         self.tirages_prepares_lettres = lecture_tirages_prepares('lettres', don.fichier_prepa_l)
         self.tirages_prepares_chiffres = lecture_tirages_prepares('chiffres', don.fichier_prepa_c)
+        self.top_impose_lettres = 0 # pour imposer des tirages avec un top a ce nombre de lettres
+        self.nb_sol_chiffres_max = 0 # pour imposer des tirages de chiffres avec un nombre max de solutions
+        self.nb_sol_lettres_max = 0 # idem pour les lettres (deux mots anagrammes comptent pour une seule solution)
+        self.sansE = False
 
     def Reinit(self):
         self.sol_basique = []
@@ -67,7 +71,28 @@ class Tirage:
         self.sol_complet = []
         self.sol_definitions = []
         if len(args) == 0:
-            self.tirage = genereTirageLettres(don.nbLettres, don.nbVoy, don.listeCons, don.listeVoy)
+            liste_voy = don.listeVoy
+            if self.sansE:
+                liste_voy = liste_voy.replace('E','')
+            self.tirage = genereTirageLettres(don.nbLettres, don.nbVoy, don.listeCons, liste_voy)
+            if self.top_impose_lettres>0 or self.nb_sol_lettres_max>0:
+                # il faut avoir un top a ce nombre de lettres : on recommence jusqu'a trouver un tirage qui convient
+                tirage_trouve = False
+                nb_sol_max = self.nb_sol_lettres_max
+                rech_nb_sol = (self.nb_sol_lettres_max > 0)
+                if nb_sol_max==0:
+                    nb_sol_max = 1000000
+                while not tirage_trouve:
+                    self.tirage = genereTirageLettres(don.nbLettres, don.nbVoy, don.listeCons, liste_voy)
+                    top_trouve, valeur_top, nb_sol = self.Solveur_Top(don, self.top_impose_lettres, rech_nb_sol)
+                    tirage_trouve = True
+                    if self.top_impose_lettres>0:
+                        if (not top_trouve) or (not valeur_top==self.top_impose_lettres):
+                            tirage_trouve = False
+                    if self.nb_sol_lettres_max>0:
+                        if nb_sol>nb_sol_max:
+                            tirage_trouve = False
+
             self.tirageMin = self.tirage.lower()
             # mise dans l'ordre alphabétique, sinon les combinaisons de lettres ne correspondent pas à celles,
             # ordonnées, du dico
@@ -121,6 +146,19 @@ class Tirage:
         if len(args) == 0:
             self.tirage_chiffres = genereTirageChiffres(don.nbPlaquesChiffres, don.listeChiffres,
                                                don.borneMin, don.borneMax, don.nb_grosses_plaques)
+            if self.nb_sol_chiffres_max>0:
+                tirage_ok = False
+                compteur = 0
+                while not tirage_ok:
+                    compteur += 1
+                    self.tirage_chiffres = genereTirageChiffres(don.nbPlaquesChiffres, don.listeChiffres,
+                                                                don.borneMin, don.borneMax, don.nb_grosses_plaques)
+                    ecart, nb_sol = self.nb_solutions_chiffres(don)
+                    if nb_sol<=self.nb_sol_chiffres_max:
+                        tirage_ok = True
+                    if compteur>100:
+                        tirage_ok = True
+                        print("Pas de tirage trouvé qui vérifie les conditions")
            # self.tirage_etendu = self.tirage_chiffres[:-1]
         # le tirage est imposé
         elif len(args) == 1:
@@ -193,98 +231,6 @@ class Tirage:
                         10 * int(self.objectif_chiffres[2]) + finTirage[-1]
                 self.tirage_chiffres.append(cible)
         self.valide = 1
-    """
-    def GUI_Tirage(self, don):
-        Mafenetre = tk.Tk()
-        Mafenetre.title('Tirage0')
-
-        # Définir une taille initiale
-        largeur = 800
-        hauteur = 250
-        Mafenetre.geometry(f"{largeur}x{hauteur}")
-
-        Bouton = []
-        motUtilisateur = MotUtilisateur()
-
-        boutons_reponse = []
-        for ii in range(0, len(self.tirage)):
-            b = Button(Mafenetre, text='', font=("Helvetica", 30), bg=self.couleur_bg_defaut)
-            boutons_reponse.append(b)
-            boutons_reponse[ii].place(relx=(ii + 1) / (len(self.tirage) + 1), rely=0.55, anchor=CENTER, width=50,
-                                      height=50)
-
-        for ii in range(0, len(self.tirage)):
-            b = Button(Mafenetre, text=self.tirage[ii], font=("Helvetica", 30), bg=self.couleur_bg_defaut)
-            Bouton.append(b)
-            b.configure(
-                command=lambda c=ii: motUtilisateur.AddLettre(self, c, Bouton[c], boutons_reponse))
-            Bouton[ii].place(relx=(ii + 1) / (len(self.tirage) + 1), rely=0.12, anchor=CENTER, width=50, height=50)
-
-        # Placer les boutons en fonction de la largeur de la fenêtre
-        BoutonErase = Button(Mafenetre, text='effacer', font=("Helvetica", 20),
-                             command=lambda: motUtilisateur.DelLettre(self, Bouton, boutons_reponse))
-        BoutonErase.place(relx=0.2, rely=0.8, anchor=CENTER)
-
-        BoutonRAZ = Button(Mafenetre, text='RAZ', font=("Helvetica", 20),
-                           command=lambda: motUtilisateur.DelLettreRAZ(self, Bouton, boutons_reponse))
-        BoutonRAZ.place(relx=0.4, rely=0.8, anchor=CENTER)
-
-        BoutonSolutions = Button(Mafenetre, text='voir les solutions', font=("Helvetica", 20),
-                                 command=lambda: solveur(self, don))
-        BoutonSolutions.place(relx=0.75, rely=0.8, anchor=CENTER)
-
-        # Redimensionner les widgets lorsque la fenêtre est redimensionnée
-        def resize(event):
-            nonlocal largeur, hauteur
-            largeur = event.width
-            hauteur = event.height
-            for b in boutons_reponse:
-                b.place(relx=b.place_info()['relx'] * largeur / 600, rely=b.place_info()['rely'] * hauteur / 250,
-                        anchor=CENTER, width=50, height=50)
-            for b in Bouton:
-                b.place(relx=b.place_info()['relx'] * largeur / 600, rely=b.place_info()['rely'] * hauteur / 250,
-                        anchor=CENTER, width=50, height=50)
-
-        Mafenetre.bind("<Configure>", resize)
-
-        Mafenetre.mainloop()
-
-    
-    def GUI_Tirage(self, don):
-
-        Mafenetre = tk.Tk()
-        Mafenetre.title('Tirage')
-        Mafenetre.geometry("600x250")
-
-        Bouton = []
-        motUtilisateur = MotUtilisateur()
-
-        boutons_reponse = []
-        for ii in range(0, len(self.tirage)):
-            b = Button(Mafenetre, text='', font=("Helvetica", 30), bg=self.couleur_bg_defaut)
-            boutons_reponse.append(b)
-            boutons_reponse[ii].place(x=60 + 54 * ii, y=110, anchor=CENTER, width=50, height=50)
-
-        for ii in range(0, len(self.tirage)):
-            b = Button(Mafenetre, text=self.tirage[ii], font=("Helvetica", 30), bg=self.couleur_bg_defaut)
-            Bouton.append(b)
-            b.configure(command=lambda c=ii: motUtilisateur.AddLettre(self, c, Bouton[c], boutons_reponse))
-            Bouton[ii].place(x=60+54*ii, y=30, anchor=CENTER, width=50, height=50)
-
-        BoutonErase = Button(Mafenetre, text='effacer', font=("Helvetica", 20),
-                              command=lambda: motUtilisateur.DelLettre(self, Bouton, boutons_reponse))
-        BoutonErase.place(relx=0.2, y=200, anchor=CENTER)
-
-        BoutonRAZ = Button(Mafenetre, text='RAZ', font=("Helvetica", 20),
-                             command=lambda: motUtilisateur.DelLettreRAZ(self, Bouton, boutons_reponse))
-        BoutonRAZ.place(relx=0.4, y=200, anchor=CENTER)
-
-        BoutonSolutions = Button(Mafenetre, text='voir les solutions', font=("Helvetica", 20),
-                              command=lambda: solveur(self, don))
-        BoutonSolutions.place(relx=0.75, y=200, anchor=CENTER)
-        Mafenetre.maj_temps_restant()
-        Mafenetre.mainloop()
-    """
 
     def Affiche_solutions(self, don):
 
@@ -485,6 +431,173 @@ class Tirage:
         print(self.sol_complet[8])
         print('')
 
+
+    def Solveur_Top(self, don, valeur2test=0, rech_nb_sol=False):
+        # recherche seulement du top et du nb de solutions en lettres sans memoriser les solutions
+        nb_lettres_dico = []
+        nb_lettres_2_test = []
+        for ii in range(0, len(don.dico)):
+            nb_lettres_dico.append(don.dico[ii].nbLettres)
+        if valeur2test==0:
+            for ii in range(0, len(don.dico)):
+                nb_lettres_2_test.append(don.dico[ii].nbLettres)
+        else:
+            for ii in range(valeur2test, self.nbLettres+1):
+                nb_lettres_2_test.append(ii)
+        top_trouve = False
+        valeur_top = 0
+        nb_sol = 0
+        nb_lettres_teste = self.nbLettres
+        self.tirageMin = ordreAlpha(self.tirage.lower())
+        while (not top_trouve) and (nb_lettres_teste>1):
+            if nb_lettres_teste in nb_lettres_2_test:
+                if nb_lettres_teste in nb_lettres_dico:
+                    idx_dico = nb_lettres_dico.index(nb_lettres_teste)
+                    listeComb2 = self.get_liste_comb(nb_lettres_teste)
+                    idx_comb = 0
+                    while idx_comb<len(listeComb2) and ((not top_trouve) or rech_nb_sol):
+                        res_list = [i for i in range(len(don.dico[idx_dico].alpha)) if
+                                    don.dico[idx_dico].alpha[i] == listeComb2[idx_comb]]
+                        if len(res_list) > 0:
+                            top_trouve = True
+                            nb_sol += 1
+                            valeur_top = nb_lettres_teste
+                        idx_comb += 1
+            nb_lettres_teste -= 1
+        return top_trouve, valeur_top, nb_sol
+
+    def get_liste_comb(self, ii):
+        # pour determiner les combinaisons de lettres du tirage qui forment ii lettres
+        listeComb = []
+        if ii == 2:
+            for i1 in range(0, self.nbLettres - 1):
+                for i2 in range(i1 + 1, self.nbLettres):
+                    str = self.tirageMin[i1] + self.tirageMin[i2]
+                    listeComb.append(str)
+        if ii == 3:
+            for i1 in range(0, self.nbLettres - 2):
+                for i2 in range(i1 + 1, self.nbLettres - 1):
+                    for i3 in range(i2 + 1, self.nbLettres):
+                        str = self.tirageMin[i1] + self.tirageMin[i2] + self.tirageMin[i3]
+                        listeComb.append(str)
+        if ii == 4:
+            for i1 in range(0, self.nbLettres - 3):
+                for i2 in range(i1 + 1, self.nbLettres - 2):
+                    for i3 in range(i2 + 1, self.nbLettres - 1):
+                        for i4 in range(i3 + 1, self.nbLettres):
+                            str = self.tirageMin[i1] + self.tirageMin[i2] + self.tirageMin[i3] \
+                                  + self.tirageMin[i4]
+                            listeComb.append(str)
+
+        if ii == 5:
+            for i1 in range(0, self.nbLettres - 4):
+                for i2 in range(i1 + 1, self.nbLettres - 3):
+                    for i3 in range(i2 + 1, self.nbLettres - 2):
+                        for i4 in range(i3 + 1, self.nbLettres - 1):
+                            for i5 in range(i4 + 1, self.nbLettres):
+                                str = self.tirageMin[i1] + self.tirageMin[i2] + self.tirageMin[i3] \
+                                      + self.tirageMin[i4] + self.tirageMin[i5]
+                                listeComb.append(str)
+
+        if ii == 6:
+            for i1 in range(0, self.nbLettres - 5):
+                for i2 in range(i1 + 1, self.nbLettres - 4):
+                    for i3 in range(i2 + 1, self.nbLettres - 3):
+                        for i4 in range(i3 + 1, self.nbLettres - 2):
+                            for i5 in range(i4 + 1, self.nbLettres - 1):
+                                for i6 in range(i5 + 1, self.nbLettres):
+                                    str = self.tirageMin[i1] + self.tirageMin[i2] + self.tirageMin[i3] \
+                                          + self.tirageMin[i4] + self.tirageMin[i5] + self.tirageMin[i6]
+                                    listeComb.append(str)
+
+        if ii == 7:
+            for i1 in range(0, self.nbLettres - 6):
+                for i2 in range(i1 + 1, self.nbLettres - 5):
+                    for i3 in range(i2 + 1, self.nbLettres - 4):
+                        for i4 in range(i3 + 1, self.nbLettres - 3):
+                            for i5 in range(i4 + 1, self.nbLettres - 2):
+                                for i6 in range(i5 + 1, self.nbLettres - 1):
+                                    for i7 in range(i6 + 1, self.nbLettres):
+                                        str = self.tirageMin[i1] + self.tirageMin[i2] + self.tirageMin[i3] \
+                                              + self.tirageMin[i4] + self.tirageMin[i5] + self.tirageMin[i6] \
+                                              + self.tirageMin[i7]
+                                        listeComb.append(str)
+
+        if ii == 8:
+            for i1 in range(0, self.nbLettres - 7):
+                for i2 in range(i1 + 1, self.nbLettres - 6):
+                    for i3 in range(i2 + 1, self.nbLettres - 5):
+                        for i4 in range(i3 + 1, self.nbLettres - 4):
+                            for i5 in range(i4 + 1, self.nbLettres - 3):
+                                for i6 in range(i5 + 1, self.nbLettres - 2):
+                                    for i7 in range(i6 + 1, self.nbLettres - 1):
+                                        for i8 in range(i7 + 1, self.nbLettres):
+                                            str = self.tirageMin[i1] + self.tirageMin[i2] \
+                                                  + self.tirageMin[i3] + self.tirageMin[i4] \
+                                                  + self.tirageMin[i5] + self.tirageMin[i6] \
+                                                  + self.tirageMin[i7] + self.tirageMin[i8]
+                                            listeComb.append(str)
+
+        if ii == 9:
+            for i1 in range(0, self.nbLettres - 8):
+                for i2 in range(i1 + 1, self.nbLettres - 7):
+                    for i3 in range(i2 + 1, self.nbLettres - 6):
+                        for i4 in range(i3 + 1, self.nbLettres - 5):
+                            for i5 in range(i4 + 1, self.nbLettres - 4):
+                                for i6 in range(i5 + 1, self.nbLettres - 3):
+                                    for i7 in range(i6 + 1, self.nbLettres - 2):
+                                        for i8 in range(i7 + 1, self.nbLettres - 1):
+                                            for i9 in range(i8 + 1, self.nbLettres):
+                                                str = self.tirageMin[i1] + self.tirageMin[i2] \
+                                                      + self.tirageMin[i3] + self.tirageMin[i4] \
+                                                      + self.tirageMin[i5] + self.tirageMin[i6] \
+                                                      + self.tirageMin[i7] + self.tirageMin[i8] \
+                                                      + self.tirageMin[i9]
+                                                listeComb.append(str)
+
+        if ii == 10:
+            for i1 in range(0, self.nbLettres - 9):
+                for i2 in range(i1 + 1, self.nbLettres - 8):
+                    for i3 in range(i2 + 1, self.nbLettres - 7):
+                        for i4 in range(i3 + 1, self.nbLettres - 6):
+                            for i5 in range(i4 + 1, self.nbLettres - 5):
+                                for i6 in range(i5 + 1, self.nbLettres - 4):
+                                    for i7 in range(i6 + 1, self.nbLettres - 3):
+                                        for i8 in range(i7 + 1, self.nbLettres - 2):
+                                            for i9 in range(i8 + 1, self.nbLettres - 1):
+                                                for i10 in range(i9 + 1, self.nbLettres):
+                                                    str = self.tirageMin[i1] + self.tirageMin[i2] \
+                                                          + self.tirageMin[i3] + self.tirageMin[i4] \
+                                                          + self.tirageMin[i5] + self.tirageMin[i6] \
+                                                          + self.tirageMin[i7] + self.tirageMin[i8] \
+                                                          + self.tirageMin[i9] + self.tirageMin[i10]
+                                                    listeComb.append(str)
+
+        if ii == 11:
+            for i1 in range(0, self.nbLettres - 10):
+                for i2 in range(i1 + 1, self.nbLettres - 9):
+                    for i3 in range(i2 + 1, self.nbLettres - 8):
+                        for i4 in range(i3 + 1, self.nbLettres - 7):
+                            for i5 in range(i4 + 1, self.nbLettres - 6):
+                                for i6 in range(i5 + 1, self.nbLettres - 5):
+                                    for i7 in range(i6 + 1, self.nbLettres - 4):
+                                        for i8 in range(i7 + 1, self.nbLettres - 3):
+                                            for i9 in range(i8 + 1, self.nbLettres - 2):
+                                                for i10 in range(i9 + 1, self.nbLettres - 1):
+                                                    for i11 in range(i10 + 1, self.nbLettres):
+                                                        str = self.tirageMin[i1] + self.tirageMin[i2] \
+                                                              + self.tirageMin[i3] + self.tirageMin[i4] \
+                                                              + self.tirageMin[i5] + self.tirageMin[i6] \
+                                                              + self.tirageMin[i7] + self.tirageMin[i8] \
+                                                              + self.tirageMin[i9] + self.tirageMin[i10] \
+                                                              + self.tirageMin[i11]
+                                                        listeComb.append(str)
+        # on retire les doublons
+        listeComb2 = list(set(listeComb))
+        listeComb2.sort()
+        return listeComb2
+
+
     def Solveur(self, don):
         # recherche des nombres de lettres possibles pour les dicos chargés
         nb_lettres_dico = []
@@ -495,133 +608,8 @@ class Tirage:
         for ii in range(2, self.nbLettres+1):
             if ii in nb_lettres_dico:
                 idx_dico = nb_lettres_dico.index(ii)
-                listeComb = []
-                if ii == 2:
-                    for i1 in range(0, self.nbLettres - 1):
-                        for i2 in range(i1 + 1, self.nbLettres):
-                            str = self.tirageMin[i1] + self.tirageMin[i2]
-                            listeComb.append(str)
-                if ii == 3:
-                    for i1 in range(0, self.nbLettres - 2):
-                        for i2 in range(i1 + 1, self.nbLettres-1):
-                            for i3 in range(i2 + 1, self.nbLettres):
-                                str = self.tirageMin[i1] + self.tirageMin[i2] + self.tirageMin[i3]
-                                listeComb.append(str)
-                if ii == 4:
-                    for i1 in range(0, self.nbLettres - 3):
-                        for i2 in range(i1 + 1, self.nbLettres-2):
-                            for i3 in range(i2 + 1, self.nbLettres-1):
-                                for i4 in range(i3 + 1, self.nbLettres):
-                                    str = self.tirageMin[i1] + self.tirageMin[i2] + self.tirageMin[i3] \
-                                          + self.tirageMin[i4]
-                                    listeComb.append(str)
-
-                if ii == 5:
-                    for i1 in range(0, self.nbLettres - 4):
-                        for i2 in range(i1 + 1, self.nbLettres - 3):
-                            for i3 in range(i2 + 1, self.nbLettres - 2):
-                                for i4 in range(i3 + 1, self.nbLettres-1):
-                                    for i5 in range(i4 + 1, self.nbLettres):
-                                        str = self.tirageMin[i1] + self.tirageMin[i2] + self.tirageMin[i3] \
-                                            + self.tirageMin[i4] + self.tirageMin[i5]
-                                        listeComb.append(str)
-
-                if ii == 6:
-                    for i1 in range(0, self.nbLettres - 5):
-                        for i2 in range(i1 + 1, self.nbLettres - 4):
-                            for i3 in range(i2 + 1, self.nbLettres - 3):
-                                for i4 in range(i3 + 1, self.nbLettres-2):
-                                    for i5 in range(i4 + 1, self.nbLettres-1):
-                                        for i6 in range(i5 + 1, self.nbLettres):
-                                            str = self.tirageMin[i1] + self.tirageMin[i2] + self.tirageMin[i3] \
-                                                + self.tirageMin[i4] + self.tirageMin[i5] + self.tirageMin[i6]
-                                            listeComb.append(str)
-
-                if ii == 7:
-                    for i1 in range(0, self.nbLettres - 6):
-                        for i2 in range(i1 + 1, self.nbLettres - 5):
-                            for i3 in range(i2 + 1, self.nbLettres - 4):
-                                for i4 in range(i3 + 1, self.nbLettres-3):
-                                    for i5 in range(i4 + 1, self.nbLettres-2):
-                                        for i6 in range(i5 + 1, self.nbLettres-1):
-                                            for i7 in range(i6 + 1, self.nbLettres):
-                                                str = self.tirageMin[i1] + self.tirageMin[i2] + self.tirageMin[i3] \
-                                                    + self.tirageMin[i4] + self.tirageMin[i5] + self.tirageMin[i6] \
-                                                    + self.tirageMin[i7]
-                                                listeComb.append(str)
-
-                if ii == 8:
-                    for i1 in range(0, self.nbLettres - 7):
-                        for i2 in range(i1 + 1, self.nbLettres - 6):
-                            for i3 in range(i2 + 1, self.nbLettres - 5):
-                                for i4 in range(i3 + 1, self.nbLettres-4):
-                                    for i5 in range(i4 + 1, self.nbLettres-3):
-                                        for i6 in range(i5 + 1, self.nbLettres-2):
-                                            for i7 in range(i6 + 1, self.nbLettres-1):
-                                                for i8 in range(i7 + 1, self.nbLettres):
-                                                    str = self.tirageMin[i1] + self.tirageMin[i2] \
-                                                        + self.tirageMin[i3] + self.tirageMin[i4] \
-                                                        + self.tirageMin[i5] + self.tirageMin[i6] \
-                                                        + self.tirageMin[i7] + self.tirageMin[i8]
-                                                    listeComb.append(str)
-
-                if ii == 9:
-                    for i1 in range(0, self.nbLettres - 8):
-                        for i2 in range(i1 + 1, self.nbLettres - 7):
-                            for i3 in range(i2 + 1, self.nbLettres - 6):
-                                for i4 in range(i3 + 1, self.nbLettres-5):
-                                    for i5 in range(i4 + 1, self.nbLettres-4):
-                                        for i6 in range(i5 + 1, self.nbLettres-3):
-                                            for i7 in range(i6 + 1, self.nbLettres-2):
-                                                for i8 in range(i7 + 1, self.nbLettres-1):
-                                                    for i9 in range(i8 + 1, self.nbLettres):
-                                                        str = self.tirageMin[i1] + self.tirageMin[i2] \
-                                                            + self.tirageMin[i3] + self.tirageMin[i4] \
-                                                            + self.tirageMin[i5] + self.tirageMin[i6] \
-                                                            + self.tirageMin[i7] + self.tirageMin[i8] \
-                                                            + self.tirageMin[i9]
-                                                        listeComb.append(str)
-
-                if ii == 10:
-                    for i1 in range(0, self.nbLettres - 9):
-                        for i2 in range(i1 + 1, self.nbLettres - 8):
-                            for i3 in range(i2 + 1, self.nbLettres - 7):
-                                for i4 in range(i3 + 1, self.nbLettres-6):
-                                    for i5 in range(i4 + 1, self.nbLettres-5):
-                                        for i6 in range(i5 + 1, self.nbLettres-4):
-                                            for i7 in range(i6 + 1, self.nbLettres-3):
-                                                for i8 in range(i7 + 1, self.nbLettres-2):
-                                                    for i9 in range(i8 + 1, self.nbLettres-1):
-                                                        for i10 in range(i9 + 1, self.nbLettres):
-                                                            str = self.tirageMin[i1] + self.tirageMin[i2] \
-                                                                + self.tirageMin[i3] + self.tirageMin[i4] \
-                                                                + self.tirageMin[i5] + self.tirageMin[i6] \
-                                                                + self.tirageMin[i7] + self.tirageMin[i8] \
-                                                                + self.tirageMin[i9] + self.tirageMin[i10]
-                                                            listeComb.append(str)
-
-                if ii == 11:
-                    for i1 in range(0, self.nbLettres - 10):
-                        for i2 in range(i1 + 1, self.nbLettres - 9):
-                            for i3 in range(i2 + 1, self.nbLettres - 8):
-                                for i4 in range(i3 + 1, self.nbLettres-7):
-                                    for i5 in range(i4 + 1, self.nbLettres-6):
-                                        for i6 in range(i5 + 1, self.nbLettres-5):
-                                            for i7 in range(i6 + 1, self.nbLettres-4):
-                                                for i8 in range(i7 + 1, self.nbLettres-3):
-                                                    for i9 in range(i8 + 1, self.nbLettres-2):
-                                                        for i10 in range(i9 + 1, self.nbLettres-1):
-                                                            for i11 in range(i10 + 1, self.nbLettres):
-                                                                str = self.tirageMin[i1] + self.tirageMin[i2] \
-                                                                    + self.tirageMin[i3] + self.tirageMin[i4] \
-                                                                    + self.tirageMin[i5] + self.tirageMin[i6] \
-                                                                    + self.tirageMin[i7] + self.tirageMin[i8] \
-                                                                    + self.tirageMin[i9] + self.tirageMin[i10] \
-                                                                    + self.tirageMin[i11]
-                                                                listeComb.append(str)
-                # on retire les doublons
-                listeComb2 = list(set(listeComb))
-                listeComb2.sort()
+                # on determine la liste de toutes les combinaisons de ii lettres possibles avec le tirage
+                listeComb2 = self.get_liste_comb(ii)
                 # recherche dans le dictionnaire pour chaque combinaison de lettres
                 sol_alpha_t = []
                 sol_complet_t = []
@@ -654,6 +642,12 @@ class Tirage:
             if len(self.sol_basique[jj]) > 0:
                 top = max(top, len(self.sol_basique[jj][0]))
         self.top = top
+
+    def nb_solutions_chiffres(self, don):
+        self.Solveur_chiffres(don)
+        ecart = abs(self.tirage_chiffres[-1]-eval(self.sol_basique[0]))
+        nb_sol = len(self.sol_basique)
+        return ecart, nb_sol
 
     def Solveur_chiffres(self,don):
         x = []
@@ -713,6 +707,7 @@ class Tirage:
             nbPlaques.append(zz4[idx_distance_ordonnee[ii]])
             ii += 1
         yy = sorted(range(len(nbPlaques)), key=lambda k: nbPlaques[k])
+
         yy2 = [nbPlaques[i] for i in yy]
         yy1 = [solution[i] for i in yy]
 

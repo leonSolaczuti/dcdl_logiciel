@@ -111,7 +111,7 @@ class Icones:
         menu_verif.add_command(label="un mot", command=lambda: self.lancementVerifMot(don))
         #menu_verif.add_command(label="un tirage de lettres")
         menu_bar.add_cascade(label="Vérifier", menu=menu_verif)
-
+        menu_bar.add_command(label="Modes de jeu", command=lambda: self.set_mode_jeu(don, tirage))
         menu_bar.add_command(label="Paramètres", command=lambda: self.set_parametres(don, chrono))
         menu_bar.add_command(label="Aide", command=lambda: self.set_aide(don))
 
@@ -195,6 +195,13 @@ class Icones:
         don.disposition = don_temp.disposition
         Mafenetre.destroy()
 
+    def validation_mode_jeu(self, tirage, tirage_temp, Mafenetre):
+        tirage.top_impose_lettres = tirage_temp.top_impose_lettres
+        tirage.nb_sol_lettres_max = tirage_temp.nb_sol_lettres_max
+        tirage.nb_sol_chiffres_max = tirage_temp.nb_sol_chiffres_max
+        tirage.sansE = tirage_temp.sansE
+        Mafenetre.destroy()
+
 
     def set_parametres(self, don, chrono):
         # pour la fenetre des parametres qui s'ouvre a partir de la barre du menu
@@ -223,7 +230,10 @@ class Icones:
         boutons_son[0].place(x=250, y=20, anchor=E)
         val_son_0 = ['actif', 'inactif']
         val_son = StringVar(Mafenetre)
-        val_son.set(val_son_0[0])
+        if don_temp.son_actif==1:
+            val_son.set(val_son_0[0])
+        else:
+            val_son.set(val_son_0[1])
         boutons_son.append(OptionMenu(Mafenetre, val_son, *val_son_0))
         boutons_son[-1].configure(font=(don.font, 16))
         boutons_son[-1].place(x=270, y=20, anchor=W, width=200, height=35)
@@ -277,6 +287,118 @@ class Icones:
             else:
                 don_temp.disposition = 1
         val_disposition.trace("w", callback_disposition)
+
+    def set_mode_jeu(self, don, tirage):
+        # pour la fenetre des parametres qui s'ouvre a partir de la barre du menu
+        # a completer et rajouter tous les parametres et rajouter aussi le lancement de cette fenetre pour les tirages de chiffres
+        Mafenetre = tk.Tk()
+        Mafenetre.title('Mode de jeu')
+
+        cha = str('700x270')
+        Mafenetre.geometry(cha)
+        Mafenetre.configure(bg=don.proprietes.couleur_fond)
+
+        tirage_temp = copy.deepcopy(tirage)
+
+        # BOUTON VALIDER
+        bouton_valider = Button(Mafenetre)
+        bouton_valider.configure(font=(don.font, 30), text="Valider", bg='dark sea green')
+        bouton_valider.place(x=690, y=260, anchor=SE, width=200, height=50)
+        # bouton_valider.configure(command=Mafenetre.destroy)
+
+        bouton_valider.configure(command=lambda: self.validation_mode_jeu(tirage, tirage_temp, Mafenetre))
+
+        # TOP A N LETTRES
+        boutons_valeurTop = []
+        boutons_valeurTop.append(Label(Mafenetre))
+        boutons_valeurTop[0].configure(font=(don.font, 20), text="top (lettres) :", bg=don.proprietes.couleur_fond)
+        boutons_valeurTop[0].place(x=450, y=20, anchor=E)
+        val_son_0 = [str(ii) for ii in range(don.nbLettres, 3, -1)]
+        val_son_0.append("aléatoire")
+        val_son = StringVar(Mafenetre)
+        if tirage_temp.top_impose_lettres==0:
+            val_son.set(val_son_0[-1])
+        else:
+            val_son.set(val_son_0[don.nbLettres-tirage_temp.top_impose_lettres])
+        boutons_valeurTop.append(OptionMenu(Mafenetre, val_son, *val_son_0))
+        boutons_valeurTop[-1].configure(font=(don.font, 16))
+        boutons_valeurTop[-1].place(x=470, y=20, anchor=W, width=150, height=35)
+
+        def callback_top(*args):
+            if val_son.get()=="aléatoire":
+                tirage_temp.top_impose_lettres = 0
+            else:
+                tirage_temp.top_impose_lettres = int(val_son.get())
+        val_son.trace("w", callback_top)
+
+        # tirage sans E
+        boutons_sansE = []
+        boutons_sansE.append(Label(Mafenetre))
+        boutons_sansE[0].configure(font=(don.font, 20), text="tirage de lettres avec / sans E :",
+                                            bg=don.proprietes.couleur_fond)
+        boutons_sansE[0].place(x=450, y=70, anchor=E)
+        val_sansE_0 = ['indifférent', 'sans E']
+        val_sansE = StringVar(Mafenetre)
+        if tirage_temp.sansE:
+            val_sansE.set('sans E')
+        else:
+            val_sansE.set('indifférent')
+        boutons_sansE.append(OptionMenu(Mafenetre, val_sansE, *val_sansE_0))
+        boutons_sansE[-1].configure(font=(don.font, 16))
+        boutons_sansE[-1].place(x=470, y=70, anchor=W, width=150, height=35)
+
+        def callback_sansE(*args):
+            if val_sansE.get() == "indifférent":
+                tirage_temp.sansE = False
+            else:
+                tirage_temp.sansE = True
+        val_sansE.trace("w", callback_sansE)
+
+        # nombre de solutions en lettres
+        boutons_nbSols_lettres = []
+        boutons_nbSols_lettres.append(Label(Mafenetre))
+        boutons_nbSols_lettres[0].configure(font=(don.font, 20), text="nombre maximal de solutions (lettres) :",
+                                             bg=don.proprietes.couleur_fond)
+        boutons_nbSols_lettres[0].place(x=450, y=120, anchor=E)
+        val_nbSols_lettres_0 = ['indifférent', '1', '2', '5']
+        val_nbSols_lettres = StringVar(Mafenetre)
+        if tirage_temp.nb_sol_lettres_max == 0:
+            val_nbSols_lettres.set(val_nbSols_lettres_0[0])
+        else:
+            val_nbSols_lettres.set(str(tirage_temp.nb_sol_lettres_max))
+        boutons_nbSols_lettres.append(OptionMenu(Mafenetre, val_nbSols_lettres, *val_nbSols_lettres_0))
+        boutons_nbSols_lettres[-1].configure(font=(don.font, 16))
+        boutons_nbSols_lettres[-1].place(x=470, y=120, anchor=W, width=150, height=35)
+
+        def callback_nbSols_lettres(*args):
+            if val_son.get() == "indifférent":
+                tirage_temp.nb_sol_lettres_max = 0
+            else:
+                tirage_temp.nb_sol_lettres_max = int(val_nbSols_lettres.get())
+        val_nbSols_lettres.trace("w", callback_nbSols_lettres)
+
+        # nombre de solutions en chiffres
+        boutons_nbSols_chiffres = []
+        boutons_nbSols_chiffres.append(Label(Mafenetre))
+        boutons_nbSols_chiffres[0].configure(font=(don.font, 20), text="nombre maximal de solutions (chiffres) :", bg=don.proprietes.couleur_fond)
+        boutons_nbSols_chiffres[0].place(x=450, y=170, anchor=E)
+        val_nbSols_chiffres_0 = ['indifférent', '1', '2', '5', '10', '20']
+        val_nbSols_chiffres = StringVar(Mafenetre)
+        if tirage_temp.nb_sol_chiffres_max == 0:
+            val_nbSols_chiffres.set(val_nbSols_chiffres_0[0])
+        else:
+            val_nbSols_chiffres.set(str(tirage_temp.nb_sol_chiffres_max))
+        boutons_nbSols_chiffres.append(OptionMenu(Mafenetre, val_nbSols_chiffres, *val_nbSols_chiffres_0))
+        boutons_nbSols_chiffres[-1].configure(font=(don.font, 16))
+        boutons_nbSols_chiffres[-1].place(x=470, y=170, anchor=W, width=150, height=35)
+
+        def callback_nbSols_chiffres(*args):
+            if val_son.get() == "indifférent":
+                tirage_temp.nb_sol_chiffres_max = 0
+            else:
+                tirage_temp.nb_sol_chiffres_max = int(val_nbSols_chiffres.get())
+        val_nbSols_chiffres.trace("w", callback_nbSols_chiffres)
+
 
 
     def set_aide(selfself,don):
@@ -539,7 +661,7 @@ class Icones:
         menu_verif.add_command(label="un mot", command=lambda: self.lancementVerifMot(don))
         # menu_verif.add_command(label="un tirage de lettres")
         menu_bar.add_cascade(label="Vérifier", menu=menu_verif)
-
+        menu_bar.add_command(label="Modes de jeu", command=lambda: self.set_mode_jeu(don, tirage))
         menu_bar.add_command(label="Paramètres", command=lambda: self.set_parametres(don))
         menu_bar.add_command(label="Aide", command=lambda: self.set_aide(don))
 
@@ -795,7 +917,10 @@ class Icones:
 
         val_son_0 = ['actif', 'inactif']
         val_son = StringVar(self.fen)
-        val_son.set(val_son_0[0])
+        if don.son_actif==1:
+            val_son.set('actif')
+        else:
+            val_son.set('inactif')
         self.boutons_son.append(OptionMenu(self.fen, val_son, *val_son_0))
         self.boutons_son[-1].configure(font=('Helvetica', 16))
         self.boutons_son[-1].place(x=540, y=345, anchor=CENTER, width=90, height=35)
@@ -815,7 +940,7 @@ class Icones:
 
         val_tempo_0 = ['0', '0.5', '1', '1.5', '2']
         val_tempo = StringVar(self.fen)
-        val_tempo.set(val_tempo_0[1])
+        val_tempo.set(str(don.tempo))
         self.boutons_son.append(OptionMenu(self.fen, val_tempo, *val_tempo_0))
         self.boutons_son[-1].configure(font=('Helvetica', 16))
         self.boutons_son[-1].place(x=690, y=345, anchor=CENTER, width=90, height=35)
