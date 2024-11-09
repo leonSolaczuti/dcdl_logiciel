@@ -1,6 +1,7 @@
 from loadConsVoy import genereTirageLettres
 from classe import *
 from tkinter import *
+from tkinter import filedialog
 import tkinter as tk
 import time
 from random import *
@@ -8,8 +9,10 @@ import tkinter.font as tkFont
 import pygame
 from motUtilisateur import *
 from data import *
+from tirage import lecture_tirages_prepares
 import copy
-#from datetime import timedelta, datetime, date, time
+import webbrowser
+import os
 
 class Icones:
     def __init__(self, Mafenetre):
@@ -58,136 +61,35 @@ class Icones:
         self.ty = 0
         self.tt = 0
 
-    def Lancement_tirage_lettres(self, tirage, don, chrono, motUtilisateur):
+    def Lancement_premier_tirage(self, tirage, don, chrono, motUtilisateur, type):
         # appelee par Lancement (fenetre initiale)
-        self.fin_init = False # pour ne pas redimensionner
+        # on place les menus puis on appelle soit les boutons "lettres", soit les boutons "chiffres"
+        self.fin_init = False  # pour ne pas redimensionner
         self.fen.title('Tirage')
         tirage.ajuste_tirage_prepares(don)  # on ne garde que les tirages préparés qui ont le bon nombre de
-        # lettres ou plaques
-        def maFonc(event):
-            if don.type_actuel == 'lettres':
-                lettre_a_ajouter = event.char.upper()
-                if tirage.valide:
-                    idx_dans_tirage = []
-                    if len(self.boutons_tirage):
-                        for ii in range(len(self.boutons_tirage)):
-                            if self.boutons_tirage[ii].cget('bg') == don.proprietes.couleur_bg_defaut:
-                                if self.boutons_tirage[ii].cget('text').upper() == lettre_a_ajouter:
-                                    idx_dans_tirage.append(ii)
-                    if len(idx_dans_tirage):
-                        idx_dans_tirage = idx_dans_tirage[0]
-                        motUtilisateur.AddLettre(tirage, idx_dans_tirage, self, don)
-                else:
-                    self.AddLettre(tirage, lettre_a_ajouter)
-
-
-        def maFonc_del(event):
-            if don.type_actuel == 'lettres':
-                if tirage.valide:
-                    motUtilisateur.DelLettre(tirage, self, don)
-                else:
-                    self.DelLettre(tirage)
-
-        def maFonc_valide(event):
-            if don.type_actuel == 'lettres':
-                if tirage.valide:
-                    motUtilisateur.ValideReponse(tirage, don, self, chrono)
-                else:
-                    self.ValideTirage(tirage, chrono)
-        don.type_actuel = 'lettres'
-        nbLettres = don.nbLettres
-        # SI TEST EN LETTRES SEULEMENT SUPPRIMER LA LIGNE SUIVANTE
         self.Del_boutons_lancement()
-
         self.fen.geometry('954x450')
-
         # rajout du menu
         menu_bar = Menu(self.fen)
         self.fen.config(menu=menu_bar)
         menu_bar.add_command(label="Quitter", command=self.fen.destroy)
+        menu_bar.add_command(label="Import", command=lambda: self.lancementImport(don, tirage, motUtilisateur, chrono))
         menu_bar.add_command(label="Rajouts", command=lambda: self.lancementRajouts(don))
 
         menu_verif = Menu(menu_bar, tearoff=0)
         menu_verif.add_command(label="un mot", command=lambda: self.lancementVerifMot(don))
-        #menu_verif.add_command(label="un tirage de lettres")
+        # menu_verif.add_command(label="un tirage de lettres")
         menu_bar.add_cascade(label="Vérifier", menu=menu_verif)
-        menu_bar.add_command(label="Modes de jeu", command=lambda: self.set_mode_jeu(don, tirage))
+        menu_bar.add_command(label="Modes de jeu", command=lambda: self.set_mode_jeu(don, tirage, chrono, motUtilisateur))
         menu_bar.add_command(label="Paramètres", command=lambda: self.set_parametres(don, chrono))
         menu_bar.add_command(label="Aide", command=lambda: self.set_aide(don))
+        if type=="lettres":
+            don.type_actuel = "lettres"
+            self.Lancement_tirage_lettres2(tirage, don, chrono, motUtilisateur)
+        else:
+            don.type_actuel = "chiffres"
+            self.Lancement_tirage_chiffres2(tirage, don, chrono, motUtilisateur)
 
-        if don.affiche_boutons_lettres:
-            self.Set_boutons_lettres(self.fen, don)
-
-        self.Set_triangle(nbLettres, don)
-        self.Set_boutons_tirage(tirage, motUtilisateur, nbLettres, don)
-        self.Set_score(don)
-        self.Set_tops(don)
-        self.Set_bouton_top(tirage, don)
-        self.Set_bouton_effacer(tirage, motUtilisateur, don)
-        self.Set_bouton_raz(tirage, motUtilisateur, don)
-        self.Set_bouton_valider(tirage, motUtilisateur, don, chrono)
-        self.Set_bouton_solutions(tirage, don)
-        self.Set_bouton_next(tirage, motUtilisateur, don, chrono)
-        self.Set_boutons_aleatoire(don)
-        self.Set_boutons_nbVoyelles(tirage, don)
-        self.Set_boutons_sauvegarde(tirage, don)
-        self.fen.bind("<a>", maFonc)
-        self.fen.bind("<b>", maFonc)
-        self.fen.bind("<c>", maFonc)
-        self.fen.bind("<d>", maFonc)
-        self.fen.bind("<e>", maFonc)
-        self.fen.bind("<f>", maFonc)
-        self.fen.bind("<g>", maFonc)
-        self.fen.bind("<h>", maFonc)
-        self.fen.bind("<i>", maFonc)
-        self.fen.bind("<j>", maFonc)
-        self.fen.bind("<k>", maFonc)
-        self.fen.bind("<l>", maFonc)
-        self.fen.bind("<m>", maFonc)
-        self.fen.bind("<n>", maFonc)
-        self.fen.bind("<o>", maFonc)
-        self.fen.bind("<p>", maFonc)
-        self.fen.bind("<q>", maFonc)
-        self.fen.bind("<r>", maFonc)
-        self.fen.bind("<s>", maFonc)
-        self.fen.bind("<t>", maFonc)
-        self.fen.bind("<u>", maFonc)
-        self.fen.bind("<v>", maFonc)
-        self.fen.bind("<w>", maFonc)
-        self.fen.bind("<x>", maFonc)
-        self.fen.bind("<y>", maFonc)
-        self.fen.bind("<z>", maFonc)
-        self.fen.bind("<A>", maFonc)
-        self.fen.bind("<B>", maFonc)
-        self.fen.bind("<C>", maFonc)
-        self.fen.bind("<D>", maFonc)
-        self.fen.bind("<E>", maFonc)
-        self.fen.bind("<F>", maFonc)
-        self.fen.bind("<G>", maFonc)
-        self.fen.bind("<H>", maFonc)
-        self.fen.bind("<I>", maFonc)
-        self.fen.bind("<J>", maFonc)
-        self.fen.bind("<K>", maFonc)
-        self.fen.bind("<L>", maFonc)
-        self.fen.bind("<M>", maFonc)
-        self.fen.bind("<N>", maFonc)
-        self.fen.bind("<O>", maFonc)
-        self.fen.bind("<P>", maFonc)
-        self.fen.bind("<Q>", maFonc)
-        self.fen.bind("<R>", maFonc)
-        self.fen.bind("<S>", maFonc)
-        self.fen.bind("<T>", maFonc)
-        self.fen.bind("<U>", maFonc)
-        self.fen.bind("<V>", maFonc)
-        self.fen.bind("<W>", maFonc)
-        self.fen.bind("<X>", maFonc)
-        self.fen.bind("<Y>", maFonc)
-        self.fen.bind("<Z>", maFonc)
-        self.fen.bind("<BackSpace>", maFonc_del)
-        self.fen.bind("<Return>", maFonc_valide)
-        self.Set_bouton_changer_lettres(tirage, motUtilisateur, don, chrono)
-        self.Set_chrono(chrono, don)
-        self.fin_init = True
 
     def validation_parametres(self, don, don_temp, Mafenetre):
         don.son_actif = don_temp.son_actif
@@ -195,12 +97,38 @@ class Icones:
         don.disposition = don_temp.disposition
         Mafenetre.destroy()
 
-    def validation_mode_jeu(self, tirage, tirage_temp, Mafenetre):
+    def validation_mode_jeu(self, tirage, tirage_temp, don, don_temp, Mafenetre, chrono, motUtilisateur):
         tirage.top_impose_lettres = tirage_temp.top_impose_lettres
         tirage.nb_sol_lettres_max = tirage_temp.nb_sol_lettres_max
         tirage.nb_sol_chiffres_max = tirage_temp.nb_sol_chiffres_max
         tirage.sansE = tirage_temp.sansE
+        if not don.nbLettres == don_temp.nbLettres:
+            don.nbLettres = don_temp.nbLettres
+            if don.type_actuel=="lettres":
+                # on actualise la fenetre pour prendre en compte le changement
+                self.Lancement_tirage_lettres2(tirage, don, chrono, motUtilisateur)
         Mafenetre.destroy()
+
+
+    def lancementImport(self, don, tirage, motUtilisateur, chrono):
+        # Mafenetre = tk.Tk()
+        # Mafenetre.title('Parametres')
+        fichier_path = filedialog.askopenfilename(
+            title="Sélectionner un fichier texte",
+            filetypes=[("Fichiers texte", "*.txt")]
+        )
+
+        if fichier_path:
+            try:
+                liste = lecture_tirages_prepares('chiffres', fichier_path)
+                print(liste)
+                if len(liste):
+                    don.listeTirages = True
+                    don.aleatoire = 0
+                    tirage.tirages_prepares_liste = liste
+                    self.Set_bouton_next(tirage, motUtilisateur, don, chrono)
+            except Exception as e:
+                print(f"Erreur lors de la lecture du fichier : {e}")
 
 
     def set_parametres(self, don, chrono):
@@ -288,31 +216,50 @@ class Icones:
                 don_temp.disposition = 1
         val_disposition.trace("w", callback_disposition)
 
-    def set_mode_jeu(self, don, tirage):
+    def set_mode_jeu(self, don, tirage, chrono, motUtilisateur):
         # pour la fenetre des parametres qui s'ouvre a partir de la barre du menu
         # a completer et rajouter tous les parametres et rajouter aussi le lancement de cette fenetre pour les tirages de chiffres
         Mafenetre = tk.Tk()
         Mafenetre.title('Mode de jeu')
 
-        cha = str('700x270')
+        cha = str('700x300')
         Mafenetre.geometry(cha)
         Mafenetre.configure(bg=don.proprietes.couleur_fond)
 
         tirage_temp = copy.deepcopy(tirage)
+        don_temp = copy.deepcopy(don)
 
         # BOUTON VALIDER
         bouton_valider = Button(Mafenetre)
         bouton_valider.configure(font=(don.font, 30), text="Valider", bg='dark sea green')
-        bouton_valider.place(x=690, y=260, anchor=SE, width=200, height=50)
+        bouton_valider.place(x=690, y=290, anchor=SE, width=200, height=50)
         # bouton_valider.configure(command=Mafenetre.destroy)
 
-        bouton_valider.configure(command=lambda: self.validation_mode_jeu(tirage, tirage_temp, Mafenetre))
+        bouton_valider.configure(command=lambda: self.validation_mode_jeu(tirage, tirage_temp, don, don_temp, Mafenetre, chrono, motUtilisateur))
+
+        # nombre de lettres
+        boutons_nbLettres = []
+        boutons_nbLettres.append(Label(Mafenetre))
+        boutons_nbLettres[0].configure(font=(don.font, 20), text="nombre de lettres",
+                                                      bg=don.proprietes.couleur_fond)
+        boutons_nbLettres[0].place(x=450, y=20, anchor=E)
+
+        val_nbl = ['11', '10']
+        val_nbl1 = StringVar(Mafenetre)
+        val_nbl1.set(str(don.nbLettres))
+        boutons_nbLettres.append(OptionMenu(Mafenetre, val_nbl1, *val_nbl))
+        boutons_nbLettres[-1].configure(font=(don.font, 20))
+        boutons_nbLettres[-1].place(x=470, y=20, anchor=W, width=150, height=35)
+
+        def callback_nbl(*args):
+            don_temp.nbLettres = int(val_nbl1.get())
+        val_nbl1.trace("w", callback_nbl)
 
         # TOP A N LETTRES
         boutons_valeurTop = []
         boutons_valeurTop.append(Label(Mafenetre))
         boutons_valeurTop[0].configure(font=(don.font, 20), text="top (lettres) :", bg=don.proprietes.couleur_fond)
-        boutons_valeurTop[0].place(x=450, y=20, anchor=E)
+        boutons_valeurTop[0].place(x=450, y=70, anchor=E)
         val_son_0 = [str(ii) for ii in range(don.nbLettres, 3, -1)]
         val_son_0.append("aléatoire")
         val_son = StringVar(Mafenetre)
@@ -322,7 +269,7 @@ class Icones:
             val_son.set(val_son_0[don.nbLettres-tirage_temp.top_impose_lettres])
         boutons_valeurTop.append(OptionMenu(Mafenetre, val_son, *val_son_0))
         boutons_valeurTop[-1].configure(font=(don.font, 16))
-        boutons_valeurTop[-1].place(x=470, y=20, anchor=W, width=150, height=35)
+        boutons_valeurTop[-1].place(x=470, y=70, anchor=W, width=150, height=35)
 
         def callback_top(*args):
             if val_son.get()=="aléatoire":
@@ -336,7 +283,7 @@ class Icones:
         boutons_sansE.append(Label(Mafenetre))
         boutons_sansE[0].configure(font=(don.font, 20), text="tirage de lettres avec / sans E :",
                                             bg=don.proprietes.couleur_fond)
-        boutons_sansE[0].place(x=450, y=70, anchor=E)
+        boutons_sansE[0].place(x=450, y=120, anchor=E)
         val_sansE_0 = ['indifférent', 'sans E']
         val_sansE = StringVar(Mafenetre)
         if tirage_temp.sansE:
@@ -345,7 +292,7 @@ class Icones:
             val_sansE.set('indifférent')
         boutons_sansE.append(OptionMenu(Mafenetre, val_sansE, *val_sansE_0))
         boutons_sansE[-1].configure(font=(don.font, 16))
-        boutons_sansE[-1].place(x=470, y=70, anchor=W, width=150, height=35)
+        boutons_sansE[-1].place(x=470, y=120, anchor=W, width=150, height=35)
 
         def callback_sansE(*args):
             if val_sansE.get() == "indifférent":
@@ -359,7 +306,7 @@ class Icones:
         boutons_nbSols_lettres.append(Label(Mafenetre))
         boutons_nbSols_lettres[0].configure(font=(don.font, 20), text="nombre maximal de solutions (lettres) :",
                                              bg=don.proprietes.couleur_fond)
-        boutons_nbSols_lettres[0].place(x=450, y=120, anchor=E)
+        boutons_nbSols_lettres[0].place(x=450, y=170, anchor=E)
         val_nbSols_lettres_0 = ['indifférent', '1', '2', '5']
         val_nbSols_lettres = StringVar(Mafenetre)
         if tirage_temp.nb_sol_lettres_max == 0:
@@ -368,7 +315,7 @@ class Icones:
             val_nbSols_lettres.set(str(tirage_temp.nb_sol_lettres_max))
         boutons_nbSols_lettres.append(OptionMenu(Mafenetre, val_nbSols_lettres, *val_nbSols_lettres_0))
         boutons_nbSols_lettres[-1].configure(font=(don.font, 16))
-        boutons_nbSols_lettres[-1].place(x=470, y=120, anchor=W, width=150, height=35)
+        boutons_nbSols_lettres[-1].place(x=470, y=170, anchor=W, width=150, height=35)
 
         def callback_nbSols_lettres(*args):
             if val_son.get() == "indifférent":
@@ -381,7 +328,7 @@ class Icones:
         boutons_nbSols_chiffres = []
         boutons_nbSols_chiffres.append(Label(Mafenetre))
         boutons_nbSols_chiffres[0].configure(font=(don.font, 20), text="nombre maximal de solutions (chiffres) :", bg=don.proprietes.couleur_fond)
-        boutons_nbSols_chiffres[0].place(x=450, y=170, anchor=E)
+        boutons_nbSols_chiffres[0].place(x=450, y=220, anchor=E)
         val_nbSols_chiffres_0 = ['indifférent', '1', '2', '5', '10', '20']
         val_nbSols_chiffres = StringVar(Mafenetre)
         if tirage_temp.nb_sol_chiffres_max == 0:
@@ -390,7 +337,7 @@ class Icones:
             val_nbSols_chiffres.set(str(tirage_temp.nb_sol_chiffres_max))
         boutons_nbSols_chiffres.append(OptionMenu(Mafenetre, val_nbSols_chiffres, *val_nbSols_chiffres_0))
         boutons_nbSols_chiffres[-1].configure(font=(don.font, 16))
-        boutons_nbSols_chiffres[-1].place(x=470, y=170, anchor=W, width=150, height=35)
+        boutons_nbSols_chiffres[-1].place(x=470, y=220, anchor=W, width=150, height=35)
 
         def callback_nbSols_chiffres(*args):
             if val_son.get() == "indifférent":
@@ -428,7 +375,6 @@ class Icones:
         texte1.append("Lancement d'un tirage de chiffres : ")
         texte1.append("même principe que pour les lettres, aller sur la fenêtre des chiffres puis cliquer sur "
                       "'nouveau tirage'\n\n")
-        #print(tk.font.families())
         for iligne in range(len(texte1)):
             if not iligne % 2:
                 text_area.insert(tk.INSERT, texte1[iligne], 'titre')
@@ -472,6 +418,8 @@ class Icones:
 
         self.fin_init = False
         chrono.reset_lettres()
+        if don.type_actuel == 'lettres':
+            self.Del_boutons_lettres()
         don.type_actuel = 'lettres'
         nbLettres = don.nbLettres
         self.Del_boutons_chiffres()
@@ -492,61 +440,13 @@ class Icones:
         self.Set_bouton_next(tirage, motUtilisateur, don, chrono)
         self.Set_boutons_aleatoire(don)
         self.Set_boutons_nbVoyelles(tirage, don)
-        self.fen.bind("<a>", maFonc)
-        self.fen.bind("<b>", maFonc)
-        self.fen.bind("<c>", maFonc)
-        self.fen.bind("<d>", maFonc)
-        self.fen.bind("<e>", maFonc)
-        self.fen.bind("<f>", maFonc)
-        self.fen.bind("<g>", maFonc)
-        self.fen.bind("<h>", maFonc)
-        self.fen.bind("<i>", maFonc)
-        self.fen.bind("<j>", maFonc)
-        self.fen.bind("<k>", maFonc)
-        self.fen.bind("<l>", maFonc)
-        self.fen.bind("<m>", maFonc)
-        self.fen.bind("<n>", maFonc)
-        self.fen.bind("<o>", maFonc)
-        self.fen.bind("<p>", maFonc)
-        self.fen.bind("<q>", maFonc)
-        self.fen.bind("<r>", maFonc)
-        self.fen.bind("<s>", maFonc)
-        self.fen.bind("<t>", maFonc)
-        self.fen.bind("<u>", maFonc)
-        self.fen.bind("<v>", maFonc)
-        self.fen.bind("<w>", maFonc)
-        self.fen.bind("<x>", maFonc)
-        self.fen.bind("<y>", maFonc)
-        self.fen.bind("<z>", maFonc)
-        self.fen.bind("<A>", maFonc)
-        self.fen.bind("<B>", maFonc)
-        self.fen.bind("<C>", maFonc)
-        self.fen.bind("<D>", maFonc)
-        self.fen.bind("<E>", maFonc)
-        self.fen.bind("<F>", maFonc)
-        self.fen.bind("<G>", maFonc)
-        self.fen.bind("<H>", maFonc)
-        self.fen.bind("<I>", maFonc)
-        self.fen.bind("<J>", maFonc)
-        self.fen.bind("<K>", maFonc)
-        self.fen.bind("<L>", maFonc)
-        self.fen.bind("<M>", maFonc)
-        self.fen.bind("<N>", maFonc)
-        self.fen.bind("<O>", maFonc)
-        self.fen.bind("<P>", maFonc)
-        self.fen.bind("<Q>", maFonc)
-        self.fen.bind("<R>", maFonc)
-        self.fen.bind("<S>", maFonc)
-        self.fen.bind("<T>", maFonc)
-        self.fen.bind("<U>", maFonc)
-        self.fen.bind("<V>", maFonc)
-        self.fen.bind("<W>", maFonc)
-        self.fen.bind("<X>", maFonc)
-        self.fen.bind("<Y>", maFonc)
-        self.fen.bind("<Z>", maFonc)
+        # on active les commandes au clavier
+        for lettre in "abcdefghijklmnopqrstuvwxyz":
+            self.fen.bind("<" + lettre + ">", maFonc)
+            self.fen.bind("<" + lettre.upper() + ">", maFonc)
         self.fen.bind("<BackSpace>", maFonc_del)
         self.fen.bind("<Return>", maFonc_valide)
-        self.Set_bouton_changer_lettres(tirage, motUtilisateur, don, chrono)
+        self.Set_bouton_changer(tirage, motUtilisateur, don, chrono)
         self.Set_chrono(chrono, don)
         self.fin_init = True
 
@@ -590,7 +490,7 @@ class Icones:
         self.position_actuelle_chiffres = []
         self.bouton_changer = Button(Mafenetre)
 
-    def Del_boutons_Lettres(self):
+    def Del_boutons_lettres(self):
         self.chrono.destroy()
         for ii in self.boutons_tirage:
             ii.destroy()
@@ -610,9 +510,6 @@ class Icones:
         self.score.destroy()
         self.tops.destroy()
         self.boutons_aleatoire.destroy()
-        # for ii in self.bouto
-        # ns_aleatoire:
-        #     ii.destroy()
         for ii in self.boutons_nbVoyelles:
             ii.destroy()
         Mafenetre = self.fen
@@ -637,52 +534,6 @@ class Icones:
         self.position_actuelle_chiffres = []
         self.bouton_changer = Button(Mafenetre)
 
-    def Lancement_tirage_chiffres(self, tirage, don, chrono, motUtilisateur):
-        # lancement d'un tirage de chiffres juste apres la fenetre d'initialisation
-        self.fin_init = False
-        self.fen.title('Tirage')
-        chrono.reset_chiffres()
-        don.type_actuel = 'chiffres'
-        tirage.ajuste_tirage_prepares(don) # on ne garde que les tirages préparés qui ont le bon nombre de
-        # lettres ou plaques
-
-        # que au départ, lors du choix entre chiffres et lettres
-        self.Del_boutons_lancement()
-
-        self.fen.geometry('954x450')
-
-        # rajout du menu
-        menu_bar = Menu(self.fen)
-        self.fen.config(menu=menu_bar)
-        menu_bar.add_command(label="Quitter", command=self.fen.destroy)
-        menu_bar.add_command(label="Rajouts", command=lambda: self.lancementRajouts(don))
-
-        menu_verif = Menu(menu_bar, tearoff=0)
-        menu_verif.add_command(label="un mot", command=lambda: self.lancementVerifMot(don))
-        # menu_verif.add_command(label="un tirage de lettres")
-        menu_bar.add_cascade(label="Vérifier", menu=menu_verif)
-        menu_bar.add_command(label="Modes de jeu", command=lambda: self.set_mode_jeu(don, tirage))
-        menu_bar.add_command(label="Paramètres", command=lambda: self.set_parametres(don))
-        menu_bar.add_command(label="Aide", command=lambda: self.set_aide(don))
-
-        self.Set_boutons_chiffres(tirage, self.fen, don, chrono)
-        self.Set_boutons_sauvegarde(tirage, don)
-
-        self.Set_score(don)
-        self.Set_tops(don)
-        motUtilisateur.Init_plaques_possibles(don.nbPlaquesChiffres)
-        self.Set_boutons_tirage_chiffres(tirage, motUtilisateur, don)
-        self.Set_bouton_next_chiffres(tirage, motUtilisateur, don, chrono)
-        self.Set_boutons_aleatoire(don)
-        self.Set_bouton_solutions_chiffres(tirage, don)
-        self.Set_bouton_effacer_chiffres(tirage, motUtilisateur, don)
-        self.Set_bouton_top_chiffres(tirage, don)
-        self.Set_bouton_raz_chiffres(tirage, motUtilisateur, don)
-        self.Set_bouton_valider_chiffres(tirage, motUtilisateur, don, chrono)
-        self.Set_boutons_nbGrossesPlaques(tirage, don)
-        self.Set_bouton_changer_chiffres(tirage, motUtilisateur, don, chrono)
-        self.Set_chrono(chrono, don)
-        self.fin_init = True # on reautorise le redimensionnement
 
     def Lancement_tirage_chiffres2(self, tirage, don, chrono, motUtilisateur):
         # fonction appelee lorsqu'on passe d'un tirage de lettres a un tirage de chiffres
@@ -690,7 +541,7 @@ class Icones:
         self.fin_init = False
         don.type_actuel = 'chiffres'
         # que au départ, lors du choix entre chiffres et lettres
-        self.Del_boutons_Lettres()
+        self.Del_boutons_lettres()
         self.Set_boutons_chiffres(tirage, self.fen, don, chrono)
 
         self.Set_boutons_sauvegarde(tirage, don)
@@ -698,17 +549,23 @@ class Icones:
         self.Set_tops(don)
         motUtilisateur.Init_plaques_possibles(don.nbPlaquesChiffres)
         self.Set_boutons_tirage_chiffres(tirage, motUtilisateur, don)
-        self.Set_bouton_next_chiffres(tirage, motUtilisateur, don, chrono)
+        self.Set_bouton_next(tirage, motUtilisateur, don, chrono)
+        print("marqueur 4")
+        print(don.aleatoire)
         self.Set_boutons_aleatoire(don)
-        self.Set_bouton_solutions_chiffres(tirage, don)
-        self.Set_bouton_effacer_chiffres(tirage, motUtilisateur, don)
-        self.Set_bouton_top_chiffres(tirage, don)
-        self.Set_bouton_raz_chiffres(tirage, motUtilisateur, don)
-        self.Set_bouton_valider_chiffres(tirage, motUtilisateur, don, chrono)
+        print("marqueur 5")
+        print(don.aleatoire)
+        self.Set_bouton_solutions(tirage, don)
+        self.Set_bouton_effacer(tirage, motUtilisateur, don)
+        self.Set_bouton_top(tirage, don)
+        self.Set_bouton_raz(tirage, motUtilisateur, don)
+        self.Set_bouton_valider(tirage, motUtilisateur, don, chrono)
         self.Set_boutons_nbGrossesPlaques(tirage, don)
-        self.Set_bouton_changer_chiffres(tirage, motUtilisateur, don, chrono)
+        self.Set_bouton_changer(tirage, motUtilisateur, don, chrono)
         self.Set_chrono(chrono, don)
         self.fin_init = True
+        print("marqueur 6")
+        print(don.aleatoire)
 
     def Increment_position_actuelle_chiffres(self, don):
         if don.nbPlaquesChiffres == 6:
@@ -875,16 +732,19 @@ class Icones:
         self.bouton_lancement_lettres.configure(font=("Helvetica", 30), text="Lettres",
                                                 bg=don.proprietes.couleur_fond_lettres)
         self.bouton_lancement_lettres.place(x=150, y=50, anchor=CENTER, width=200, height=50)
-        self.bouton_lancement_lettres.configure(command=lambda: self.Lancement_tirage_lettres(tirage,
-                                                                don, chrono, motUtilisateur))
+        self.bouton_lancement_lettres.configure(command=lambda: self.Lancement_premier_tirage(tirage,
+                                                                                              don, chrono,
+                                                                                              motUtilisateur,
+                                                                                              "lettres"))
 
         self.bouton_lancement_chiffres = Button(self.fen)
         self.bouton_lancement_chiffres.configure(font=("Helvetica", 30), text="Chiffres",
                                                  bg=don.proprietes.couleur_fond_lettres)
         self.bouton_lancement_chiffres.place(x=150, y=110, anchor=CENTER, width=200, height=50)
-        self.bouton_lancement_chiffres.configure(command=lambda: self.Lancement_tirage_chiffres(tirage,
-                                                                don, chrono, motUtilisateur))
-
+        self.bouton_lancement_chiffres.configure(command=lambda: self.Lancement_premier_tirage(tirage,
+                                                                                              don, chrono,
+                                                                                              motUtilisateur,
+                                                                                              "chiffres"))
 
         self.bouton_rajouts = Button(self.fen)
         self.bouton_rajouts.configure(font=("Helvetica", 30), text="Rajouts", bg='gainsboro')
@@ -1508,7 +1368,6 @@ class Icones:
 
         def print_name(event):
             don.Analyse_sabot_chiffres(entree.get(), bouton_warning)
-            # print(entree.get())
 
         fenetre = tk.Tk()
         fenetre.geometry('600x600')
@@ -1590,7 +1449,6 @@ class Icones:
     def Change_sabot_chiffres(self, don):
         def print_name(event):
             don.Analyse_sabot_chiffres(entree.get(), bouton_warning, fenetre)
-            # print(entree.get())
 
         fenetre = tk.Tk()
         # fenetre.geometry('800x100')
@@ -1858,12 +1716,6 @@ class Icones:
 
         # choix entre aleatoire, prepare et manuel
         self.update_positions_boutons_aleatoire(don)
-        # px = 0.590 * self.tx
-        # py = 0.407 * self.ty
-        # w = 0.136 * self.tx
-        # h = 0.0814 * self.ty
-        # self.boutons_aleatoire.place(x=px, y=py, anchor=CENTER, width=w, height=h)
-        # self.boutons_aleatoire.configure(font=(don.font, int(15 * self.tt)))
 
         # bouton solutions
         px = 0.873 * self.tx
@@ -1897,29 +1749,6 @@ class Icones:
         if don.type_actuel == 'lettres':
             # boutons pour le tirage et la solution de l'utilisateur
             self.update_positions_boutons_tirage_reponse(don)
-            # py = 0.265 * self.ty
-            # py2 = 0.090 * self.ty
-            # if don.affiche_boutons_lettres:
-            #     w = 50 * self.tx / 954
-            #     h = 50 * self.ty / 430
-            #     w = min(w, h)  # fenetre carree
-            #     for ii in range(0, don.nbLettres):
-            #         px = (0.0629 + 0.0566 * ii) * self.tx
-            #         self.boutons_reponse[ii].place(x=px, y=py, anchor=CENTER, width=w, height=w)
-            #         self.boutons_tirage[ii].place(x=px, y=py2, anchor=CENTER, width=w, height=w)
-            #         self.boutons_reponse[ii].configure(font=(don.font_tirage, int(30 * self.tt)))
-            #         self.boutons_tirage[ii].configure(font=(don.font_tirage, int(30 * self.tt)))
-            # else:
-            #     w = 50 * 1.4 * self.tx / 954
-            #     h = 50 * 1.4 * self.ty / 430
-            #     w = min(w, h)  # fenetre carree
-            #     for ii in range(0, don.nbLettres):
-            #         px = (0.0629 + 0.0566 * 1.4 * ii) * self.tx
-            #         self.boutons_reponse[ii].place(x=px, y=py, anchor=CENTER, width=w, height=w)
-            #         self.boutons_tirage[ii].place(x=px, y=py2, anchor=CENTER, width=w, height=w)
-            #         self.boutons_reponse[ii].configure(font=(don.font_tirage, int(30 * 1.4 * self.tt)))
-            #         self.boutons_tirage[ii].configure(font=(don.font_tirage, int(30 * 1.4 * self.tt)))
-
 
             # triangle de lettres ou lignes de consonnes/voyelles
             for ii in range(0, don.nbLettres):
@@ -2170,7 +1999,6 @@ class Icones:
 
         for ii in range(0, don.nbPlaquesChiffres):
             self.boutons_tirage[ii].configure(command=lambda c=ii: compteUtilisateur.AddChiffre(tirage, c, self, don))
-        nb_plaques_tirage_reel = len(self.boutons_tirage)
         # ajout des opérations
         y0 = 190
         for ii in range(0, 5):
@@ -2216,109 +2044,112 @@ class Icones:
                               fg='blue', bg=don.proprietes.couleur_fond)
 
     def Set_bouton_top(self, tirage, don):
-        taille_x = don.geom.taille_x
         self.bouton_top.configure(text='top',
                                     bg=don.proprietes.couleur_bg_select,
                                     font=(don.font, 20))
 
-    def Set_bouton_top_chiffres(self, tirage, don):
-        taille_x = don.geom.taille_x
-        self.bouton_top.configure(text='top',
-                                  bg=don.proprietes.couleur_bg_select,
-                                  font=(don.font, 20))
 
     def Set_bouton_effacer(self, tirage, motUtilisateur, don):
-        taille_x = don.geom.taille_x
         self.bouton_effacer.configure(text='effacer',
                                         bg=don.proprietes.couleur_bg_select,
                                         font=(don.font, 20))
 
-    def Set_bouton_effacer_chiffres(self, tirage, motUtilisateur, don):
-        taille_x = don.geom.taille_x
-        self.bouton_effacer.configure(text='effacer',
-                                      bg=don.proprietes.couleur_bg_select,
-                                      font=(don.font, 20))
 
     def Set_bouton_raz(self, tirage, motUtilisateur, don):
-        taille_x = don.geom.taille_x
         self.bouton_raz.configure(text='RAZ',
                                   font=(don.font, 20),
                                   bg=don.proprietes.couleur_bg_select)
 
-    def Set_bouton_raz_chiffres(self, tirage, motUtilisateur, don):
-        taille_x = don.geom.taille_x
-        self.bouton_raz.configure(text='RAZ',
-                                  font=(don.font, 20),
-                                  bg=don.proprietes.couleur_bg_select)
-        # self.bouton_raz.place(x=0.6 * taille_x, y=400, anchor=CENTER, width=100, height=45)
 
     def Set_bouton_valider(self, tirage, motUtilisateur, don, chrono):
-
-        taille_x = don.geom.taille_x
         self.bouton_valider.configure(text='valider',
                                       font=(don.font, 20),
-                                      bg=don.proprietes.couleur_bg_select, borderwidth=4)
-        # self.bouton_valider.place(x=0.6 * taille_x, y=300, anchor=CENTER, width=100, height=45)
+                                      bg=don.proprietes.couleur_bg_select,
+                                      borderwidth=4)
 
-    def Set_bouton_valider_chiffres(self, tirage, motUtilisateur, don, chrono):
-
-        taille_x = don.geom.taille_x
-        self.bouton_valider.configure(text='valider',
-                                      font=(don.font, 20),
-                                      bg=don.proprietes.couleur_bg_select, borderwidth=4)
-        self.bouton_valider.place(x=0.6 * taille_x, y=300, anchor=CENTER, width=100, height=45)
 
     def Set_bouton_solutions(self, tirage, don):
-        taille_x = don.geom.taille_x
         self.bouton_solutions.configure(text='solutions',
                                       font=(don.font, 20),
                                       bg=don.proprietes.couleur_bg_select)
-        # self.bouton_solutions.place(x=0.8 * taille_x + 70, y=300, anchor=CENTER, width=120, height=45)
-
-    def Set_bouton_solutions_chiffres(self, tirage, don):
-        taille_x = don.geom.taille_x
-        self.bouton_solutions.configure(text='solutions',
-                                      font=(don.font, 20),
-                                      bg=don.proprietes.couleur_bg_select)
-        # self.bouton_solutions.place(x=0.8 * taille_x + 70, y=300, anchor=CENTER, width=120, height=45)
 
     def Set_bouton_next(self, tirage, motUtilisateur, don, chrono):
-        taille_x = don.geom.taille_x
-        self.bouton_next.configure(text='nouveau tirage',
-                                 font=(don.font, 20),
-                                 bg=don.proprietes.couleur_fond_boutons6,
-                                 command=lambda: lancement_tirage_suivant(don, tirage, motUtilisateur,
-                                                                          self, chrono))
-        # self.bouton_next.place(x=0.8 * taille_x + 0, y=350, anchor=CENTER, width=260, height=45)
+        print("dans set_bouton_next")
+        print(don.listeTirages)
+        print(don.aleatoire)
+        type_suivant = ""
+        changement = False
+        # si on n'est pas dans une liste de tirages importes on continue sur la lancee sinon on verifie
+        if not don.listeTirages:
+            type_suivant = don.type_actuel
+        else:
+            don.check_tirage_suivant(tirage.tirages_prepares_liste)
+            type_suivant = don.type_suivant
+            if not don.type_suivant==don.type_actuel:
+                changement = True
 
-    def Set_bouton_next_chiffres(self, tirage, motUtilisateur, don, chrono):
-        self.bouton_next.configure(text='nouveau tirage',
-                                 font=(don.font, 20),
-                                 bg=don.proprietes.couleur_fond_boutons6,
-                                 command=lambda: lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur,
-                                                                          self, chrono))
+        if not len(type_suivant):
+            type_suivant = "lettres"
+        if changement:
+            # on fait comme si on avait clique sur le changement de type
+            if type_suivant=="chiffres":
+                self.bouton_next.configure(text='nouveau tirage (chiffres)',
+                                              font=(don.font, 20),
+                                              bg=don.proprietes.couleur_fond_boutons6,
+                                              command=lambda: self.Lancement_tirage_chiffres2(tirage, don, chrono,
+                                                                                              motUtilisateur))
+            else:
+                self.bouton_next.configure(text='nouveau tirage (lettres)',
+                                              font=(don.font, 20),
+                                              bg=don.proprietes.couleur_fond_boutons6,
+                                              command=lambda: self.Lancement_tirage_lettres2(tirage, don, chrono,
+                                                                                             motUtilisateur))
 
-    def Set_bouton_changer_chiffres(self, tirage, motUtilisateur, don, chrono):
+        else:
+            if type_suivant == "lettres":
+                self.bouton_next.configure(text='nouveau tirage',
+                                     font=(don.font, 20),
+                                     bg=don.proprietes.couleur_fond_boutons6,
+                                     command=lambda: lancement_tirage_suivant(don, tirage, motUtilisateur,
+                                                                              self, chrono))
+            else:
+                self.bouton_next.configure(text='nouveau tirage',
+                                   font=(don.font, 20),
+                                   bg=don.proprietes.couleur_fond_boutons6,
+                                  command=lambda: lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur,
+                                                                                             self, chrono))
+
+
+
+    def Set_bouton_changer(self, tirage, motUtilisateur, don, chrono):
         # pour passer des chiffres aux lettres
-        self.bouton_changer.configure(text='lettres',
-                                 font=(don.font, 20),
-                                 bg=don.proprietes.couleur_changer,
-                                 command=lambda: self.Lancement_tirage_lettres2(tirage, don, chrono, motUtilisateur))
+        if not don.listeTirages:
+            if don.type_actuel == "lettres":
+                self.bouton_changer.configure(text='chiffres',
+                                              font=(don.font, 20),
+                                              bg=don.proprietes.couleur_changer,
+                                              command=lambda: self.Lancement_tirage_chiffres2(tirage, don, chrono,
+                                                                                              motUtilisateur))
+            elif don.type_actuel == "chiffres":
+                self.bouton_changer.configure(text='lettres',
+                                     font=(don.font, 20),
+                                     bg=don.proprietes.couleur_changer,
+                                     command=lambda: self.Lancement_tirage_lettres2(tirage, don, chrono, motUtilisateur))
+        else:
+            self.bouton_changer.configure(text='changer',
+                                          font=(don.font, 20),
+                                          bg=don.proprietes.couleur_bg_select)
 
-    def Set_bouton_changer_lettres(self, tirage, motUtilisateur, don, chrono):
-        # pour passer des lettres aux chiffres
-        self.bouton_changer.configure(text='chiffres',
-                                 font=(don.font, 20),
-                                 bg=don.proprietes.couleur_changer,
-                                 command=lambda: self.Lancement_tirage_chiffres2(tirage, don, chrono, motUtilisateur))
 
     def Set_boutons_aleatoire(self, don):
-        liste_aleatoire = ['aléatoire', 'préparé', 'manuel']
+        liste_aleatoire = ['aléatoire', 'préparé', 'manuel', 'import']
         variable_aleatoire = self.choix_alea
         if don.prepare == 1:
             variable_aleatoire.set(liste_aleatoire[1])
         elif don.manuel == 1:
             variable_aleatoire.set(liste_aleatoire[2])
+        elif don.listeTirages:
+            variable_aleatoire.set(liste_aleatoire[3])
         else:
             variable_aleatoire.set(liste_aleatoire[0])
         self.update_positions_boutons_aleatoire(don)
@@ -2414,7 +2245,6 @@ class Icones:
         self.boutons_nbVoyelles.append(Label(self.fen))
         self.boutons_nbVoyelles[0].configure(text='grosses\nplaques',
                                                font=(don.font, 20), bg=don.proprietes.couleur_fond)
-        # self.boutons_nbVoyelles[0].place(x=0.75 * taille_x, y=y_voyelles + 0.5 * dy_voyelles, anchor=CENTER)
 
         self.boutons_nbVoyelles.append(Button(self.fen))
         self.boutons_nbVoyelles[-1].configure(text='0',
@@ -2536,63 +2366,14 @@ class Icones:
                     self.labels_rajouts[jj].configure(bg=don.proprietes.couleur_faux)
                     validite.configure(text="Ce mot n'est pas valide")
 
-        Mafenetre.bind("<a>", rajouts_addLettre)
-        Mafenetre.bind("<b>", rajouts_addLettre)
-        Mafenetre.bind("<c>", rajouts_addLettre)
-        Mafenetre.bind("<d>", rajouts_addLettre)
-        Mafenetre.bind("<e>", rajouts_addLettre)
-        Mafenetre.bind("<f>", rajouts_addLettre)
-        Mafenetre.bind("<g>", rajouts_addLettre)
-        Mafenetre.bind("<h>", rajouts_addLettre)
-        Mafenetre.bind("<i>", rajouts_addLettre)
-        Mafenetre.bind("<j>", rajouts_addLettre)
-        Mafenetre.bind("<k>", rajouts_addLettre)
-        Mafenetre.bind("<l>", rajouts_addLettre)
-        Mafenetre.bind("<m>", rajouts_addLettre)
-        Mafenetre.bind("<n>", rajouts_addLettre)
-        Mafenetre.bind("<o>", rajouts_addLettre)
-        Mafenetre.bind("<p>", rajouts_addLettre)
-        Mafenetre.bind("<q>", rajouts_addLettre)
-        Mafenetre.bind("<r>", rajouts_addLettre)
-        Mafenetre.bind("<s>", rajouts_addLettre)
-        Mafenetre.bind("<t>", rajouts_addLettre)
-        Mafenetre.bind("<u>", rajouts_addLettre)
-        Mafenetre.bind("<v>", rajouts_addLettre)
-        Mafenetre.bind("<w>", rajouts_addLettre)
-        Mafenetre.bind("<x>", rajouts_addLettre)
-        Mafenetre.bind("<y>", rajouts_addLettre)
-        Mafenetre.bind("<z>", rajouts_addLettre)
-        Mafenetre.bind("<A>", rajouts_addLettre)
-        Mafenetre.bind("<B>", rajouts_addLettre)
-        Mafenetre.bind("<C>", rajouts_addLettre)
-        Mafenetre.bind("<D>", rajouts_addLettre)
-        Mafenetre.bind("<E>", rajouts_addLettre)
-        Mafenetre.bind("<F>", rajouts_addLettre)
-        Mafenetre.bind("<G>", rajouts_addLettre)
-        Mafenetre.bind("<H>", rajouts_addLettre)
-        Mafenetre.bind("<I>", rajouts_addLettre)
-        Mafenetre.bind("<J>", rajouts_addLettre)
-        Mafenetre.bind("<K>", rajouts_addLettre)
-        Mafenetre.bind("<L>", rajouts_addLettre)
-        Mafenetre.bind("<M>", rajouts_addLettre)
-        Mafenetre.bind("<N>", rajouts_addLettre)
-        Mafenetre.bind("<O>", rajouts_addLettre)
-        Mafenetre.bind("<P>", rajouts_addLettre)
-        Mafenetre.bind("<Q>", rajouts_addLettre)
-        Mafenetre.bind("<R>", rajouts_addLettre)
-        Mafenetre.bind("<S>", rajouts_addLettre)
-        Mafenetre.bind("<T>", rajouts_addLettre)
-        Mafenetre.bind("<U>", rajouts_addLettre)
-        Mafenetre.bind("<V>", rajouts_addLettre)
-        Mafenetre.bind("<W>", rajouts_addLettre)
-        Mafenetre.bind("<X>", rajouts_addLettre)
-        Mafenetre.bind("<Y>", rajouts_addLettre)
-        Mafenetre.bind("<Z>", rajouts_addLettre)
+        alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        for lettre in alphabet:
+            Mafenetre.bind("<" + lettre.lower() + ">", rajouts_addLettre)
+            Mafenetre.bind("<" + lettre + ">", rajouts_addLettre)
         Mafenetre.bind("<BackSpace>", rajout_delLettre)
         Mafenetre.bind("<Return>", mot_valide)
 
         self.btn_lettres = []
-        alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         for ii in range(0, len(alphabet)):
             self.btn_lettres.append(Button(Mafenetre))
             self.btn_lettres[-1].configure(font=(don.font, 18),
@@ -2622,7 +2403,6 @@ class Icones:
         self.btn_lettres[-1].place(x=posX_px, y=posY_px, anchor=CENTER, width=40*3, height=40)
         self.btn_lettres[-1].configure(font=(don.font, 18), text='valider', bg=don.proprietes.couleur_fond_lettres,
                                        command = lambda c=ii: self.mot_valide_click(rajout, validite, definition, don))
-
 
         Mafenetre.mainloop()
 
@@ -2693,63 +2473,15 @@ class Icones:
             if len(rajout.base):
                 rajout.Cherche_solutions(don)
 
-        Mafenetre.bind("<a>", rajout_addLettre)
-        Mafenetre.bind("<b>", rajout_addLettre)
-        Mafenetre.bind("<c>", rajout_addLettre)
-        Mafenetre.bind("<d>", rajout_addLettre)
-        Mafenetre.bind("<e>", rajout_addLettre)
-        Mafenetre.bind("<f>", rajout_addLettre)
-        Mafenetre.bind("<g>", rajout_addLettre)
-        Mafenetre.bind("<h>", rajout_addLettre)
-        Mafenetre.bind("<i>", rajout_addLettre)
-        Mafenetre.bind("<j>", rajout_addLettre)
-        Mafenetre.bind("<k>", rajout_addLettre)
-        Mafenetre.bind("<l>", rajout_addLettre)
-        Mafenetre.bind("<m>", rajout_addLettre)
-        Mafenetre.bind("<n>", rajout_addLettre)
-        Mafenetre.bind("<o>", rajout_addLettre)
-        Mafenetre.bind("<p>", rajout_addLettre)
-        Mafenetre.bind("<q>", rajout_addLettre)
-        Mafenetre.bind("<r>", rajout_addLettre)
-        Mafenetre.bind("<s>", rajout_addLettre)
-        Mafenetre.bind("<t>", rajout_addLettre)
-        Mafenetre.bind("<u>", rajout_addLettre)
-        Mafenetre.bind("<v>", rajout_addLettre)
-        Mafenetre.bind("<w>", rajout_addLettre)
-        Mafenetre.bind("<x>", rajout_addLettre)
-        Mafenetre.bind("<y>", rajout_addLettre)
-        Mafenetre.bind("<z>", rajout_addLettre)
-        Mafenetre.bind("<A>", rajout_addLettre)
-        Mafenetre.bind("<B>", rajout_addLettre)
-        Mafenetre.bind("<C>", rajout_addLettre)
-        Mafenetre.bind("<D>", rajout_addLettre)
-        Mafenetre.bind("<E>", rajout_addLettre)
-        Mafenetre.bind("<F>", rajout_addLettre)
-        Mafenetre.bind("<G>", rajout_addLettre)
-        Mafenetre.bind("<H>", rajout_addLettre)
-        Mafenetre.bind("<I>", rajout_addLettre)
-        Mafenetre.bind("<J>", rajout_addLettre)
-        Mafenetre.bind("<K>", rajout_addLettre)
-        Mafenetre.bind("<L>", rajout_addLettre)
-        Mafenetre.bind("<M>", rajout_addLettre)
-        Mafenetre.bind("<N>", rajout_addLettre)
-        Mafenetre.bind("<O>", rajout_addLettre)
-        Mafenetre.bind("<P>", rajout_addLettre)
-        Mafenetre.bind("<Q>", rajout_addLettre)
-        Mafenetre.bind("<R>", rajout_addLettre)
-        Mafenetre.bind("<S>", rajout_addLettre)
-        Mafenetre.bind("<T>", rajout_addLettre)
-        Mafenetre.bind("<U>", rajout_addLettre)
-        Mafenetre.bind("<V>", rajout_addLettre)
-        Mafenetre.bind("<W>", rajout_addLettre)
-        Mafenetre.bind("<X>", rajout_addLettre)
-        Mafenetre.bind("<Y>", rajout_addLettre)
-        Mafenetre.bind("<Z>", rajout_addLettre)
+        alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        for lettre in alphabet:
+            Mafenetre.bind("<" + lettre.lower() + ">", rajout_addLettre)
+            Mafenetre.bind("<" + lettre + ">", rajout_addLettre)
         Mafenetre.bind("<BackSpace>", rajout_delLettre)
         Mafenetre.bind("<Return>", rajout_valide)
 
         self.btn_lettres = []
-        alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
         for ii in range(0, len(alphabet)):
             self.btn_lettres.append(Button(Mafenetre))
             self.btn_lettres[-1].configure(font=(don.font, 18),
@@ -2804,13 +2536,12 @@ def Lancement_tirage_lettres(icones, tirage, don, chrono, motUtilisateur):
     icones.Set_boutons_nbVoyelles(tirage, don)
     icones.Set_chrono(chrono, don)
 
+
 def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
-    # test pause
     flag_affichage_fini = False
     def MiseEnPause(event):
         don.pause = 1-don.pause
     icones.fen.bind("<space>", MiseEnPause)
-    # fin test pause
 
     # activation des boutons s'ils ne l'étaient pas déjà auparavant
     icones.bouton_valider.configure(bg=don.proprietes.couleur_fond_boutons6, borderwidth=4,
@@ -2823,6 +2554,8 @@ def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
                                     command=lambda: solveur(tirage, don))
     icones.bouton_top.configure(bg=don.proprietes.couleur_fond_boutons6,
                               command=lambda: printTop(tirage, don, icones))
+    if not don.listeTirages:
+        icones.Set_bouton_changer(tirage, motUtilisateur, don, chrono)
     liste_lettres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ.'
     if don.affiche_boutons_lettres:
         for ii in range(0, len(liste_lettres)):
@@ -2858,17 +2591,27 @@ def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
     icones.bouton_top.configure(text='top')
 
     # affichage du nouveau tirage
-    if don.aleatoire or don.prepare:
+    if don.aleatoire or don.prepare or don.listeTirages:
+        val_liste_tirage = don.listeTirages
         don.SetNbVoy(don.nbVoy)
         if don.nbVoyAleatoire:
             icones.boutons_nbVoyelles[-1].configure(bg=don.proprietes.couleur_nbVoy)
         icones.boutons_nbVoyelles[don.nbVoy-1].configure(bg=don.proprietes.couleur_nbVoy)
+        print("dans lancement_tirage_suivant")
+        print(don.aleatoire)
         if don.aleatoire:
             tirage.Genere(don)
         else: # tirage préparé
-            icones.boutons_sauvegarde.configure(bg=don.proprietes.couleur_bg_select)
+            if don.listeTirages:
+                icones.boutons_sauvegarde.configure(bg=don.proprietes.couleur_bg_defaut)
+            else:
+                icones.boutons_sauvegarde.configure(bg=don.proprietes.couleur_bg_select)
             tirage.Genere_prepa_lettres(don)
         ii = 0
+
+        if val_liste_tirage and (not don.listeTirages):
+            # en cas de changement d'etat on modifie le comportement du bouton changer
+            icones.Set_bouton_changer(tirage, motUtilisateur, don, chrono)
         while not flag_affichage_fini:
             if not don.pause:
 
@@ -2905,6 +2648,8 @@ def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
         tirage.valide = 1
     elif don.manuel:
         tirage.Reinit()
+    # on change eventuellement ce que fait le bouton next
+    icones.Set_bouton_next(tirage, motUtilisateur, don, chrono)
 
 def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chrono):
     # test pause
@@ -2955,6 +2700,7 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
     icones.chrono.configure(text='')
     tirage.valide = 0
     # remise à zéro
+    print("dans lancement_tirage_suivant_chiffres")
     for ii in range(0, len(icones.boutons_tirage)):
         if ii not in [9,10,11,12]:
             icones.boutons_tirage[ii].configure(text='')
@@ -2963,11 +2709,15 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
         if ii in [6,7,8,38,13,14,15,16,18,19,20,21,23,24,25,26,28,29,30,31,33,34,35,36]:
             icones.boutons_tirage[ii].configure(bg=don.proprietes.couleur_fond)
     # lancement du nouveau tirage
-    if don.aleatoire or don.prepare:
+    if don.aleatoire or don.prepare or don.listeTirages:
+        print(don.aleatoire)
         if don.aleatoire:
             tirage.Genere_chiffres(don)
         else: # tirage préparé
-            icones.boutons_sauvegarde.configure(bg=don.proprietes.couleur_bg_select)
+            if don.listeTirages:
+                icones.boutons_sauvegarde.configure(bg=don.proprietes.couleur_bg_defaut)
+            else:
+                icones.boutons_sauvegarde.configure(bg=don.proprietes.couleur_bg_select)
             tirage.Genere_prepa_chiffres(don)
         # +++ mise à jour des icônes
 
@@ -3307,6 +3057,8 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
             pygame.mixer.music.play()
     elif don.manuel:
         tirage.Reinit()
+    # on change eventuellement ce que fait le bouton next
+    icones.Set_bouton_next(tirage, motUtilisateur, don, chrono)
 
 
 
@@ -3570,20 +3322,3 @@ class Rajout:
         menu_bar.add_command(label="Définitions (F2)", command=rajout_FoncF2)
 
         tk.mainloop()
-
-        '''
-        root = tk.Tk()
-        root.title('Solutions')
-        S = tk.Scrollbar(root)
-        T = tk.Text(root, height=20, width=80, font=('consolas', 20))
-        S.pack(side=tk.RIGHT, fill=tk.Y)
-        T.pack(side=tk.LEFT, fill=tk.Y)
-        S.config(command=T.yview)
-        T.config(yscrollcommand=S.set)
-        quote = cha
-        T.insert(tk.END, quote)
-        '''
-
-        #tk.mainloop()
-
-

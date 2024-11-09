@@ -28,6 +28,7 @@ class Tirage:
         self.valide = 0
         self.tirages_prepares_lettres = lecture_tirages_prepares('lettres', don.fichier_prepa_l)
         self.tirages_prepares_chiffres = lecture_tirages_prepares('chiffres', don.fichier_prepa_c)
+        self.tirages_prepares_liste = [] # ["1 2 3 4 5 6 789"] # ["AZERTYUIOP"]
         self.top_impose_lettres = 0 # pour imposer des tirages avec un top a ce nombre de lettres
         self.nb_sol_chiffres_max = 0 # pour imposer des tirages de chiffres avec un nombre max de solutions
         self.nb_sol_lettres_max = 0 # idem pour les lettres (deux mots anagrammes comptent pour une seule solution)
@@ -112,8 +113,18 @@ class Tirage:
         self.sol_basique = []
         self.sol_complet = []
         self.sol_definitions = []
+        if don.listeTirages:
+            self.tirage = self.tirages_prepares_liste[0].strip()
+            self.tirages_prepares_liste.pop(0)
+            don.check_tirage_suivant(self.tirages_prepares_liste)
+        elif don.prepare:
+            if len(self.tirages_prepares_lettres):
+                self.tirage = genereTiragePrepaLettres(self.tirages_prepares_lettres).strip()
+            else:
+                self.tirage = genereTirageLettres(don.nbLettres, don.nbVoy, don.listeCons, liste_voy)
+        else:
+            self.tirage = genereTirageLettres(don.nbLettres, don.nbVoy, don.listeCons, liste_voy)
 
-        self.tirage = genereTiragePrepaLettres(self.tirages_prepares_lettres).strip()
         self.tirageMin = self.tirage.lower()
         # mise dans l'ordre alphabétique, sinon les combinaisons de lettres ne correspondent pas à celles,
         # ordonnées, du dico
@@ -173,11 +184,31 @@ class Tirage:
         self.liste_possibles_chiffres = []
         self.liste_approches = []
 
-        if len(self.tirages_prepares_chiffres):
-            self.tirage_chiffres = genereTiragePrepaChiffres(self.tirages_prepares_chiffres)
+        if don.listeTirages:
+            print("dans genere_prepa_chiffres")
+            print(self.tirages_prepares_liste[0])
+            self.tirage_chiffres = genereTiragePrepaChiffres(self.tirages_prepares_liste, idx_choix=0)
+            self.tirages_prepares_liste.pop(0)
+            don.check_tirage_suivant(self.tirages_prepares_liste)
+        elif don.prepare:
+            if len(self.tirages_prepares_chiffres):
+                self.tirage_chiffres = genereTiragePrepaChiffres(self.tirages_prepares_chiffres)
+            else:
+                self.tirage_chiffres = genereTirageChiffres(don.nbPlaquesChiffres, don.listeChiffres,
+                                                            don.borneMin, don.borneMax, don.nb_grosses_plaques)
         else:
             self.tirage_chiffres = genereTirageChiffres(don.nbPlaquesChiffres, don.listeChiffres,
                                                         don.borneMin, don.borneMax, don.nb_grosses_plaques)
+        #
+        # if len(self.tirages_prepares_chiffres):
+        #     if don.listeTirages:
+        #         self.tirage_chiffres = genereTiragePrepaChiffres(self.tirages_prepares_liste, 0)
+        #         self.tirages_prepares_liste.pop(0)
+        #     else:
+        #         self.tirage_chiffres = genereTiragePrepaChiffres(self.tirages_prepares_chiffres)
+        # else:
+        #     self.tirage_chiffres = genereTirageChiffres(don.nbPlaquesChiffres, don.listeChiffres,
+        #                                                 don.borneMin, don.borneMax, don.nb_grosses_plaques)
 
     def GenereFin(self):
         self.tirageMin = self.tirage.lower()
@@ -1090,16 +1121,19 @@ def lecture_tirages_prepares(l_ou_c, nomFichier):
                 if '|' in line:
                     v = line.split('|')
                     tir = v[0]
+                elif ')' in line:
+                    v = line.split(')')
+                    tir = v[1]
                 else:
                     tir = line
                 if l_ou_c == 'lettres':
                     if '(' in tir:
                         w = tir.split('(')
-                        list.append(w[0])
+                        list.append(w[0].strip())
                     else:
-                        list.append(tir)
+                        list.append(tir.strip())
                 else:
-                    list.append(tir)
+                    list.append(tir.strip())
         except IOError:
             cha = "le fichier de tirages préparés de " + l_ou_c + " n'a pas pu être chargé."
             print(cha)

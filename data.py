@@ -44,6 +44,7 @@ class Data:
         self.proprietes = Proprietes()
         self.aleatoire = 1
         self.prepare = 0
+        self.listeTirages = False # on travaille sur une liste chargee (pour refaire un dupli par ex)
         self.manuel = 0
         self.nbVoyAleatoire = 1
         self.geom = Geometrie()
@@ -58,6 +59,7 @@ class Data:
         self.bareme_chiffres = Bareme()
         self.nb_grosses_plaques = 314
         self.type_actuel = ''
+        self.type_suivant = '' # pour les listes de tirages prepares
         self.son_actif = 0
         self.tempo = 0 # 0.6
         self.fichier_prepa_l = 'prepa_l.txt'
@@ -234,10 +236,18 @@ class Data:
             self.nbVoy = nbVoy
             self.nbVoyAleatoire = 0
 
-
-   # def LoadConsVoy(self):
-        # self.listeCons = loadCons()
-        # self.listeVoy = loadVoy()
+    def check_tirage_suivant(self, tirages_prepares_liste):
+        # on regarde s'il reste des tirages dans la liste puis quel sera le prochain type
+        if len(tirages_prepares_liste):
+            tir = tirages_prepares_liste[0].strip()
+            if tir[-1] in "0123456789":
+                self.type_suivant = "chiffres"
+            else:
+                self.type_suivant = "lettres"
+        else:
+            self.type_suivant = ""
+            self.listeTirages = False
+            self.aleatoire = 1
 
 class Geometrie:
     def __init__(self):

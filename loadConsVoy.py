@@ -44,13 +44,19 @@ def genereTirageLettres(nbLettres,nbVoy,listeCons,listeVoy):
             del(cons[a])
     return tirage
 
-def genereTiragePrepaChiffres(prepa):
-    r = random.randint(0, len(prepa) - 1)
+
+def genereTiragePrepaChiffres(prepa, idx_choix=-1):
+    if idx_choix >= 0:
+        # en principe 0, pour une liste de tirages
+        r = idx_choix
+    else:
+        r = random.randint(0, len(prepa) - 1)
     tirage = []
     l = prepa[r].split(' ')
     for ii in l:
         tirage.append(int(ii))
     return tirage
+
 
 def genereTirageChiffres(nbPlaques, listePlaques, borneMin, borneMax, *args):
     nbGrossesPlaques = 314

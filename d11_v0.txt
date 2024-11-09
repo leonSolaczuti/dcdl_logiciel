@@ -6212,6 +6212,7 @@ fauconnerie
 fauconniers
 faulknérien
 faunistique
+faustiennes
 fautivement
 faux-bourdon
 faux-fuyants
@@ -6234,11 +6235,13 @@ fédérateurs
 fédératrice
 fédératives
 fédérations
+fellinienne
 féminicides
 féminisante
 féminisants
 féminitudes
 femmelettes
+féneloniens
 fenestrages
 féodalismes
 ferblantier
@@ -6351,6 +6354,7 @@ flanquement
 flatulences
 flatulentes
 flatuosités
+blaubertien
 flaugnardes
 flavescente
 flavescents
@@ -6494,6 +6498,7 @@ franchisant
 franchisées
 franchiseur
 franciscain
+franckistes
 francophile
 francophobe
 francophone
@@ -6619,6 +6624,7 @@ galvaudeuse
 gambergeant
 gamopétales
 gamosépales
+gandhiennes
 gangétiques
 gangreneuse
 gangréneuse
@@ -6658,6 +6664,7 @@ gasconnisme
 gaspillages
 gaspilleurs
 gaspilleuse
+gassendiste
 gastéropode
 gastralgies
 gastronomes
@@ -6755,6 +6762,9 @@ ghettoïsant
 ghettoïsées
 gigantesque
 gigantismes
+giguenardes
+giralducien
+giscardiens
 glaciations
 glaciérisme
 glaciériste
@@ -6808,10 +6818,11 @@ gobelèterie
 gobeletière
 gobeletiers
 gobe-mouches
+godardienne
 godelureaux
 godilleuses
 godronnages
-giguenardes
+goethéennes
 goinfreries
 gomorrhéens
 gonadotrope
@@ -7094,6 +7105,7 @@ hébéphrénie
 hébergement
 hébergeuses
 hébertismes
+hébertistes
 hébètements
 hébétements
 hébraïsante
@@ -7101,6 +7113,7 @@ hébraïsants
 hectolitres
 hectomètres
 hectopascal
+hégéliennes
 hégémonique
 hégémonisme
 heimatlosat
@@ -7171,6 +7184,7 @@ heptagonaux
 heptamètres
 heptarchies
 heptathlons
+héraclitéen
 héraldiques
 héraldistes
 herbagement
@@ -7197,6 +7211,7 @@ héronnières
 herpétiques
 herpétismes
 hertziennes
+hésiodiques
 hésitations
 hétéroclite
 hétérocycle
@@ -7228,6 +7243,7 @@ hiérarchisé
 hiératiques
 hiératismes
 hiéroglyphe
+hiéronymien
 hiéronymite
 hiérophante
 highlanders
@@ -7267,6 +7283,7 @@ hitlérismes
 hivernantes
 hochequeues
 hockeyeuses
+holbachique
 holistiques
 hollandaise
 holocaustes
@@ -7308,6 +7325,8 @@ hongroyeurs
 honnêtement
 honorariats
 honorifique
+horaciennes
+horatiennes
 horizontale
 horizontaux
 horlogeries
@@ -7338,6 +7357,7 @@ house musics
 houspillant
 houspillées
 hovercrafts
+hugoliennes
 huitantième
 huit-reflets
 hululements
