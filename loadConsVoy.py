@@ -3,9 +3,25 @@
 
 import random
 
-def genereTiragePrepaLettres(prepa):
-    r = random.randint(0, len(prepa) - 1)
-    tirage = prepa[r]
+def genereTiragePrepaLettres(prepa, nbLettres, nbEssais=100):
+    # on tire aleatoirement un tirage de lettres parmi tous ceux disponibles
+    # s'il n'y en a pas qui convient (que des 10 lettres pour 11 L demandees alors on s'adapte
+    tir_ok = False
+    compteur = 0
+    while compteur<nbEssais and (not tir_ok):
+        r = random.randint(0, len(prepa) - 1)
+        tirage = prepa[r]
+        if len(tirage)==nbLettres:
+            tir_ok = True
+        compteur += 1
+    if (not tir_ok):
+        if len(tirage)<nbLettres:
+            alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            while len(tirage)<nbLettres:
+                r = random.randint(0, len(alphabet) - 1)
+                tirage = tirage + alphabet[r]
+        else:
+            tirage = tirage[:nbLettres]
     return tirage
 
 def genereTirageLettres(nbLettres,nbVoy,listeCons,listeVoy):

@@ -39,6 +39,7 @@ class Data:
         #     'EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIOOOOOOOO' + \
         #     'OOOOOOOOOOOOOOOOOOOOOOOOOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUYY'
         self.nbLettres = 11
+        self.nbLettres_suivant = 11
         self.nbVoy = []
         self.dico = []
         self.proprietes = Proprietes()
@@ -75,7 +76,6 @@ class Data:
         self.affiche_boutons_chiffres = False  # True seulement si on est en mode manuel
 
     def Analyse_sabot_lettres(self, alphabet, consonnes, voyelles, boutons_val, bouton_warn, fen):
-        print(alphabet)
         warn = 0
         liste_val_voy = []
         liste_val_cons = []
@@ -238,12 +238,14 @@ class Data:
 
     def check_tirage_suivant(self, tirages_prepares_liste):
         # on regarde s'il reste des tirages dans la liste puis quel sera le prochain type
+        self.nbLettres_suivant = self.nbLettres
         if len(tirages_prepares_liste):
             tir = tirages_prepares_liste[0].strip()
             if tir[-1] in "0123456789":
                 self.type_suivant = "chiffres"
             else:
                 self.type_suivant = "lettres"
+                self.nbLettres_suivant = len(tir)
         else:
             self.type_suivant = ""
             self.listeTirages = False

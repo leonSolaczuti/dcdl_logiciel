@@ -572,4 +572,7 @@ puz zup ZUP;zone à urbaniser par priorité
 suz zus ZUS(10);zone urbaine sensible
 zzz zzz zzz;caché à zzzz...
 eil iel iel(23)
-fmo mof mof(23);meilleur ouvrier de France
+fmo mof MOF(23);meilleur ouvrier de France
+acc cac CAC(25);CAC40 : indice de la bourse de Paris
+ptu tup TUP(25);titre universel de paiement
+dej dej déj'(26); déjeuner

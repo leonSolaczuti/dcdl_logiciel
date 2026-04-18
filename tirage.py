@@ -119,11 +119,11 @@ class Tirage:
             don.check_tirage_suivant(self.tirages_prepares_liste)
         elif don.prepare:
             if len(self.tirages_prepares_lettres):
-                self.tirage = genereTiragePrepaLettres(self.tirages_prepares_lettres).strip()
+                self.tirage = genereTiragePrepaLettres(self.tirages_prepares_lettres, don.nbLettres).strip()
             else:
-                self.tirage = genereTirageLettres(don.nbLettres, don.nbVoy, don.listeCons, liste_voy)
+                self.tirage = genereTirageLettres(don.nbLettres, don.nbVoy, don.listeCons, don.liste_voy)
         else:
-            self.tirage = genereTirageLettres(don.nbLettres, don.nbVoy, don.listeCons, liste_voy)
+            self.tirage = genereTirageLettres(don.nbLettres, don.nbVoy, don.listeCons, don.liste_voy)
 
         self.tirageMin = self.tirage.lower()
         # mise dans l'ordre alphabétique, sinon les combinaisons de lettres ne correspondent pas à celles,
@@ -136,7 +136,7 @@ class Tirage:
         new_c = []
         if len(self.tirages_prepares_lettres):
             for ii in self.tirages_prepares_lettres:
-                if len(ii)==don.nbLettres+1:
+                if len(ii) in [10, 11]:
                     new_l.append(ii)
         if len(self.tirages_prepares_chiffres):
             for ii in self.tirages_prepares_chiffres:
@@ -185,8 +185,6 @@ class Tirage:
         self.liste_approches = []
 
         if don.listeTirages:
-            print("dans genere_prepa_chiffres")
-            print(self.tirages_prepares_liste[0])
             self.tirage_chiffres = genereTiragePrepaChiffres(self.tirages_prepares_liste, idx_choix=0)
             self.tirages_prepares_liste.pop(0)
             don.check_tirage_suivant(self.tirages_prepares_liste)

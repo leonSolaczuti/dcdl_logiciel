@@ -121,7 +121,6 @@ class Icones:
         if fichier_path:
             try:
                 liste = lecture_tirages_prepares('chiffres', fichier_path)
-                print(liste)
                 if len(liste):
                     don.listeTirages = True
                     don.aleatoire = 0
@@ -385,7 +384,7 @@ class Icones:
 
         tk.mainloop()
 
-    def Lancement_tirage_lettres2(self, tirage, don, chrono, motUtilisateur):
+    def Lancement_tirage_lettres2(self, tirage, don, chrono, motUtilisateur, nbLettres_prochain=0):
         def maFonc(event):
             if don.type_actuel == 'lettres':
                 lettre_a_ajouter = event.char.upper()
@@ -415,6 +414,11 @@ class Icones:
                     motUtilisateur.ValideReponse(tirage, don, self, chrono)
                 else:
                     self.ValideTirage(tirage, chrono)
+
+        # on verifie si le nombre de lettres du prochain tirage a change
+        if nbLettres_prochain in [10, 11]:
+            if not don.nbLettres==nbLettres_prochain:
+                don.nbLettres = nbLettres_prochain
 
         self.fin_init = False
         chrono.reset_lettres()
@@ -449,6 +453,11 @@ class Icones:
         self.Set_bouton_changer(tirage, motUtilisateur, don, chrono)
         self.Set_chrono(chrono, don)
         self.fin_init = True
+        if don.listeTirages:
+            lancement_tirage_suivant(don, tirage, motUtilisateur, self, chrono)
+            self.Set_bouton_next(tirage, motUtilisateur, don, chrono)
+
+
 
     def Del_boutons_chiffres(self):
         self.chrono.destroy()
@@ -537,6 +546,7 @@ class Icones:
 
     def Lancement_tirage_chiffres2(self, tirage, don, chrono, motUtilisateur):
         # fonction appelee lorsqu'on passe d'un tirage de lettres a un tirage de chiffres
+        # pour changer la fenetre
         # (donc pas au démarrage du logiciel)
         self.fin_init = False
         don.type_actuel = 'chiffres'
@@ -550,11 +560,7 @@ class Icones:
         motUtilisateur.Init_plaques_possibles(don.nbPlaquesChiffres)
         self.Set_boutons_tirage_chiffres(tirage, motUtilisateur, don)
         self.Set_bouton_next(tirage, motUtilisateur, don, chrono)
-        print("marqueur 4")
-        print(don.aleatoire)
         self.Set_boutons_aleatoire(don)
-        print("marqueur 5")
-        print(don.aleatoire)
         self.Set_bouton_solutions(tirage, don)
         self.Set_bouton_effacer(tirage, motUtilisateur, don)
         self.Set_bouton_top(tirage, don)
@@ -564,8 +570,10 @@ class Icones:
         self.Set_bouton_changer(tirage, motUtilisateur, don, chrono)
         self.Set_chrono(chrono, don)
         self.fin_init = True
-        print("marqueur 6")
-        print(don.aleatoire)
+        if don.listeTirages:
+            lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, self, chrono)
+            self.Set_bouton_next(tirage, motUtilisateur, don, chrono)
+
 
     def Increment_position_actuelle_chiffres(self, don):
         if don.nbPlaquesChiffres == 6:
@@ -2074,11 +2082,10 @@ class Icones:
                                       bg=don.proprietes.couleur_bg_select)
 
     def Set_bouton_next(self, tirage, motUtilisateur, don, chrono):
-        print("dans set_bouton_next")
-        print(don.listeTirages)
-        print(don.aleatoire)
         type_suivant = ""
         changement = False
+        changement_nbL = False
+        changement_cl = False
         # si on n'est pas dans une liste de tirages importes on continue sur la lancee sinon on verifie
         if not don.listeTirages:
             type_suivant = don.type_actuel
@@ -2086,7 +2093,10 @@ class Icones:
             don.check_tirage_suivant(tirage.tirages_prepares_liste)
             type_suivant = don.type_suivant
             if not don.type_suivant==don.type_actuel:
-                changement = True
+                changement_cl = True
+            if not don.nbLettres==don.nbLettres_suivant:
+                changement_nbL = True
+        changement = changement_cl or changement_nbL
 
         if not len(type_suivant):
             type_suivant = "lettres"
@@ -2094,21 +2104,24 @@ class Icones:
             # on fait comme si on avait clique sur le changement de type
             if type_suivant=="chiffres":
                 self.bouton_next.configure(text='nouveau tirage (chiffres)',
-                                              font=(don.font, 20),
+                                              font=(don.font, 18),
                                               bg=don.proprietes.couleur_fond_boutons6,
                                               command=lambda: self.Lancement_tirage_chiffres2(tirage, don, chrono,
                                                                                               motUtilisateur))
             else:
-                self.bouton_next.configure(text='nouveau tirage (lettres)',
-                                              font=(don.font, 20),
+                if changement_cl:
+                    message = 'nouveau tirage (lettres)'
+                elif changement_nbL:
+                    message = 'nouveau tirage'
+                self.bouton_next.configure(text=message, font=(don.font, 20),
                                               bg=don.proprietes.couleur_fond_boutons6,
                                               command=lambda: self.Lancement_tirage_lettres2(tirage, don, chrono,
-                                                                                             motUtilisateur))
+                                                                                             motUtilisateur, don.nbLettres_suivant))
 
         else:
             if type_suivant == "lettres":
                 self.bouton_next.configure(text='nouveau tirage',
-                                     font=(don.font, 20),
+                                     font=(don.font, 18),
                                      bg=don.proprietes.couleur_fond_boutons6,
                                      command=lambda: lancement_tirage_suivant(don, tirage, motUtilisateur,
                                                                               self, chrono))
@@ -2597,8 +2610,6 @@ def lancement_tirage_suivant(don, tirage, motUtilisateur, icones, chrono):
         if don.nbVoyAleatoire:
             icones.boutons_nbVoyelles[-1].configure(bg=don.proprietes.couleur_nbVoy)
         icones.boutons_nbVoyelles[don.nbVoy-1].configure(bg=don.proprietes.couleur_nbVoy)
-        print("dans lancement_tirage_suivant")
-        print(don.aleatoire)
         if don.aleatoire:
             tirage.Genere(don)
         else: # tirage préparé
@@ -2700,7 +2711,6 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
     icones.chrono.configure(text='')
     tirage.valide = 0
     # remise à zéro
-    print("dans lancement_tirage_suivant_chiffres")
     for ii in range(0, len(icones.boutons_tirage)):
         if ii not in [9,10,11,12]:
             icones.boutons_tirage[ii].configure(text='')
@@ -2710,7 +2720,6 @@ def lancement_tirage_suivant_chiffres(don, tirage, motUtilisateur, icones, chron
             icones.boutons_tirage[ii].configure(bg=don.proprietes.couleur_fond)
     # lancement du nouveau tirage
     if don.aleatoire or don.prepare or don.listeTirages:
-        print(don.aleatoire)
         if don.aleatoire:
             tirage.Genere_chiffres(don)
         else: # tirage préparé

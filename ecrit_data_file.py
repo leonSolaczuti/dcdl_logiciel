@@ -4,8 +4,8 @@
 
 from unidecode import unidecode
 
-nomFichierLu = 'entrees2024_gen.txt'
-nomFichierEcrit = 'entrees2024_gen.dat'
+nomFichierLu = 'entrees2026_gen.txt'
+nomFichierEcrit = 'entrees2026_gen.dat'
 fichierLu = open(nomFichierLu, "r")
 fichierEcrit = open(nomFichierEcrit,'w')
 
